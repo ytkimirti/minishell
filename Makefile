@@ -25,8 +25,9 @@ BONUS_ENTRY_SRCS =
 # SRCS = src/summer.c
 # You SHALL NOT include main
 # SRCS := $(wildcard $(SRC_DIR)/*.c)
-SRCS = $(SRC_DIR)/tokenize_word.c \
-		$(SRC_DIR)/tokenizer.c
+SRCS = $(SRC_DIR)/tokenizer.c \
+		$(SRC_DIR)/tokenize_word.c \
+		$(SRC_DIR)/tokenize_space.c \
 
 TEST_UTILS_SRCS = $(TEST_DIR)/test_utils.c
 TEST_SRCS = $(TEST_DIR)/test_tokenize_word.c

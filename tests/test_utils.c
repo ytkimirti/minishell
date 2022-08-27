@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:17:31 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/08/27 16:32:59 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/08/27 16:42:35 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ char	*token_type_tostr(enum e_token_type type)
 {
 	if (type == WORD)
 		return "WORD";
+	if (type == SPACE)
+		return "SPACE";
 	if (type == QUOTE_OPEN)
 		return "QUOTE_OPEN";
 	if (type == QUOTE_CLOSE)
