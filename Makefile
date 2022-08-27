@@ -28,6 +28,7 @@ BONUS_ENTRY_SRCS =
 SRCS = $(SRC_DIR)/tokenizer.c \
 		$(SRC_DIR)/tokenize_word.c \
 		$(SRC_DIR)/tokenize_space.c \
+		$(SRC_DIR)/tokenize_var.c \
 
 TEST_UTILS_SRCS = $(TEST_DIR)/test_utils.c
 TEST_SRCS = $(TEST_DIR)/test_tokenize_word.c
