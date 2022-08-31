@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 17:35:01 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/08/29 19:27:22 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/08/31 18:57:11 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ Test(tokenizer, with_space)
 	char	*str;
 
 	str = strdup("  hello  world");
-	t_token correct[3] = (t_token[]){
+	t_token correct[4] = (t_token[]){
+		{ .type = SPACE },
 		{ .len = 5, .type = WORD, .str = "hello" },
 		{ .type = SPACE },
 		{ .len = 5, .type = WORD, .str = "world" },
@@ -65,7 +66,7 @@ Test(tokenizer, with_space)
 
 	t_token **out = tokenize(str);
 
-	cr_expect(eq(type(t_token)[3], *out, correct));
+	cr_expect(eq(type(t_token)[4], *out, correct));
 	free(out);
 	free(str);
 }
