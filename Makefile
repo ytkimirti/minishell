@@ -31,7 +31,8 @@ SRCS = $(SRC_DIR)/tokenizer.c \
 		$(SRC_DIR)/tokenize_var.c \
 
 TEST_UTILS_SRCS = $(TEST_DIR)/test_utils.c
-TEST_SRCS = $(TEST_DIR)/test_tokenize_word.c
+TEST_SRCS = $(TEST_DIR)/test_tokenize_word.c \
+			$(TEST_DIR)/test_tokenizer.c
 
 TEST_UTILS_OBJS = $(patsubst $(TEST_DIR)/%.c, $(TEST_DIR)/obj/%.o, $(TEST_UTILS_SRCS))
 
