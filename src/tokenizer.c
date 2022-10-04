@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:26:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/04 15:47:50 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/04 16:34:05 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+// Returns new malloced t_token
 t_token	*tokenize_single(char **str, t_state *state)
 {
 	t_token	*token;
@@ -30,11 +31,11 @@ t_token	*tokenize_single(char **str, t_state *state)
 	return (token);
 }
 
-t_token	*tokenize(char *str)
+t_token	**tokenize(char *str)
 {
 	t_token	*token;
 	t_pvec	*tokens;
-	t_token	*tmp;
+	t_token	**tmp;
 	t_state	state;
 
 	state.in_quotes = false;
@@ -49,7 +50,7 @@ t_token	*tokenize(char *str)
 		pvec_append(tokens, token);
 	}
 	pvec_append(tokens, NULL);
-	tmp = (t_token *)tokens->arr;
+	tmp = (t_token **)tokens->arr;
 	free(tokens);
 	return (tmp);
 }

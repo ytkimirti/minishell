@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:26:00 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/04 15:48:22 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/04 16:32:28 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 
 # include "token.h"
 
-t_token	*tokenize(char *str);
+t_token	**tokenize(char *str);
 
 #endif
