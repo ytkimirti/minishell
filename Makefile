@@ -88,9 +88,11 @@ run: all
 re: fclean all
 
 clean:
-	rm -rf $(OBJ_DIR) $(TEST_DIR)/bin
+	rm -rf $(TEST_DIR)/obj
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	rm -f $(NAME)
+	rm -rf $(TEST_DIR)/bin
 
 -include $(OBJ_DIR)/*.d
