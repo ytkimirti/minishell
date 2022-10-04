@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 19:03:45 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/08/31 19:15:21 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/04 15:45:11 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ void	execute_cmd(t_cmd *cmd)
 	pid = fork();
 	if (pid == 0)
 	{
+		if (cmd->stdin != 0)
+			dup2(cmd->stdin, 0);
+		if (cmd->stdout != 0)
+			dup2(cmd->stdout, 1);
+		if (cmd->stderr != 0)
+			dup2(cmd->stderr, 2);
 		execve(cmd->path, cmd->argv, environ);
 	}
 }
