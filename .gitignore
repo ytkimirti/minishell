@@ -2,3 +2,4 @@
 /tests/obj/
 /miniparser
 /tests/bin/
+.DS_Store
