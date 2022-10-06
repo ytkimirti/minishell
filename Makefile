@@ -85,6 +85,9 @@ run: all
 
 # re_nolog: CFLAGS += -DLOG=false
 
+difftester/print_args: difftester/print_args.c
+	$(CC) $< -o $@
+
 re: fclean all
 
 clean:
