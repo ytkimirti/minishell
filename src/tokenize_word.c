@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:27:23 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/04 16:22:56 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/06 11:47:18 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,24 @@ bool	is_metacharacter(char c)
  */
 t_token	*tokenize_word(char **str, t_state *state)
 {
-	t_cvec	*vec;
 	t_token	*token;
+	int		i;
 
 	token = malloc(sizeof(t_token));
 	if (token == NULL)
 		return (NULL);
-	vec = cvec_new(64);
-	if (!vec)
-		return (NULL);
 	token->type = WORD;
-	while (**str != '\0'
-		&& ((state->in_quotes && **str != '$')
-			|| (!state->in_quotes && !is_metacharacter(**str))))
+	i = 0;
+	while ((*str)[i] != '\0'
+		&& ((state->in_quotes && (*str)[i] != '$')
+			|| (!state->in_quotes && !is_metacharacter((*str)[i]))
+			)
+		)
 	{
-		cvec_append(vec, **str);
-		(*str)++;
+		i++;
 	}
-	token->str = vec->arr;
-	token->len = vec->len;
-	free(vec);
+	token->str = *str;
+	token->len = i;
+	(*str) += i;
 	return (token);
 }

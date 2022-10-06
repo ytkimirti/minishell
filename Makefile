@@ -1,4 +1,4 @@
-NAME = miniparser
+NAME = minishell
 BONUS_NAME =
 
 # NOTE: Add -Werror here before pushing to intra
@@ -29,6 +29,9 @@ SRCS = $(SRC_DIR)/tokenizer.c \
 		$(SRC_DIR)/tokenize_word.c \
 		$(SRC_DIR)/tokenize_space.c \
 		$(SRC_DIR)/tokenize_var.c \
+		$(SRC_DIR)/parser.c \
+		$(SRC_DIR)/executer.c \
+		$(SRC_DIR)/utils.c \
 
 TEST_UTILS_SRCS = $(TEST_DIR)/test_utils.c
 TEST_SRCS = $(TEST_DIR)/test_tokenize_word.c \

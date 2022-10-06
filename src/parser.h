@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/27 15:18:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/06 11:48:22 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/10/06 11:01:12 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/10/06 11:10:21 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include "../libft/vector.h"
-#include "tokenizer.h"
-#include "token.h"
-#include "executer.h"
-#include "parser.h"
+#ifndef PARSER_H
 
-int	main(void)
-{
-	char	*line;
-	t_token	**t;
-	t_cmd	cmd;
+# define PARSER_H
 
-	while (true)
-	{
-		line = get_next_line(0);
-		if (line == NULL)
-			break ;
-		t = tokenize(line);
-		cmd = create_cmd(t);
-		execute_cmd(&cmd);
-		free_tokens(t);
-		free_cmd(&cmd);
-	}
-}
+# include "executer.h"
+# include "tokenizer.h"
+
+// Creates a cmd from the given tokens list.
+// On error, it returns a cmd object with
+// path set to NULL.
+t_cmd	create_cmd(t_token **tokens);
+
+// Frees the contents of the given cmd.
+// So it frees the argv list.
+void	free_cmd(t_cmd *cmd);
+
+#endif
