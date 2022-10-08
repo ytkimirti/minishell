@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:00:53 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/06 11:31:55 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/06 12:19:01 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ t_cmd	create_cmd(t_token **tokens)
 	i = 0;
 	while (&tokens[i] != NULL && tokens[i]->type == SPACE)
 		i++;
+	return (cmd);
 	if (&tokens[i] == NULL)
 		return (cmd);
 	if (tokens[i]->type != WORD)
