@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:17:31 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/06 12:35:35 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/08 18:25:03 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,30 +58,6 @@ int cr_user_t_cmd_eq(t_cmd *a, t_cmd *b)
 	return (false);
 }
 
-// Returns a non freeable string constant
-char	*token_type_tostr(enum e_token_type type)
-{
-	if (type == WORD)
-		return "WORD";
-	if (type == SPACE)
-		return "SPACE";
-	if (type == QUOTE_OPEN)
-		return "QUOTE_OPEN";
-	if (type == QUOTE_CLOSE)
-		return "QUOTE_CLOSE";
-	if (type == SQUOTE_OPEN)
-		return "SQUOTE_OPEN";
-	if (type == SQUOTE_CLOSE)
-		return "SQUOTE_CLOSE";
-	if (type == PAREN_OPEN)
-		return "PAREN_OPEN";
-	if (type == PAREN_CLOSE)
-		return "PAREN_CLOSE";
-	if (type == EMPTY)
-		return "EMPTY";
-	return "UNKNOWN";
-}
-
 char *cr_user_t_cmd_tostr(t_cmd *cmd)
 {
     char	*out;
@@ -97,7 +73,7 @@ char *cr_user_t_cmd_tostr(t_cmd *cmd)
 	{
 		asprintf(&new_arg, "\t\"%s\",\n", cmd->argv[i]);
 
-		printf("%s", new_arg);
+		// printf("%s", new_arg);
 
 		tmp = argv_str;
 		argv_str = ft_strjoin(argv_str, new_arg);
@@ -106,7 +82,7 @@ char *cr_user_t_cmd_tostr(t_cmd *cmd)
 
 		i++;
 	}
-	printf(">>%s<<", argv_str);
+	// printf(">>%s<<", argv_str);
 
     cr_asprintf(&out, "(t_cmd) { .path = %s, .argc = %d, .argv = {\n%s} }",
 			cmd->path, cmd->argc, argv_str);

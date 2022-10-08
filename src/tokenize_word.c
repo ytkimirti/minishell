@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:27:23 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/06 11:47:18 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/08 13:23:39 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_token	*tokenize_word(char **str, t_state *state)
 	token->type = WORD;
 	i = 0;
 	while ((*str)[i] != '\0'
-		&& ((state->in_quotes && (*str)[i] != '$')
+		&& ((state->in_quotes && (*str)[i] != '$' && (*str)[i] != '"')
 			|| (!state->in_quotes && !is_metacharacter((*str)[i]))
 			)
 		)

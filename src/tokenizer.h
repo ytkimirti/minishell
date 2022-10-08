@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:26:00 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/06 11:45:36 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/08 13:11:59 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 // 	Token 2 (SPACE)  Token 2 (QUOTE_OPEN) Token 5 (QUOTE_CLOSE)
 //
 // echo      "Hello    $USER"
-// |  |       |       ||   |
+// |  |       |       | |  |
 // Token 1    Token 3  Token 4
 t_token	**tokenize(char *str);
 

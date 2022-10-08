@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:26:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/06 11:00:00 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/08 18:27:18 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "../libft/vector.h"
 #include <unistd.h>
 #include <stdlib.h>
+#include "utils.h"
 
 // Returns new malloced t_token
 t_token	*tokenize_single(char **str, t_state *state)
@@ -47,6 +48,7 @@ t_token	**tokenize(char *str)
 		token = tokenize_single(&str, &state);
 		if (token == NULL)
 			return (NULL);
+		print_token(token);
 		pvec_append(tokens, token);
 	}
 	pvec_append(tokens, NULL);
