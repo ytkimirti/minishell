@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 13:43:39 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/08 14:27:27 by emakas           ###   ########.fr       */
+/*   Updated: 2022/10/08 14:47:12 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 # include "../command/command.h"
 struct s_stdio
 {
-
+	int	in;
+	int	out;
+	int	err;
 };
 
 typedef struct s_stdio t_stdio;
