@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 13:43:39 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/08 14:55:40 by emakas           ###   ########.fr       */
+/*   Updated: 2022/10/08 15:43:55 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,15 @@ struct s_stdio
 
 typedef struct s_stdio	t_stdio;
 
+/**
+ * @brief Runs executable function in different child proccess
+ * Then returns executable exit status number.
+ * If needed, standard input-output values changes in new proccess
+ * 
+ * @param stdio_new new io values to be changed
+ * @param executable function to be called in new proccess
+ * @return int exit status of executed proccess
+ */
 int	forknrun(t_stdio stdio_new, int (*executable)(t_command *cmd, char *envp));
 
 #endif
