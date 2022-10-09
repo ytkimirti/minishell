@@ -6,11 +6,12 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 18:21:55 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/08 18:30:19 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/09 13:05:05 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
+#include "../libft/colors.h"
 #include "token.h"
 #include "executer.h"
 #include "utils.h"
@@ -51,22 +52,19 @@ void	print_cmd(t_cmd *cmd)
 	i = 0;
 	while (i < cmd->argc)
 	{
-		asprintf(&new_arg, "\t\"%s\",\n", cmd->argv[i]);
-
-		printf("%s", new_arg);
-
+		asprintf(&new_arg, "\t\t" YEL "\"%s\"" RST ",\n", cmd->argv[i]);
 		tmp = argv_str;
 		argv_str = ft_strjoin(argv_str, new_arg);
 		free(tmp);
 		free(new_arg);
-
 		i++;
 	}
-	printf(">>%s<<", argv_str);
-
-	printf("(t_cmd) { .path = %s, .argc = %d, .argv = {\n%s} }",
+	printf("(t_cmd) { "
+			".path = " YEL "\"%s\"" RST ", "
+			".argc = " MAG "%d" RST ", "
+			".argv = {\n%s\t}\n}\n"
+			,
 			cmd->path, cmd->argc, argv_str);
-
 	free(argv_str);
 }
 
@@ -78,8 +76,23 @@ void	print_token(t_token *token)
 	if (token->str != NULL)
 		token_str = dup_token_str(token);
 
-    printf("(t_token) { .len = %d, .type = %s, .str = \"%s\" }\n",
-			token->len, token_type_tostr(token->type), token_str);
+	if (token_str)
+	{
+		printf("(t_token) {"
+				".len = " MAG "%d" RST ", "
+				".type = " MAG "%s" RST ", "
+				".str = " YEL "\"%s\" " RST
+				"}\n",
+				token->len, token_type_tostr(token->type), token_str);
+	}
+	else
+	{
+		printf("(t_token) {"
+				".len = " MAG "%d" RST ", "
+				".type = " MAG "%s" RST " "
+				"}\n",
+				token->len, token_type_tostr(token->type));
+	}
 
 	free(token_str);
 }

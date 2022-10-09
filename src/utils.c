@@ -6,15 +6,13 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:26:17 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/06 11:26:42 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/09 11:59:38 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "tokenizer.h"
 
-// Duplicate the str inside token
-// and null terminate it
 char	*dup_token_str(t_token *token)
 {
 	char	*str;

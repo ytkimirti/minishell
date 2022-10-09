@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:17:31 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/08 18:25:03 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/09 13:18:58 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,6 @@ char *cr_user_t_cmd_tostr(t_cmd *cmd)
 	{
 		asprintf(&new_arg, "\t\"%s\",\n", cmd->argv[i]);
 
-		// printf("%s", new_arg);
-
 		tmp = argv_str;
 		argv_str = ft_strjoin(argv_str, new_arg);
 		free(tmp);
@@ -82,9 +80,8 @@ char *cr_user_t_cmd_tostr(t_cmd *cmd)
 
 		i++;
 	}
-	// printf(">>%s<<", argv_str);
 
-    cr_asprintf(&out, "(t_cmd) { .path = %s, .argc = %d, .argv = {\n%s} }",
+    cr_asprintf(&out, "(t_cmd) { .path = %s, .argc = %d, .argv = \n%s\n",
 			cmd->path, cmd->argc, argv_str);
 
 	free(argv_str);

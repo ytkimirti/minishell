@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 17:35:01 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/06 12:37:01 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/09 13:19:53 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,12 @@ Test(parser_test, basic)
 			NULL
 		},
 	};
-	t_cmd out;
 
-	// t_cmd out = create_cmd(tokens);
-	out.argv = correct.argv;
-	out.argc = 2;
-	out.path = correct.path;
-	// cr_expect(true);
-	
+	t_cmd *out = create_cmd(tokens);
+	cr_expect(eq(type(t_cmd), *out, correct));
 
-	cr_expect(eq(type(t_cmd), out, correct));
-
-	// free_tokens(tokens);
-	// free_cmd(&out);
+	free_tokens(tokens);
+	free_cmd(out);
 }
 // Test(tokenizer, three_word_special)
 // {

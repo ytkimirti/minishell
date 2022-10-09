@@ -86,7 +86,7 @@ testv: $(TEST_BINS)
 	for test in $(TEST_BINS) ; do ./$$test --verbose ; done
 
 run: all
-	./miniparser < $(INPUTS_DIR)/basic1.txt
+	./$(NAME) < $(INPUTS_DIR)/basic1.txt
 
 # re_nolog: CFLAGS += -DLOG=false
 

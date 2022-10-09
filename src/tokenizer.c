@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:26:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/08 18:27:18 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/09 13:15:30 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ t_token	**tokenize(char *str)
 		token = tokenize_single(&str, &state);
 		if (token == NULL)
 			return (NULL);
-		print_token(token);
 		pvec_append(tokens, token);
 	}
 	pvec_append(tokens, NULL);

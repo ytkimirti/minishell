@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:18:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/08 18:25:58 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/09 13:15:12 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,20 @@ int	main(void)
 {
 	char	*line;
 	t_token	**t;
-	t_cmd	cmd;
+	t_cmd	*cmd;
 
 	while (true)
 	{
 		line = get_next_line(0);
 		if (line == NULL)
 			break ;
+		line[ft_strlen(line) - 1] = '\0';
 		t = tokenize(line);
 		cmd = create_cmd(t);
-		print_cmd(&cmd);
-		execute_cmd(&cmd);
+		print_cmd(cmd);
+		// execute_cmd(cmd);
 		free_tokens(t);
-		free_cmd(&cmd);
+		free_cmd(cmd);
 	}
 }
 
