@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   executer.c                                         :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/31 19:03:45 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/06 11:48:43 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/10/06 11:26:50 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/10/09 11:51:53 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "executer.h"
-#include <unistd.h>
+#ifndef UTILS_H
 
-extern char	**environ;
+# define UTILS_H
 
-void	execute_cmd(t_cmd *cmd)
-{
-	pid_t	pid;
+# include "tokenizer.h"
+# include "executer.h"
 
-	pid = fork();
-	if (pid == 0)
-	{
-		if (cmd->stdin != 0)
-			dup2(cmd->stdin, 0);
-		if (cmd->stdout != 0)
-			dup2(cmd->stdout, 1);
-		if (cmd->stderr != 0)
-			dup2(cmd->stderr, 2);
-		execve(cmd->path, cmd->argv, environ);
-	}
-}
+// Duplicate the str inside token
+// and null terminate it
+char	*dup_token_str(t_token *token);
+void	print_cmd(t_cmd *cmd);
+void	print_token(t_token *token);
+
+// Returns a non freeable string constant
+char	*token_type_tostr(enum e_token_type type);
+
+#endif

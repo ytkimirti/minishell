@@ -1,4 +1,4 @@
-NAME = miniparser
+NAME = minishell
 BONUS_NAME =
 
 # NOTE: Add -Werror here before pushing to intra
@@ -28,11 +28,16 @@ BONUS_ENTRY_SRCS =
 SRCS = $(SRC_DIR)/tokenizer.c \
 		$(SRC_DIR)/tokenize_word.c \
 		$(SRC_DIR)/tokenize_space.c \
+		$(SRC_DIR)/utils_print.c \
 		$(SRC_DIR)/tokenize_var.c \
+		$(SRC_DIR)/parser.c \
+		$(SRC_DIR)/executer.c \
+		$(SRC_DIR)/utils.c \
 
 TEST_UTILS_SRCS = $(TEST_DIR)/test_utils.c
 TEST_SRCS = $(TEST_DIR)/test_tokenize_word.c \
-			$(TEST_DIR)/test_tokenizer.c
+			$(TEST_DIR)/test_tokenizer.c \
+			$(TEST_DIR)/test_parser.c \
 
 TEST_UTILS_OBJS = $(patsubst $(TEST_DIR)/%.c, $(TEST_DIR)/obj/%.o, $(TEST_UTILS_SRCS))
 
@@ -81,9 +86,12 @@ testv: $(TEST_BINS)
 	for test in $(TEST_BINS) ; do ./$$test --verbose ; done
 
 run: all
-	./miniparser < $(INPUTS_DIR)/basic1.txt
+	./$(NAME) < $(INPUTS_DIR)/basic1.txt
 
 # re_nolog: CFLAGS += -DLOG=false
+
+difftester/print_args: difftester/print_args.c
+	$(CC) $< -o $@
 
 re: fclean all
 
