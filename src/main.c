@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:18:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/10 22:52:31 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/10 23:02:06 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,7 @@ int	main(void)
 		t = tokenize(line);
 		cmd = create_cmd(t);
 		print_cmd(cmd);
-		// execute_cmd(cmd);
 		free_tokens(t);
 		free_cmd(cmd);
 	}
 }
-
