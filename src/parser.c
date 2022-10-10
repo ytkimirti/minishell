@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:00:53 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/09 13:24:22 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/09 13:34:24 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,41 @@ void	free_cmd(t_cmd *cmd)
 	free(cmd);
 }
 
+// Calculates the char length the token will take
+// when it's expanded
+static int	calculate_length(const t_token **tokens)
+{
+	int	len;
+	int	i;
+
+	len = 0;
+	i = 0;
+	assert(*tokens != NULL && tokens[0]->type != SPACE);
+	while (tokens[i] != NULL && tokens[i]->type != SPACE)
+	{
+		if (tokens[i]->type == WORD)
+		{
+			len += tokens[i]->len;
+		}
+		i++;
+	}
+	return (len);
+}
+
 // If returns null, it means that it's the end of the command.
 // For example when it sees a bracket or pipe token
 static char	*expand_tokens(const t_token ***tokens_ref)
 {
 	const t_token	**tokens;
 	int				i;
+	char			*str;
 
 	i = 0;
 	tokens = *tokens_ref;
 	assert(*tokens != NULL && tokens[0]->type != SPACE);
 	while (tokens[i] != NULL && tokens[i]->type != SPACE)
 		i++;
+	str = malloc(sizeof(char) * calculate_length(tokens));
 	*tokens_ref = tokens + i;
 	return (ft_strdup("dummy"));
 }
