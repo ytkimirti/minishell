@@ -6,14 +6,14 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:38:20 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/08/27 16:34:27 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/10 22:49:35 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <criterion/criterion.h>
 #include <criterion/new/assert.h>
-#include "../src/tokenize_state.h"
-#include "../src/token.h"
+#include "tokenize_state.h"
+#include "token.h"
 #include <string.h>
 #include "test_utils.h"
 

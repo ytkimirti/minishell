@@ -6,11 +6,11 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:26:17 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/09 11:59:38 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/10 22:45:57 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
+#include "libft.h"
 #include "tokenizer.h"
 
 char	*dup_token_str(t_token *token)
