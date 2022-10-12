@@ -6,13 +6,19 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 13:18:17 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/08 13:40:01 by emakas           ###   ########.fr       */
+/*   Updated: 2022/10/12 14:59:02 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COMMAND_H
 # define COMMAND_H
 # include "../token.h"
+
+/**
+ * @brief Built in commands
+ * 
+ */
+
 
 struct s_command {
 	char	*command_path;
@@ -36,7 +42,7 @@ typedef struct s_command t_command;
  * @param tokens 
  * @return t_command* 
  */
-t_command	*create_command(t_token *tokens);
+t_command	*create_command(t_token **tokens);
 void		destroy_command(t_command *command);
 
 /**
