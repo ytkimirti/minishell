@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:48:33 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/08/27 17:16:59 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/06 11:36:13 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,32 +22,26 @@ bool	is_name(char c)
 }
 
 /*
- * Tokenizes a word until it's not a name
+ * Tokenizes a word until it's not a name. Skips the
+ * first '$' character. Pointer points after that.
  * */
-// TODO: Not done yet!
 t_token	*tokenize_var(char **str, t_state *state)
 {
 	t_token	*token;
-	t_cvec	*vec;
+	int		i;
 
 	(void)state;
 	token = malloc(sizeof(t_token));
 	if (token == NULL)
 		return (NULL);
-	vec = cvec_new(32);
-	if (vec == NULL)
-		return (NULL);
-	if (**str != '$')
-		return (NULL);
-	cvec_append(vec, '$');
 	(*str)++;
-	while (is_name(**str))
+	i = 0;
+	while (is_name((*str)[i]))
 	{
-		cvec_append(vec, **str);
-		(*str)++;
+		i++;
 	}
-	token->str = vec->arr;
-	token->len = vec->len;
-	free(vec);
+	token->str = *str;
+	token->len = i;
+	(*str) += i;
 	return (token);
 }
