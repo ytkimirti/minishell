@@ -12,7 +12,7 @@
 
 #ifndef COMMAND_H
 # define COMMAND_H
-# include "../token.h"
+# include "../tokenizer/token.h"
 
 /**
  * @brief Built in commands
