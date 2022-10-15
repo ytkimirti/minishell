@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 19:11:23 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/15 19:18:05 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/15 19:29:15 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,10 @@ const char	*get_env(const char *name);
  * duplicating is required when implementing the function.
  */
 char		**extract_env();
+
+/*
+ * Updates the internal $PWD variable using getcwd
+ */
+void		update_pwd_variable();
 
 #endif
