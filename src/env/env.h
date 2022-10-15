@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 19:11:23 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/15 19:29:15 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/15 19:32:35 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,10 @@ char		**extract_env();
  * Updates the internal $PWD variable using getcwd
  */
 void		update_pwd_variable();
+
+/*
+ *	This might change
+ */
+void		set_env(const char *key, const char *value);
 
 #endif
