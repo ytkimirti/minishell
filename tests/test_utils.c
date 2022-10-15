@@ -6,18 +6,18 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:17:31 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/09 13:18:58 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/10 22:47:31 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <criterion/criterion.h>
 #include <criterion/new/assert.h>
-#include "../src/tokenize_state.h"
-#include "../src/token.h"
-#include "../src/utils.h"
-#include "../src/parser.h"
-#include "../src/executer.h"
-#include "../libft/libft.h"
+#include "tokenize_state.h"
+#include "token.h"
+#include "utils.h"
+#include "parser.h"
+#include "executer.h"
+#include "libft.h"
 #include <string.h>
 #include <stdio.h> 
 
