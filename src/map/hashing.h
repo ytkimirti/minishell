@@ -10,6 +10,6 @@
  * @param data to be hashed
  * @return unique hash number
  */
-int hashcode(char *data);
+int hashcode(void *data);
 
 #endif //HASHING_H
