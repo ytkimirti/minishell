@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:18:56 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/06 12:18:14 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/10 22:50:00 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 # define TEST_UTILS_H
 
-# include "../src/tokenize_state.h"
-# include "../src/token.h"
-# include "../src/parser.h"
+# include "tokenize_state.h"
+# include "token.h"
+# include "parser.h"
 # include <string.h>
 
 extern t_state	g_state;
