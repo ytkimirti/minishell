@@ -1,8 +1,8 @@
 NAME = minishell
 
 # NOTE: Add -Werror here before pushing to intra
-CFLAGS = -MD -Wall -Wextra -Ilibft -g
-LDFLAGS = -Llibft
+CFLAGS = -MD -Wall -Wextra -Ilibft -g -fsanitize=address
+LDFLAGS = -Llibft -fsanitize=address
 LDLIBS = -lft
 
 # NOTE: You have to have libcriterion.a file in your LIBRARY_PATH and criterion.h file in C_INCLUDE_PATH
