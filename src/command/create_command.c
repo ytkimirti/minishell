@@ -12,6 +12,7 @@
 
 #include "command.h"
 #include "token_adapter.h"
+#include "libft.h"
 
 static t_command	*create_system_command(t_token **tokens);
 static t_command	*create_builtin_command(t_token **tokens);
