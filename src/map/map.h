@@ -14,5 +14,6 @@ void    destroy_map(t_map *map);
 void    map_insert(char *key, char *value);
 void    map_remove(char *key);
 char    *map_get(char *key);
+t_map	*copy_map(t_map *map1, t_map *map2);
 
 #endif //MAP_H
