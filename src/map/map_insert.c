@@ -12,22 +12,26 @@
 
 #include "map.h"
 #include "hashing.h"
+#include <unistd.h>
+#include <stdlib.h>
 
-// please.. don't
-static void	oh_fuck(t_map *map, int hashcode, char *key, char *value);
-
-void	map_insert(t_map *map, char *key, char *data)
+void	map_insert(t_map *map, t_hash key, void *value)
 {
-	int code;
+	int     index;
+    t_entry *entry;
+    t_entry *tmp;
 
-	code = hashcode(key);
-	if (code < map->size && map->data[code] == 0)
-		map->data[code] = data;
+    entry = malloc(sizeof(t_entry));
+    entry->key = key;
+    entry->value = value;
+    entry->next = NULL;
+    index = key % map->size;
+	if (map->entries[index] == NULL)
+		map->entries[index] = entry;
 	else
-		oh_fuck(map, code, key, data);
-}
-
-static void oh_fuck(t_map *map, int hashcode, char *key, char *value)
-{
-	
+    {
+        tmp = map->entries[index];
+        map->entries[index] = entry;
+        entry->next = tmp;
+    }
 }

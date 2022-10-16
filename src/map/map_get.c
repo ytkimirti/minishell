@@ -12,12 +12,22 @@
 
 #include "map.h"
 #include "hashing.h"
+#include <stdlib.h>
 
-char	*map_get(t_map *map, char *key)
+void    *map_get(t_map *map, t_hash key)
 {
-	int code;
+    int     index;
+    t_entry *entry;
 
-	code = hashcode(key);
-	if (code < map->size)
-		return (map->data[code]);
+	index = key % map->size;
+    if (map->entries[index] == NULL)
+        return (NULL);
+    entry = map->entries[index];
+    while (entry != NULL)
+    {
+        if (entry->key == key)
+            return (entry->value);
+        entry = entry->next;
+    }
+    return (NULL);
 }

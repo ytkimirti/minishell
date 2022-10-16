@@ -5,11 +5,13 @@
 #ifndef HASHING_H
 #define HASHING_H
 
+typedef int t_hash;
+
 /**
  * @brief Generates unique hashcode from data
  * @param data to be hashed
  * @return unique hash number
  */
-int hashcode(void *data);
+t_hash hashcode(void *data, size_t n);
 
 #endif //HASHING_H

@@ -12,12 +12,35 @@
 
 #include "map.h"
 #include "hashing.h"
+#include <stdlib.h>
 
-void	map_remove(t_map *map, char *key)
+void	map_remove(t_map *map, t_hash key, void (*del)(void *))
 {
-	int	code;
+    int     index;
+    t_entry *entry;
+    t_entry *prev;
+    t_entry *next;
 
-	code = hashcode(key);
-	if (map->size > code && map->data[code] != 0)
-		map->data[code] = 0;
+	index = key % map->size;
+    if (map->entries[index] == NULL)
+        return ;
+    entry = map->entries[index];
+    prev = NULL;
+    while (entry != NULL)
+    {
+        if (entry->key == key)
+        {
+            next = entry->next;
+            if (del != NULL && entry->value != NULL)
+                del(entry->value);
+            free(entry);
+            if (prev != NULL)
+                prev->next = next;
+            else
+                map->entries[index] = next;
+            return ;
+        }
+        prev = entry;
+        entry = entry->next;
+    }
 }

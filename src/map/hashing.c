@@ -10,18 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	hashcode(void *data)
+#include "hashing.h"
+#include <unistd.h>
+
+t_hash  hashcode(void *data, size_t len)
 {
 	char	*cdata;
-	int		index;
-	int		code;
+	size_t  index;
+	t_hash	code;
 
 	cdata = (char *) data;
 	index = 0;
 	code = 0;
-	while (cdata[index] != '\0')
+	while (index < len)
 	{
-		code += (int)cdata[index] * (index + 1);
+		code += (t_hash)(cdata[index] * (index + 1));
 		index++;
 	}
+    return (code);
 }

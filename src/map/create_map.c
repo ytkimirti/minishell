@@ -15,20 +15,19 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "../../libft/libft.h" // BUNLAR NİYE HATALI :(
+#include "libft.h"
 
 t_map	*create_map(int size)
 {
 	t_map	*map;
-	char	**data;
 
 	map = (t_map *) malloc(sizeof(t_map));
-	if (map == 0)
-		return (map);
-	data = (char **) malloc(sizeof(char *) * size);
-	if (data == 0)
-		return (0);
-	ft_bzero(data,size);
-	map->data = data;
+	if (map == NULL)
+		return (NULL);
+	map->entries = malloc(sizeof(t_entry *) * size);
+	if (map->entries == NULL)
+		return (NULL);
+	ft_bzero(map->entries, sizeof(t_entry *) * size);
 	map->size = size;
 	return (map);
 }
