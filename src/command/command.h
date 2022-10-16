@@ -6,13 +6,13 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 13:18:17 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/06 14:57:34 by emakas           ###   ########.fr       */
+/*   Updated: 2022/10/16 12:06:10 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COMMAND_H
 # define COMMAND_H
-# include "../token.h"
+# include "token.h"
 
 struct s_stdio{
 	int	in_new;
