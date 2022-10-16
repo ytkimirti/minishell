@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:17:31 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/10 22:47:31 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/16 12:32:23 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,18 @@ char *cr_user_t_cmd_tostr(t_cmd *cmd)
 	i = 0;
 	while (i < cmd->argc)
 	{
-		asprintf(&new_arg, "\t\"%s\",\n", cmd->argv[i]);
+		asprintf(&new_arg, i == cmd->argc - 1 ? "\"%s\"" : "\"%s\", ", cmd->argv[i]);
 
 		tmp = argv_str;
 		argv_str = ft_strjoin(argv_str, new_arg);
+		printf("Arv string is >%s<\n", argv_str);
 		free(tmp);
 		free(new_arg);
 
 		i++;
 	}
 
-    cr_asprintf(&out, "(t_cmd) { .path = %s, .argc = %d, .argv = \n%s\n",
+    cr_asprintf(&out, "(t_cmd) { .path = %s, .argc = %d, .argv = [%s]",
 			cmd->path, cmd->argc, argv_str);
 
 	free(argv_str);
