@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 18:21:55 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/09 13:05:05 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/16 14:27:13 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,16 @@ void	print_token(t_token *token)
 {
 	char	*token_str;
 
+	if (token == NULL)
+	{
+		printf("NULL\n");
+		return ;
+	}
 	token_str = NULL;
-	if (token->str != NULL)
+	if (token->str != NULL && token->type & PRINTABLE)
 		token_str = dup_token_str(token);
 
-	if (token_str)
+	if (token_str != NULL)
 	{
 		printf("(t_token) {"
 				".len = " MAG "%d" RST ", "
@@ -88,12 +93,21 @@ void	print_token(t_token *token)
 	else
 	{
 		printf("(t_token) {"
-				".len = " MAG "%d" RST ", "
 				".type = " MAG "%s" RST " "
 				"}\n",
-				token->len, token_type_tostr(token->type));
+				token_type_tostr(token->type));
 	}
 
 	free(token_str);
 }
 
+
+void	print_tokens(t_token **tokens)
+{
+	while (*tokens != NULL)
+	{
+		print_token(*tokens);
+		tokens++;
+	}
+	print_token(*tokens);
+}

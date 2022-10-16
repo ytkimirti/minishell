@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:17:31 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/16 12:32:23 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/16 14:28:51 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,32 @@
 
 t_state	g_state;
 
-// Declarations
-t_token	*tokenize_word(char **str, t_state *state);
-
 void	reset_state(void)
 {
 	g_state.in_quotes = false;
 }
 
-/* We need to provide basic functions for our dummy struct */
 int cr_user_t_token_eq(t_token *a, t_token *b)
 {
+	if (a == b)
+		return (true);
+	if (a == NULL || b == NULL)
+		return (false);
 	if (a->type == WORD && b->type == WORD)
-    	return a->len == b->len && a->type == b->type && memcmp(a->str, b->str, a->len) == 0;
+	{
+		bool str_match = false;
+		if (a->len <= 0)
+			cr_log_warn("Length of token a is %d but it's type is WORD\n", a->len);
+		if (b->len <= 0)
+			cr_log_warn("Length of token b is %d but it's type is WORD\n", a->len);
+		if (a->len != b->len)
+			return (false);
+		if (a->len < 0 || b->len < 0)
+			return (false);
+		if (a->str != NULL && b->str != NULL)
+			str_match = memcmp(a->str, b->str, a->len) == 0;
+    	return str_match;
+	}
 	return (a->type == b->type);
 }
 
@@ -93,13 +106,35 @@ char *cr_user_t_token_tostr(t_token *token)
 {
     char	*out;
 	char	*token_str;
+	bool	token_allocated;
 
-	token_str = dup_token_str(token);
+	if (token == NULL)
+	{
+		cr_asprintf(&out, "NULL");
+		return (out);
+	}
+	else if (!token->type | PRINTABLE)
+	{
+		cr_asprintf(&out, "(t_token) { .type = %s }", token_type_tostr(token->type));
+		return (out);
+	}
+
+	token_allocated = false;
+	if (token->len < 0)
+		token_str = "<corrupt>";
+	else if (token->str == NULL)
+		token_str = "<null>";
+	else
+	{
+		token_str = dup_token_str(token);
+		token_allocated = true;
+	}
 
     cr_asprintf(&out, "(t_token) { .len = %d, .type = %s, .str = \"%s\" }",
 			token->len, token_type_tostr(token->type), token_str);
 
-	free(token_str);
+	if (token_allocated)
+		free(token_str);
     return out;
 }
 
