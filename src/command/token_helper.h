@@ -12,9 +12,10 @@
 
 #ifndef TOKEN_ADAPTER
 # define TOKEN_ADAPTER
-# include "../token.h"
+# include "../tokenizer/token.h"
 
-char	*get_first_word(t_token **tokens);
+t_token 	*get_first_word(t_token **tokens);
+
 
 
 #endif
