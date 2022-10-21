@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 13:18:17 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/12 14:59:02 by emakas           ###   ########.fr       */
+/*   Updated: 2022/10/21 15:53:29 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ struct s_command {
 	int		argc;
 	int (*execute)(struct s_command *, char **);
 };
+
 
 /**
  * @brief Represents commands in shell

@@ -6,13 +6,14 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:49:03 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/20 18:20:45 by emakas           ###   ########.fr       */
+/*   Updated: 2022/10/21 18:28:04 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "command.h"
 #include "token_helper.h"
 #include <stdio.h>
+#include "../built_in/built_in.h"
 #include "../utils/utils.h"
 #include "../../libft/libft.h" // Clion görmedi onu şaaparız
 
@@ -24,11 +25,11 @@ static int			in_path(t_token *token);
 t_command	*create_command(t_token **tokens)
 {
 	t_token *command_token;
-	int		built_in_id;
+	e_builtins	binfun;
 
-	command_token = get_first_word(tokens); // tokenlerden ilk şeyi döndürecek. Ama ne tam ben de bilmiyorum
-	built_in_id = is_built_in(command_token);
-	if (built_in_id >= 0)
+	command_token = get_first_word(tokens);
+	binfun = get_ebin();
+	if (binfun != NONE)
 		return (create_builtin_command(built_in_id,tokens));
 	else if (in_path(command_token))
 		return (create_system_command(tokens));

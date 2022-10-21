@@ -1,0 +1,9 @@
+{
+	"files.associations": {
+		"stddef.h": "c",
+		"unistd.h": "c",
+		"_null.h": "c",
+		"_types.h": "c",
+		"cdefs.h": "c"
+	}
+}

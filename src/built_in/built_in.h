@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 13:26:15 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/21 15:40:17 by emakas           ###   ########.fr       */
+/*   Updated: 2022/10/21 18:16:10 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define BUILT_IN_H
 # include "../command/command.h"
 
-enum e_built_ins {
+enum e_builtins {
 	CD,
 	ECHO,
 	ENV,
@@ -25,8 +25,8 @@ enum e_built_ins {
 	NONE
 };
 
-int			(*get_bfun(e_built_ins built_in))(t_command *, char **);
-e_built_ins	get_ebin(t_token *token);
+int			(*get_bfun(e_builtins built_in))(t_command *, char **);
+e_builtins	get_ebin(t_token *token);
 
 int			ft_cd(t_command *command, char **args);
 int			ft_echo(t_command *command, char **args);
