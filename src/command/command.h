@@ -6,13 +6,13 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 13:18:17 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/12 14:59:02 by emakas           ###   ########.fr       */
+/*   Updated: 2022/10/16 12:06:10 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COMMAND_H
 # define COMMAND_H
-# include "../token.h"
+# include "token.h"
 
 /**
  * @brief Built in commands
@@ -54,5 +54,14 @@ void		destroy_command(t_command *command);
  * @return int return code. -1 if execution failed.
  */
 int			execute_default(t_command *self, char **envp);
+
+/**
+ * @brief Executes command in new process
+ * 
+ * @param newio 
+ * @param command 
+ * @return int return code of executed command
+ */
+int			execute_forked(struct s_stdio newio, t_command *command);
 
 #endif
