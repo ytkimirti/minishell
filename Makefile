@@ -1,8 +1,10 @@
 NAME = minishell
 
 # NOTE: Add -Werror here before pushing to intra
-CFLAGS = -MD -Wall -Wextra -Ilibft -g -fsanitize=address
-LDFLAGS = -Llibft -fsanitize=address
+# CFLAGS = -MD -Wall -Wextra -Ilibft -g -fsanitize=address
+CFLAGS = -MD -Wall -Wextra -Ilibft -g
+# LDFLAGS = -Llibft -fsanitize=address
+LDFLAGS = -Llibft
 LDLIBS = -lft
 
 # NOTE: You have to have libcriterion.a file in your LIBRARY_PATH and criterion.h file in C_INCLUDE_PATH
@@ -82,10 +84,10 @@ $(TEST_DIR)/bin/%: $(TEST_DIR)/%.c $(OBJS) $(TEST_UTILS_OBJS) | $(TEST_DIR)/bin
 	$(CC) $(CFLAGS) $(LDLIBS) $(LDFLAGS) $(INCLUDES) $(TESTFLAGS) $(OBJS) $(TEST_UTILS_OBJS) $< -o $@
 
 test: $(TEST_BINS)
-	for test in $(TEST_BINS) ; do ./$$test ; done
+	@for test in $(TEST_BINS) ; do ./$$test ; done
 
 testv: $(TEST_BINS)
-	for test in $(TEST_BINS) ; do ./$$test --verbose ; done
+	@for test in $(TEST_BINS) ; do ./$$test --verbose ; done
 
 run: all
 	./$(NAME) < $(INPUTS_DIR)/basic1.txt
