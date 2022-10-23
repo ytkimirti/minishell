@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 17:35:01 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/10 22:49:47 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/23 21:43:02 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ Test(tokenizer, basic)
 
 	t_token **out = tokenize(str);
 
-	cr_expect(eq(type(t_token)[3], *out, correct));
+	for (int i = 0; i < 3; i++)
+		cr_expect(eq(type(t_token), *out[i], correct[i]));
 	free_tokens(out);
 	free(str);
 }
@@ -48,7 +49,8 @@ Test(tokenizer, three_word_special)
 
 	t_token **out = tokenize(str);
 
-	cr_expect(eq(type(t_token)[3], *out, correct));
+	for (int i = 0; i < 3; i++)
+		cr_expect(eq(type(t_token), *out[i], correct[i]));
 	free_tokens(out);
 	free(str);
 }
@@ -66,7 +68,8 @@ Test(tokenizer, with_space)
 
 	t_token **out = tokenize(str);
 
-	cr_expect(eq(type(t_token)[4], *out, correct));
+	for (int i = 0; i < 4; i++)
+		cr_expect(eq(type(t_token), *out[i], correct[i]));
 	free_tokens(out);
 	free(str);
 }
