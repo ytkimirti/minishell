@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:00:53 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/09 13:34:24 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/23 21:35:02 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ static char	*expand_tokens(const t_token ***tokens_ref)
 	while (tokens[i] != NULL && tokens[i]->type != SPACE)
 		i++;
 	str = malloc(sizeof(char) * calculate_length(tokens));
+	free(str);
 	*tokens_ref = tokens + i;
 	return (ft_strdup("dummy"));
 }
