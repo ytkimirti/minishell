@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:23:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/04 15:15:51 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/23 21:33:52 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ enum e_token_type
 	SQUOTE_OPEN,
 	SQUOTE_CLOSE,
 };
+
+# define PRINTABLE (WORD)
 
 typedef struct s_token
 {
