@@ -5,3 +5,4 @@
 -Isrc/tokenizer
 -Isrc/utils
 -Isrc/executer
+-Ilibs/googletest/googletest/include

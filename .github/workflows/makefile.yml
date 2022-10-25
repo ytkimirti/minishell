@@ -1,10 +1,10 @@
 name: Makefile CI
 
-# on:
-#   push:
-#     branches: [ "main" ]
-#   pull_request:
-#     branches: [ "main" ]
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -13,9 +13,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        submodules: recursive
     
     - name: Compile project
-      run: make -j8
+      run: make
+      
+    - name: Compile tests
+      run: make maketest
       
     - name: Run tests
       run: make test

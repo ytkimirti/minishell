@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:26:00 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/08 13:11:59 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/25 11:26:44 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 // echo      "Hello    $USER"
 // |  |       |       | |  |
 // Token 1    Token 3  Token 4
-t_token	**tokenize(char *str);
+t_token	**tokenize(const char *str);
 
 // Frees the token structs and the tokens pointer.
 void	free_tokens(t_token **tokens);

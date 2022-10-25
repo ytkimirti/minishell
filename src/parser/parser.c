@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:00:53 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/09 13:34:24 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/24 10:57:22 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ static char	*expand_tokens(const t_token ***tokens_ref)
 	assert(*tokens != NULL && tokens[0]->type != SPACE);
 	while (tokens[i] != NULL && tokens[i]->type != SPACE)
 		i++;
-	str = malloc(sizeof(char) * calculate_length(tokens));
+	str = (char *)malloc(sizeof(char) * calculate_length(tokens));
+	free(str);
 	*tokens_ref = tokens + i;
 	return (ft_strdup("dummy"));
 }
@@ -104,7 +105,7 @@ t_cmd	*create_cmd(const t_token **tokens)
 {
 	t_cmd	*cmd;
 
-	cmd = malloc(sizeof(t_cmd));
+	cmd = (t_cmd *)malloc(sizeof(t_cmd));
 	cmd->stdin = 0;
 	cmd->stdout = 1;
 	cmd->stderr = 1;
