@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 18:21:55 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/25 14:08:48 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/25 14:29:18 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,32 +71,20 @@ void	print_token(t_token *token)
 {
 	char	*token_str;
 
-	if (token == NULL)
-	{
-		printf("NULL\n");
-		return ;
-	}
-	token_str = NULL;
+	printf("(t_token) {"
+		".type = " MAG "%s" RST " "
+		"}\n",
+		token_type_tostr(token->type));
 	if (token->str != NULL && token->type & PRINTABLE)
-		token_str = dup_token_str(token);
-	if (token_str != NULL)
 	{
+		token_str = dup_token_str(token);
 		printf("(t_token) {"
 			".len = " MAG "%d" RST ", "
-			".type = " MAG "%s" RST ", "
-			".str = " YEL "\"%s\" " RST
-			"}\n",
-			token->len, token_type_tostr(token->type), token_str);
+			".str = " YEL "\"%s\" " RST,
+			token->len, token_str);
+		free(token_str);
 	}
-	else
-	{
-		printf("(t_token) {"
-			".type = " MAG "%s" RST " "
-			"}\n",
-			token_type_tostr(token->type));
-	}
-
-	free(token_str);
+	printf("}\n");
 }
 
 void	print_tokens(t_token **tokens)
