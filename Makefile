@@ -67,6 +67,8 @@ $(GTEST)/build/lib/libgtest_main.a:
 	mkdir -p $(GTEST)/build
 	cd $(GTEST)/build && cmake .. && make
 
+maketest: $(TEST_BIN)
+
 test: $(TEST_BIN)
 	./$(TEST_BIN)
 
@@ -107,4 +109,4 @@ fclean: clean
 # -include $(OBJ_DIR)/*.d
 -include $(foreach odir,$(OBJ_DIRS),$(wildcard $(odir)/*.d))
 
-.PHONY: all re clean fclean checkdirs run test testv
+.PHONY: all re clean fclean checkdirs run test maketest
