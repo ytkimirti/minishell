@@ -70,7 +70,7 @@ $(GTEST)/build/lib/libgtest_main.a:
 test: $(TEST_BIN)
 	./$(TEST_BIN)
 
-$(TEST_BIN): $(TEST_OBJS) $(OBJS) $(GTEST)/build/lib/libgtest_main.a
+$(TEST_BIN): $(TEST_OBJS) $(OBJS) $(GTEST)/build/lib/libgtest_main.a libft/libft.a
 	@echo "==== LINKING TEST FILES ===="
 	g++ $(TEST_CFLAGS) $(LIB_GTEST) $(OBJS) $(TEST_OBJS) libft/libft.a -o $@
 
