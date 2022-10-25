@@ -106,7 +106,10 @@ fclean: clean
 	rm -f $(NAME)
 	rm -rf $(TEST_DIR)/bin
 
+norm:
+	norminette src
+
 # -include $(OBJ_DIR)/*.d
 -include $(foreach odir,$(OBJ_DIRS),$(wildcard $(odir)/*.d))
 
-.PHONY: all re clean fclean checkdirs run test maketest
+.PHONY: all re clean fclean checkdirs run test maketest norm
