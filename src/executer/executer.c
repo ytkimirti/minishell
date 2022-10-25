@@ -13,8 +13,6 @@
 #include "executer.h"
 #include <unistd.h>
 
-extern char	**environ;
-
 void	execute_cmd(t_cmd *cmd)
 {
 	pid_t	pid;
@@ -28,6 +26,6 @@ void	execute_cmd(t_cmd *cmd)
 			dup2(cmd->stdout, 1);
 		if (cmd->stderr != 0)
 			dup2(cmd->stderr, 2);
-		execve(cmd->path, cmd->argv, environ);
+		execve(cmd->path, cmd->argv, NULL);
 	}
 }

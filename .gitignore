@@ -1,5 +1,5 @@
 /obj/
 /tests/obj/
+/tests/test
 /minishell
-/tests/bin/
 .DS_Store

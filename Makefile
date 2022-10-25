@@ -1,20 +1,20 @@
 NAME = minishell
 
 # NOTE: Add -Werror here before pushing to intra
+# CFLAGS = -MD -Wall -Wextra -Ilibft -g -fsanitize=address
 CFLAGS = -MD -Wall -Wextra -Ilibft -g
+# LDFLAGS = -Llibft -fsanitize=address
 LDFLAGS = -Llibft
 LDLIBS = -lft
 
-# NOTE: You have to have libcriterion.a file in your LIBRARY_PATH and criterion.h file in C_INCLUDE_PATH
-# If you installed them with homebrew, add them to these env variables in your shell config
-TESTFLAGS = -lcriterion
+GTEST = libs/googletest
+LIB_GTEST = $(GTEST)/build/lib/libgtest.a $(GTEST)/build/lib/libgtest_main.a
+TEST_CFLAGS = -std=c++11 -Ilibft -I$(GTEST)/googletest/include
 
 CC = gcc
 SHELL = /bin/sh
 
 TEST_DIR = tests
-
-ENTRY_SRCS = $(SRC_DIR)/main.c
 
 OBJ_DIR	:=	obj
 SRC_DIR	:=	src
@@ -25,18 +25,15 @@ OBJ_DIRS := $(addprefix obj/,$(MODULES))
 
 SRCS       := $(foreach sdir,$(SRC_DIRS),$(wildcard $(sdir)/*.c))
 OBJS       := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
+
 INCLUDES  := $(addprefix -I,$(SRC_DIRS))
 
-TEST_UTILS_SRCS = $(TEST_DIR)/test_utils.c
-TEST_SRCS = $(TEST_DIR)/test_tokenize_word.c \
-			$(TEST_DIR)/test_tokenizer.c \
-			$(TEST_DIR)/test_parser.c \
-
-TEST_UTILS_OBJS = $(patsubst $(TEST_DIR)/%.c, $(TEST_DIR)/obj/%.o, $(TEST_UTILS_SRCS))
-
+ENTRY_SRCS = $(SRC_DIR)/main.c
 ENTRY_OBJS = $(patsubst $(SRC_DIR)/%.c, obj/%.o, $(ENTRY_SRCS))
-# OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
-TEST_BINS = $(patsubst $(TEST_DIR)/%.c, $(TEST_DIR)/bin/%, $(TEST_SRCS))
+
+TEST_SRCS = $(wildcard $(TEST_DIR)/*.cpp)
+TEST_OBJS = $(patsubst $(TEST_DIR)/%.cpp, $(TEST_DIR)/obj/%.o, $(TEST_SRCS))
+TEST_BIN = $(TEST_DIR)/test
 
 INPUTS_DIR = tests/inputs
 
@@ -61,10 +58,26 @@ endef
 $(foreach bdir,$(OBJ_DIRS),$(eval $(call make-goal,$(bdir))))
 
 $(NAME): $(OBJS) $(ENTRY_OBJS) libft/libft.a
-	$(CC) $(LDFLAGS) $(LDLIBS) $(OBJS) $(ENTRY_OBJS) -o $@
+	$(CC) $(OBJS) $(ENTRY_OBJS) $(LDFLAGS) $(LDLIBS) -o $@
 
 libft/libft.a:
 	make -C libft
+
+$(GTEST)/build/lib/libgtest_main.a:
+	mkdir -p $(GTEST)/build
+	cd $(GTEST)/build && cmake .. && make
+
+maketest: $(TEST_BIN)
+
+test: $(TEST_BIN)
+	./$(TEST_BIN)
+
+$(TEST_BIN): $(TEST_OBJS) $(OBJS) $(GTEST)/build/lib/libgtest_main.a libft/libft.a
+	@echo "==== LINKING TEST FILES ===="
+	g++ $(TEST_CFLAGS) $(OBJS) $(TEST_OBJS) $(LIB_GTEST) libft/libft.a -pthread -o $@
+
+$(TEST_DIR)/obj/%.o: $(TEST_DIR)/%.cpp | $(TEST_DIR)/obj
+	g++ $(TEST_CFLAGS) $(INCLUDES) -c $< -o $@  
 
 # Rules for making directiories
 $(OBJ_DIRS) $(OBJ_DIR) $(TEST_DIR)/bin $(TEST_DIR)/obj:
@@ -73,19 +86,6 @@ $(OBJ_DIRS) $(OBJ_DIR) $(TEST_DIR)/bin $(TEST_DIR)/obj:
 # Only for $(ENTRY_SRCS)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
-# For TEST_UTILS_OBJS
-$(TEST_DIR)/obj/%.o: $(TEST_DIR)/%.c | $(TEST_DIR)/obj
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
-$(TEST_DIR)/bin/%: $(TEST_DIR)/%.c $(OBJS) $(TEST_UTILS_OBJS) | $(TEST_DIR)/bin
-	$(CC) $(CFLAGS) $(LDLIBS) $(LDFLAGS) $(INCLUDES) $(TESTFLAGS) $(OBJS) $(TEST_UTILS_OBJS) $< -o $@
-
-test: $(TEST_BINS)
-	for test in $(TEST_BINS) ; do ./$$test ; done
-
-testv: $(TEST_BINS)
-	for test in $(TEST_BINS) ; do ./$$test --verbose ; done
 
 run: all
 	./$(NAME) < $(INPUTS_DIR)/basic1.txt
@@ -106,7 +106,10 @@ fclean: clean
 	rm -f $(NAME)
 	rm -rf $(TEST_DIR)/bin
 
+norm:
+	norminette src
+
 # -include $(OBJ_DIR)/*.d
 -include $(foreach odir,$(OBJ_DIRS),$(wildcard $(odir)/*.d))
 
-.PHONY: all re clean fclean checkdirs run test testv
+.PHONY: all re clean fclean checkdirs run test maketest norm
