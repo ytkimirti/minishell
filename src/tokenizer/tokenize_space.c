@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:40:54 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/08/27 16:46:53 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/24 10:57:27 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_token	*tokenize_space(char **str, t_state *state)
 
 	if (state->in_quotes)
 		return (NULL);
-	token = malloc(sizeof(t_token));
+	token = (t_token *)malloc(sizeof(t_token));
 	if (token == NULL)
 		return (NULL);
 	token->type = SPACE;

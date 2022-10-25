@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:23:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/23 21:33:52 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/25 11:26:03 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_token
 {
 	int					len;
 	enum e_token_type	type;
-	char				*str;
+	const char			*str;
 }	t_token;
 
 #endif
