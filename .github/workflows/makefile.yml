@@ -17,7 +17,7 @@ jobs:
         submodules: recursive
     
     - name: Compile project
-      run: make -j8
+      run: make
       
     - name: Run tests
       run: make test
