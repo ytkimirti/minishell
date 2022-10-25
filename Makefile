@@ -58,7 +58,7 @@ endef
 $(foreach bdir,$(OBJ_DIRS),$(eval $(call make-goal,$(bdir))))
 
 $(NAME): $(OBJS) $(ENTRY_OBJS) libft/libft.a
-	$(CC) $(LDFLAGS) $(LDLIBS) $(OBJS) $(ENTRY_OBJS) -o $@
+	$(CC) $(OBJS) $(ENTRY_OBJS) $(LDFLAGS) $(LDLIBS) -o $@
 
 libft/libft.a:
 	make -C libft
