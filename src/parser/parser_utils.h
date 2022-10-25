@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   executer.h                                         :+:      :+:    :+:   */
+/*   parser_utils.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/31 19:01:52 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/25 14:09:40 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/10/25 14:19:17 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/10/25 14:22:19 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTER_H
+#ifndef PARSER_UTILS_H
 
-# define EXECUTER_H
+# define PARSER_UTILS_H
 
-typedef struct s_cmd
-{
-	char	*path;
-	int		argc;
-	char	**argv;
-	int		stdin;
-	int		stdout;
-	int		stderr;
-	int		(*execute)(struct s_cmd *);
-}	t_cmd;
+# include "parser.h"
+# include "libft.h"
+# include "vector.h"
 
-void	execute_cmd(t_cmd *cmd);
+int		calculate_length(const t_token **tokens);
+char	*get_executable_path(const char *name);
+void	expand_all_args(t_cmd *cmd, const t_token **tokens);
+char	*expand_tokens(const t_token ***tokens_ref);
 
 #endif

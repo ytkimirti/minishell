@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 13:18:17 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/16 12:06:10 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/25 14:10:11 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ struct s_command {
 	char	*command_path;
 	char	**argv;
 	int		argc;
-	int (*execute)(struct s_command *, char **);
+	int		(*execute)(struct s_command *, char **);
 };
 
 /**
@@ -34,7 +34,7 @@ struct s_command {
  * - Argument lists
  * - Environment Variables
  */
-typedef struct s_command t_command;
+typedef struct s_command	t_command;
 
 /**
  * @brief Create a command object
