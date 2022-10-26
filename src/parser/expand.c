@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 14:13:51 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/25 14:22:03 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/26 18:02:33 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "parser_utils.h"
 #include "libft.h"
 #include "vector.h"
+
+#if 0
 
 // If returns null, it means that it's the end of the command.
 // For example when it sees a bracket or pipe token
@@ -54,3 +56,5 @@ void	expand_all_args(t_cmd *cmd, const t_token **tokens)
 	cmd->argc = args_vec->len - 1;
 	free(args_vec);
 }
+
+#endif

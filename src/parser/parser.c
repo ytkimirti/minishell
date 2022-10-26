@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:00:53 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/25 14:22:28 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/26 18:02:21 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "utils.h"
 #include <assert.h>
 #include "parser_utils.h"
+
+#if 0
 
 char	*get_executable_path(const char *name)
 {
@@ -74,3 +76,5 @@ t_cmd	*create_cmd(const t_token **tokens)
 		cmd->path = get_executable_path(cmd->argv[0]);
 	return (cmd);
 }
+
+#endif
