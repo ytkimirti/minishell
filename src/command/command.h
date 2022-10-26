@@ -6,11 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 13:18:17 by emakas            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/10/21 15:53:29 by emakas           ###   ########.fr       */
-=======
-/*   Updated: 2022/10/25 14:10:11 by ykimirti         ###   ########.tr       */
->>>>>>> main
+/*   Updated: 2022/10/26 15:46:50 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +14,14 @@
 # define COMMAND_H
 # include "token.h"
 
+typedef int		(*t_cmdfunc)(struct s_command *);
 
 struct s_command {
 	char	*command_path;
 	char	**argv;
 	int		argc;
-	int		(*execute)(struct s_command *, char **);
+	t_cmdfunc	execute;
 };
-
 
 /**
  * @brief Represents commands in shell
@@ -55,17 +51,4 @@ void		destroy_command(t_command *command);
  */
 int			execute_default(t_command *self, char **envp);
 
-<<<<<<< HEAD
 #endif
-=======
-/**
- * @brief Executes command in new process
- * 
- * @param newio 
- * @param command 
- * @return int return code of executed command
- */
-int			execute_forked(struct s_stdio newio, t_command *command);
-
-#endif
->>>>>>> main
