@@ -16,16 +16,7 @@
 
 #ifndef COMMAND_H
 # define COMMAND_H
-<<<<<<< HEAD
-# include "../tokenizer/token.h"
-
-/**
- * @brief Built in commands
- * 
- */
-=======
 # include "token.h"
->>>>>>> main
 
 
 struct s_command {

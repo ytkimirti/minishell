@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:49:03 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/21 18:28:04 by emakas           ###   ########.fr       */
+/*   Updated: 2022/10/26 12:43:11 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ static int			in_path(t_token *token);
 t_command	*create_command(t_token **tokens)
 {
 	t_token *command_token;
-	e_builtins	binfun;
+	e_builtins	b_command;
 
 	command_token = get_first_word(tokens);
-	binfun = get_ebin();
-	if (binfun != NONE)
+	b_command = get_ebin();
+	if (b_command != NONE)
 		return (create_builtin_command(built_in_id,tokens));
 	else if (in_path(command_token))
 		return (create_system_command(tokens));
@@ -42,7 +42,12 @@ static t_command	*create_system_command(t_token **tokens)
 {}
 
 static t_command	*create_builtin_command(int id, t_token **tokens)
-{}
+{
+	t_command	*command;
+	
+	command = malloc(sizeof(t_command));
+	command->
+}
 
 static int	is_built_in(t_token *token)
 {
