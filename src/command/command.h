@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 13:18:17 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/26 15:46:50 by emakas           ###   ########.fr       */
+/*   Updated: 2022/10/26 17:59:42 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,18 @@
 
 typedef int		(*t_cmdfunc)(struct s_command *);
 
+typedef enum e_redir_type
+{
+	APPEND,
+	OUT,
+	IN
+}	t_redir_type;
+
 struct s_command {
-	char	*command_path;
-	char	**argv;
-	int		argc;
-	t_cmdfunc	execute;
+	char			**argv;
+	int				argc;
+	t_redir_type	redir_type;
+	char			*redir_file;
 };
 
 /**
@@ -49,6 +56,6 @@ void		destroy_command(t_command *command);
  * @param envp environment list
  * @return int return code. -1 if execution failed.
  */
-int			execute_default(t_command *self, char **envp);
+int			execute_command(t_command *self);
 
 #endif
