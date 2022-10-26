@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_helper.h                                     :+:      :+:    :+:   */
+/*   command_destroy.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 15:14:25 by emakas            #+#    #+#             */
-<<<<<<< Updated upstream
-/*   Updated: 2022/10/20 13:16:36 by emakas           ###   ########.fr       */
-=======
-/*   Updated: 2022/10/26 13:15:41 by emakas           ###   ########.fr       */
->>>>>>> Stashed changes
+/*   Created: 2022/10/26 13:19:09 by emakas            #+#    #+#             */
+/*   Updated: 2022/10/26 15:41:33 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKEN_ADAPTER
-# define TOKEN_ADAPTER
-# include "../tokenizer/token.h"
+#include "command.h" 
 
-t_token 	*get_first_word(t_token **tokens);
-<<<<<<< Updated upstream
+static void	free_args(t_command *command)
+{
+	free_content(command->argv);
+	free(command->argv);
+}
 
-=======
-id_t		read_args(t_token **, char ***argv);
->>>>>>> Stashed changes
+static void	free_command_name(t_command *command)
+{
+	free(command->command_path);
+}
 
-#endif
+void	destroy_command(t_command *command)
+{
+	free_args(command);
+	//arguable
+	free_command_path(command);
+	free(command);
+}
