@@ -5,4 +5,8 @@
 -Isrc/tokenizer
 -Isrc/utils
 -Isrc/executer
+-Isrc/map
 -Ilibs/googletest/googletest/include
+-stdlib=libc++
+-mmacosx-version-min=10.9
+-DUSE_STD_NAMESPACE
