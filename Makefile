@@ -1,98 +1,115 @@
-NAME = miniparser
-BONUS_NAME =
+NAME = minishell
 
 # NOTE: Add -Werror here before pushing to intra
+# CFLAGS = -MD -Wall -Wextra -Ilibft -g -fsanitize=address
 CFLAGS = -MD -Wall -Wextra -Ilibft -g
+# LDFLAGS = -Llibft -fsanitize=address
 LDFLAGS = -Llibft
 LDLIBS = -lft
 
-# NOTE: You have to have libcriterion.a file in your LIBRARY_PATH and criterion.h file in C_INCLUDE_PATH
-# If you installed them with homebrew, add them to these env variables in your shell config
-TESTFLAGS = -lcriterion
+GTEST = libs/googletest
+LIB_GTEST = $(GTEST)/build/lib/libgtest.a $(GTEST)/build/lib/libgtest_main.a
+TEST_CFLAGS = -std=c++11 -Ilibft -I$(GTEST)/googletest/include
 
 CC = gcc
 SHELL = /bin/sh
 
-SRC_DIR = src
-OBJ_DIR = obj
 TEST_DIR = tests
 
+OBJ_DIR	:=	obj
+SRC_DIR	:=	src
+
+MODULES   := parser executer tokenizer utils
+SRC_DIRS   := $(addprefix src/,$(MODULES))
+OBJ_DIRS := $(addprefix obj/,$(MODULES))
+
+SRCS       := $(foreach sdir,$(SRC_DIRS),$(wildcard $(sdir)/*.c))
+OBJS       := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
+
+INCLUDES  := $(addprefix -I,$(SRC_DIRS))
+
 ENTRY_SRCS = $(SRC_DIR)/main.c
+ENTRY_OBJS = $(patsubst $(SRC_DIR)/%.c, obj/%.o, $(ENTRY_SRCS))
 
-BONUS_ENTRY_SRCS =
-
-# NOTE: Write there with your hand when you are done!
-# SRCS = src/summer.c
-# You SHALL NOT include main
-# SRCS := $(wildcard $(SRC_DIR)/*.c)
-SRCS = $(SRC_DIR)/tokenizer.c \
-		$(SRC_DIR)/tokenize_word.c \
-		$(SRC_DIR)/tokenize_space.c \
-		$(SRC_DIR)/tokenize_var.c \
-
-TEST_UTILS_SRCS = $(TEST_DIR)/test_utils.c
-TEST_SRCS = $(TEST_DIR)/test_tokenize_word.c \
-			$(TEST_DIR)/test_tokenizer.c
-
-TEST_UTILS_OBJS = $(patsubst $(TEST_DIR)/%.c, $(TEST_DIR)/obj/%.o, $(TEST_UTILS_SRCS))
-
-BONUS_ENTRY_OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(BONUS_ENTRY_SRCS))
-ENTRY_OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(ENTRY_SRCS))
-OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
-TEST_BINS = $(patsubst $(TEST_DIR)/%.c, $(TEST_DIR)/bin/%, $(TEST_SRCS))
+TEST_SRCS = $(wildcard $(TEST_DIR)/*.cpp)
+TEST_OBJS = $(patsubst $(TEST_DIR)/%.cpp, $(TEST_DIR)/obj/%.o, $(TEST_SRCS))
+TEST_BIN = $(TEST_DIR)/test
 
 INPUTS_DIR = tests/inputs
 
-all: $(NAME)
-bonus: $(BONUS_NAME)
+vpath %.c $(SRC_DIRS)
 
-$(BONUS_NAME): $(OBJS) $(BONUS_ENTRY_OBJS) libft/libft.a
-	$(CC) $(LDFLAGS) $(LDLIBS) $(OBJS) $(BONUS_ENTRY_OBJS) -o $@
+all: $(NAME)
+
+# Here is the actual compile rule. This is only for stuff in src/*/*.c
+
+checkdirs: $(OBJ_DIRS)
+	@echo obj: $(OBJ_DIR) $(OBJ_DIRS)
+	@echo src: $(SRC_DIR) $(SRC_DIRS)
+	@echo "All srcs: " $(SRCS)
+	@echo "All objs: " $(OBJS)
+	@echo "All includes: " $(INCLUDES)
+
+define make-goal
+$1/%.o: %.c | $(OBJ_DIRS)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $$< -o $$@
+endef
+
+$(foreach bdir,$(OBJ_DIRS),$(eval $(call make-goal,$(bdir))))
 
 $(NAME): $(OBJS) $(ENTRY_OBJS) libft/libft.a
-	$(CC) $(LDFLAGS) $(LDLIBS) $(OBJS) $(ENTRY_OBJS) -o $@
+	$(CC) $(OBJS) $(ENTRY_OBJS) $(LDFLAGS) $(LDLIBS) -o $@
 
 libft/libft.a:
 	make -C libft
 
-$(OBJ_DIR):
-	mkdir $(OBJ_DIR)
+$(GTEST)/build/lib/libgtest_main.a:
+	mkdir -p $(GTEST)/build
+	cd $(GTEST)/build && cmake .. && make
 
-$(TEST_DIR)/bin:
-	mkdir $(TEST_DIR)/bin
+maketest: $(TEST_BIN)
 
-$(TEST_DIR)/obj:
-	mkdir $(TEST_DIR)/obj
+test: $(TEST_BIN)
+	./$(TEST_BIN)
 
+$(TEST_BIN): $(TEST_OBJS) $(OBJS) $(GTEST)/build/lib/libgtest_main.a libft/libft.a
+	@echo "==== LINKING TEST FILES ===="
+	g++ $(TEST_CFLAGS) $(OBJS) $(TEST_OBJS) $(LIB_GTEST) libft/libft.a -pthread -o $@
+
+$(TEST_DIR)/obj/%.o: $(TEST_DIR)/%.cpp | $(TEST_DIR)/obj
+	g++ $(TEST_CFLAGS) $(INCLUDES) -c $< -o $@  
+
+# Rules for making directiories
+$(OBJ_DIRS) $(OBJ_DIR) $(TEST_DIR)/bin $(TEST_DIR)/obj:
+	mkdir -p $@
+
+# Only for $(ENTRY_SRCS)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
-
-# For TEST_UTILS_OBJS
-$(TEST_DIR)/obj/%.o: $(TEST_DIR)/%.c | $(TEST_DIR)/obj
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(TEST_DIR)/bin/%: $(TEST_DIR)/%.c $(OBJS) $(TEST_UTILS_OBJS) | $(TEST_DIR)/bin
-	$(CC) $(CFLAGS) $(LDLIBS) $(LDFLAGS) $(TESTFLAGS) $(OBJS) $(TEST_UTILS_OBJS) $< -o $@
-
-test: $(TEST_BINS)
-	for test in $(TEST_BINS) ; do ./$$test ; done
-
-testv: $(TEST_BINS)
-	for test in $(TEST_BINS) ; do ./$$test --verbose ; done
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 run: all
-	./miniparser < $(INPUTS_DIR)/basic1.txt
+	./$(NAME) < $(INPUTS_DIR)/basic1.txt
 
 # re_nolog: CFLAGS += -DLOG=false
+
+difftester/print_args: difftester/print_args.c
+	$(CC) $< -o $@
 
 re: fclean all
 
 clean:
 	rm -rf $(TEST_DIR)/obj
 	rm -rf $(OBJ_DIR)
+	rm -f difftester/print_args
 
 fclean: clean
 	rm -f $(NAME)
 	rm -rf $(TEST_DIR)/bin
 
--include $(OBJ_DIR)/*.d
+norm:
+	norminette src
+
+# -include $(OBJ_DIR)/*.d
+-include $(foreach odir,$(OBJ_DIRS),$(wildcard $(odir)/*.d))
+
+.PHONY: all re clean fclean checkdirs run test maketest norm

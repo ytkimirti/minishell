@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:26:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/04 16:34:05 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/25 11:27:05 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 #include "../libft/vector.h"
 #include <unistd.h>
 #include <stdlib.h>
+#include "utils.h"
 
 // Returns new malloced t_token
-t_token	*tokenize_single(char **str, t_state *state)
+t_token	*tokenize_single(const char **str, t_state *state)
 {
 	t_token	*token;
 
@@ -31,7 +32,7 @@ t_token	*tokenize_single(char **str, t_state *state)
 	return (token);
 }
 
-t_token	**tokenize(char *str)
+t_token	**tokenize(const char *str)
 {
 	t_token	*token;
 	t_pvec	*tokens;
@@ -53,4 +54,17 @@ t_token	**tokenize(char *str)
 	tmp = (t_token **)tokens->arr;
 	free(tokens);
 	return (tmp);
+}
+
+void	free_tokens(t_token **tokens)
+{
+	int	i;
+
+	i = 0;
+	while (tokens[i] != NULL)
+	{
+		free(tokens[i]);
+		i++;
+	}
+	free(tokens);
 }

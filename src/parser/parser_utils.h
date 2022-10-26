@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token.h                                            :+:      :+:    :+:   */
+/*   parser_utils.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/27 15:23:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/04 15:15:51 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/10/25 14:19:17 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/10/26 12:40:28 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKEN_H
+#ifndef PARSER_UTILS_H
 
-# define TOKEN_H
+# define PARSER_UTILS_H
 
-enum e_token_type
-{
-	EMPTY,
-	WORD,
-	SPACE,
-	PAREN_OPEN,
-	PAREN_CLOSE,
-	QUOTE_OPEN,
-	QUOTE_CLOSE,
-	SQUOTE_OPEN,
-	SQUOTE_CLOSE,
-};
+# include "parser.h"
+# include "libft.h"
+# include "vector.h"
 
-typedef struct s_token
-{
-	int					len;
-	enum e_token_type	type;
-	char				*str;
-}	t_token;
+int		calculate_length(t_token **tokens);
+char	*get_executable_path(const char *name);
+void	expand_all_args(t_cmd *cmd, t_token **tokens);
+char	*expand_tokens(t_token ***tokens_ref);
 
 #endif

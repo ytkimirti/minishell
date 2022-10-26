@@ -1,5 +1,5 @@
 /obj/
 /tests/obj/
-/miniparser
-/tests/bin/
+/tests/test
+/minishell
 .DS_Store

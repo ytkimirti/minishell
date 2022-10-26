@@ -1,30 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   executer.h                                         :+:      :+:    :+:   */
+/*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/31 19:01:52 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/04 15:44:25 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/08/27 15:23:05 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/10/25 11:26:03 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTER_H
+#ifndef TOKEN_H
 
-# define EXECUTER_H
+# define TOKEN_H
 
-typedef struct s_cmd
+enum e_token_type
 {
-	char	*path;
-	int		argc;
-	char	**argv;
-	int		stdin;
-	int		stdout;
-	int		stderr;
-	int (*execute)(struct s_cmd *);
-}	t_cmd;
+	EMPTY,
+	WORD,
+	SPACE,
+	PAREN_OPEN,
+	PAREN_CLOSE,
+	QUOTE_OPEN,
+	QUOTE_CLOSE,
+	SQUOTE_OPEN,
+	SQUOTE_CLOSE,
+};
 
-void	execute_cmd(t_cmd *cmd);
+# define PRINTABLE (WORD)
+
+typedef struct s_token
+{
+	int					len;
+	enum e_token_type	type;
+	const char			*str;
+}	t_token;
 
 #endif

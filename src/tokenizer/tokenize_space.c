@@ -1,53 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenize_var.c                                     :+:      :+:    :+:   */
+/*   tokenize_space.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/27 16:48:33 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/08/27 17:16:59 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/08/27 16:40:54 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/10/24 10:57:27 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokenize_state.h"
 #include "token.h"
-#include "../libft/vector.h"
 #include "../libft/libft.h"
 
-// Name as in bash variable name characters
-bool	is_name(char c)
-{
-	return (ft_isalpha(c) || c == '_');
-}
-
 /*
- * Tokenizes a word until it's not a name
+ * Tokenizes a space just to seperate the tokens. For
+ * example:
+ * echo "Hello" "Boi"heh
+ *
+ * These will get tokenized like
+ * Hello
+ * Boi
+ * heh
+ *
+ * But there is no way to know whether they are
+ * seperated or joined.
+ *
+ * Note that the space must not be in a quote.
  * */
-// TODO: Not done yet!
-t_token	*tokenize_var(char **str, t_state *state)
+t_token	*tokenize_space(char **str, t_state *state)
 {
 	t_token	*token;
-	t_cvec	*vec;
 
-	(void)state;
-	token = malloc(sizeof(t_token));
+	if (state->in_quotes)
+		return (NULL);
+	token = (t_token *)malloc(sizeof(t_token));
 	if (token == NULL)
 		return (NULL);
-	vec = cvec_new(32);
-	if (vec == NULL)
-		return (NULL);
-	if (**str != '$')
-		return (NULL);
-	cvec_append(vec, '$');
-	(*str)++;
-	while (is_name(**str))
-	{
-		cvec_append(vec, **str);
+	token->type = SPACE;
+	while (**str == ' ' || **str == '\t')
 		(*str)++;
-	}
-	token->str = vec->arr;
-	token->len = vec->len;
-	free(vec);
 	return (token);
 }

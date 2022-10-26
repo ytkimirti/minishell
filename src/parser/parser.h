@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   executer.c                                         :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/31 19:03:45 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/04 15:45:11 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/10/06 11:01:12 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/10/26 12:37:33 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "executer.h"
-#include <unistd.h>
+#ifndef PARSER_H
 
-extern char	**environ;
+# define PARSER_H
 
-void	execute_cmd(t_cmd *cmd)
-{
-	pid_t	pid;
+# include "executer.h"
+# include "tokenizer.h"
 
-	pid = fork();
-	if (pid == 0)
-	{
-		if (cmd->stdin != 0)
-			dup2(cmd->stdin, 0);
-		if (cmd->stdout != 0)
-			dup2(cmd->stdout, 1);
-		if (cmd->stderr != 0)
-			dup2(cmd->stderr, 2);
-		execve(cmd->path, cmd->argv, environ);
-	}
-}
+// Creates a cmd from the given tokens list.
+// On error, it returns a cmd object with
+// path set to NULL.
+t_cmd	*create_cmd(t_token **tokens);
+
+// Frees the given cmd and it's contents
+void	free_cmd(t_cmd *cmd);
+
+#endif

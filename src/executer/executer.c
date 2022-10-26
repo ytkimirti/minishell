@@ -1,41 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/27 15:18:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/10 23:02:06 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/08/31 19:03:45 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/10/06 11:48:43 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "vector.h"
-#include "tokenizer.h"
-#include "token.h"
 #include "executer.h"
-#include "parser.h"
+#include <unistd.h>
 
-#include <stdio.h>
-#include "utils.h"
-
-int	main(void)
+void	execute_cmd(t_cmd *cmd)
 {
-	char	*line;
-	t_token	**t;
-	t_cmd	*cmd;
+	pid_t	pid;
 
-	while (true)
+	pid = fork();
+	if (pid == 0)
 	{
-		line = get_next_line(0);
-		if (line == NULL)
-			break ;
-		line[ft_strlen(line) - 1] = '\0';
-		t = tokenize(line);
-		cmd = create_cmd(t);
-		print_cmd(cmd);
-		free_tokens(t);
-		free_cmd(cmd);
+		if (cmd->stdin != 0)
+			dup2(cmd->stdin, 0);
+		if (cmd->stdout != 0)
+			dup2(cmd->stdout, 1);
+		if (cmd->stderr != 0)
+			dup2(cmd->stderr, 2);
+		execve(cmd->path, cmd->argv, NULL);
 	}
 }

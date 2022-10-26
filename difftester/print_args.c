@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenizer_funcs.h                                  :+:      :+:    :+:   */
+/*   print_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/27 17:26:35 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/08/27 17:27:21 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/10/06 09:53:35 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/10/06 09:53:36 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKENIZER_FUNCS_H
+#include <stdio.h>
 
-# define TOKENIZER_FUNCS_H
-
-# include "tokenize_state.h"
-# include "token.h"
-
-t_token	*tokenize_var(char **str, t_state *state);
-t_token	*tokenize_word(char **str, t_state *state);
-t_token	*tokenize_space(char **str, t_state *state);
-
-#endif
+int	main(int argc, char **argv, char *env[])
+{
+	for (int i = 0; i < argc; i++)
+		printf(">%s<\n", argv[i]);
+}

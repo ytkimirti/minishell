@@ -6,15 +6,15 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 17:35:01 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/08/31 18:57:11 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/23 21:43:02 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <criterion/criterion.h>
 #include <criterion/new/assert.h>
-#include "../src/tokenize_state.h"
-#include "../src/token.h"
-#include "../src/tokenizer.h"
+#include "tokenize_state.h"
+#include "token.h"
+#include "tokenizer.h"
 #include <string.h>
 #include "test_utils.h"
 
@@ -31,8 +31,9 @@ Test(tokenizer, basic)
 
 	t_token **out = tokenize(str);
 
-	cr_expect(eq(type(t_token)[3], *out, correct));
-	free(out);
+	for (int i = 0; i < 3; i++)
+		cr_expect(eq(type(t_token), *out[i], correct[i]));
+	free_tokens(out);
 	free(str);
 }
 Test(tokenizer, three_word_special)
@@ -48,8 +49,9 @@ Test(tokenizer, three_word_special)
 
 	t_token **out = tokenize(str);
 
-	cr_expect(eq(type(t_token)[3], *out, correct));
-	free(out);
+	for (int i = 0; i < 3; i++)
+		cr_expect(eq(type(t_token), *out[i], correct[i]));
+	free_tokens(out);
 	free(str);
 }
 Test(tokenizer, with_space)
@@ -66,7 +68,8 @@ Test(tokenizer, with_space)
 
 	t_token **out = tokenize(str);
 
-	cr_expect(eq(type(t_token)[4], *out, correct));
-	free(out);
+	for (int i = 0; i < 4; i++)
+		cr_expect(eq(type(t_token), *out[i], correct[i]));
+	free_tokens(out);
 	free(str);
 }

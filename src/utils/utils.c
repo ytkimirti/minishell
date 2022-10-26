@@ -1,41 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/27 15:18:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/10 23:02:06 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/10/06 11:26:17 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/10/10 22:45:57 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "vector.h"
 #include "tokenizer.h"
-#include "token.h"
-#include "executer.h"
-#include "parser.h"
 
-#include <stdio.h>
-#include "utils.h"
-
-int	main(void)
+char	*dup_token_str(t_token *token)
 {
-	char	*line;
-	t_token	**t;
-	t_cmd	*cmd;
+	char	*str;
 
-	while (true)
-	{
-		line = get_next_line(0);
-		if (line == NULL)
-			break ;
-		line[ft_strlen(line) - 1] = '\0';
-		t = tokenize(line);
-		cmd = create_cmd(t);
-		print_cmd(cmd);
-		free_tokens(t);
-		free_cmd(cmd);
-	}
+	str = (char *)malloc(sizeof(char) * (token->len + 1));
+	ft_memcpy(str, token->str, token->len);
+	str[token->len] = '\0';
+	return (str);
 }

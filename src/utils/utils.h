@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tree.h                                             :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/04 15:51:45 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/04 16:12:51 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/10/06 11:26:50 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/10/16 14:04:17 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TREE_H
+#ifndef UTILS_H
 
-# define TREE_H
+# define UTILS_H
 
-typedef struct s_node
-{
-	struct s_node	*left;
-	struct s_node	*right;
-} t_node;
+# include "tokenizer.h"
+# include "executer.h"
+
+// Duplicate the str inside token
+// and null terminate it
+char	*dup_token_str(t_token *token);
+void	print_cmd(t_cmd *cmd);
+void	print_token(t_token *token);
+void	print_tokens(t_token **tokens);
+
+// Returns a non freeable string constant
+char	*token_type_tostr(enum e_token_type type);
 
 #endif
