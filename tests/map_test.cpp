@@ -143,30 +143,6 @@ TEST(Map, DeletionResultsNULL)
 	EXPECT_EQ(map_get(map, hashcode_str("ceyda")), c);
 }
 
-TEST(Map, DeletionResultsNULL)
-{
-	t_map	*map;
-	int		*a, *b, *c;
-
-	a = (int *)malloc(sizeof(int));
-	b = (int *)malloc(sizeof(int));
-	c = (int *)malloc(sizeof(int));
-
-	*a = 1;
-	*b = 2;
-	*c = 3;
-	map = create_map(64);
-	map_insert(map, hashcode_str("ahmet"), a);
-	map_insert(map, hashcode_str("busra"), b);
-	map_insert(map, hashcode_str("ceyda"), c);
-
-	map_remove(map, hashcode_str("ahmet"), free);
-
-	EXPECT_EQ(map_get(map, hashcode_str("ahmet")), nullptr);
-	EXPECT_EQ(map_get(map, hashcode_str("busra")), b);
-	EXPECT_EQ(map_get(map, hashcode_str("ceyda")), c);
-}
-
 void *global_pointer;
 
 void debug_del(void *ptr)
