@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 14:13:51 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/25 14:22:03 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/26 12:39:16 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 // If returns null, it means that it's the end of the command.
 // For example when it sees a bracket or pipe token
-char	*expand_tokens(const t_token ***tokens_ref)
+char	*expand_tokens(t_token ***tokens_ref)
 {
-	const t_token	**tokens;
+	t_token	**tokens;
 	int				i;
 	char			*str;
 
@@ -34,7 +34,7 @@ char	*expand_tokens(const t_token ***tokens_ref)
 	return (ft_strdup("dummy"));
 }
 
-void	expand_all_args(t_cmd *cmd, const t_token **tokens)
+void	expand_all_args(t_cmd *cmd, t_token **tokens)
 {
 	char	*arg;
 	t_pvec	*args_vec;

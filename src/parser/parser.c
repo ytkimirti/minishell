@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:00:53 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/25 14:22:28 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/26 12:40:36 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	free_cmd(t_cmd *cmd)
 
 // Calculates the char length the token will take
 // when it's expanded
-int	calculate_length(const t_token **tokens)
+int	calculate_length(t_token **tokens)
 {
 	int	len;
 	int	i;
@@ -60,7 +60,7 @@ int	calculate_length(const t_token **tokens)
 	return (len);
 }
 
-t_cmd	*create_cmd(const t_token **tokens)
+t_cmd	*create_cmd(t_token **tokens)
 {
 	t_cmd	*cmd;
 
