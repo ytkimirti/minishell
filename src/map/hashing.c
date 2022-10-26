@@ -6,11 +6,12 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 13:56:39 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/16 14:05:23 by emakas           ###   ########.fr       */
+/*   Updated: 2022/10/26 12:46:04 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hashing.h"
+#include "libft.h"
 #include <unistd.h>
 
 t_hash  hashcode(void *data, size_t len)
@@ -28,4 +29,10 @@ t_hash  hashcode(void *data, size_t len)
 		index++;
 	}
     return (code);
+}
+
+// TODO: Make this faster
+t_hash	hashcode_str(const char *str)
+{
+	return hashcode((void *)str, ft_strlen(str));
 }

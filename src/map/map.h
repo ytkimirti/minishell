@@ -19,7 +19,7 @@ struct s_map{
 typedef struct s_map    t_map;
 
 t_map   *create_map(int size);
-void    destroy_map(t_map *map);
+void    destroy_map(t_map *map, void (*del)(void *));
 void    map_insert(t_map *map, t_hash key, void *value);
 void	map_remove(t_map *map, t_hash key, void (*del)(void *));
 void	*map_get(t_map *map, t_hash key);
