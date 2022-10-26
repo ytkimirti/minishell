@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 13:18:17 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/25 14:10:11 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/26 15:46:50 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,13 @@
 # define COMMAND_H
 # include "token.h"
 
-struct s_stdio{
-	int	in_new;
-	int	out_new;
-	int	err_new;
-};
+typedef int		(*t_cmdfunc)(struct s_command *);
 
 struct s_command {
 	char	*command_path;
 	char	**argv;
 	int		argc;
-	int		(*execute)(struct s_command *, char **);
+	t_cmdfunc	execute;
 };
 
 /**
@@ -42,7 +38,7 @@ typedef struct s_command	t_command;
  * @param tokens 
  * @return t_command* 
  */
-t_command	*create_command(t_token *tokens);
+t_command	*create_command(t_token **tokens);
 void		destroy_command(t_command *command);
 
 /**
@@ -54,14 +50,5 @@ void		destroy_command(t_command *command);
  * @return int return code. -1 if execution failed.
  */
 int			execute_default(t_command *self, char **envp);
-
-/**
- * @brief Executes command in new process
- * 
- * @param newio 
- * @param command 
- * @return int return code of executed command
- */
-int			execute_forked(struct s_stdio newio, t_command *command);
 
 #endif
