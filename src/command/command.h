@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 13:18:17 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/28 08:17:44 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/28 08:47:32 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define COMMAND_H
 # include "token.h"
 
-typedef int		(*t_cmdfunc)(struct s_command *);
+// typedef int		(*t_cmdfunc)(struct s_command *);
 
 typedef enum e_redir_type
 {
