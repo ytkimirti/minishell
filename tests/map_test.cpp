@@ -6,7 +6,6 @@ extern "C"
 {
 #include "hashing.h"
 #include "utils.h"
-#include "executer.h"
 #include "token.h"
 #include "tokenize_state.h"
 #include "tokenizer.h"
