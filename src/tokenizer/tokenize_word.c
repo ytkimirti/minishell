@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:27:23 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/25 12:02:40 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/28 12:31:06 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,6 @@ bool	is_metacharacter(char c)
 		|| c == '|');
 }
 
-/*
- * Tokenizes a word until;
- * 	if in a quote, until it sees $,
- * 	otherwise until it sees a metacharacter
- * */
-
-/*
- * TODO: Make tokenizing a word a non freeable pointer thing.
- * Make it a pointer to the thing inside str.
- */
 t_token	*tokenize_word(const char **str, t_state *state)
 {
 	t_token	*token;

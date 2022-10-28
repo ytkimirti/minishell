@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:48:33 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/28 12:25:42 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/28 12:31:06 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,6 @@ inline static bool	is_special_var(char c)
 	return (c == '?' || c == '#' || (c >= '0' && c <= '9'));
 }
 
-/*
- * Tokenizes a word until it's not a name. Skips the
- * first '$' character. Pointer points after that.
- * */
 t_token	*tokenize_var(char **str, t_state *state)
 {
 	t_token	*token;
