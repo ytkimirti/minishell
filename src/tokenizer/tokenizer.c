@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:26:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/25 11:27:05 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/28 12:34:45 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ t_token	*tokenize_single(const char **str, t_state *state)
 		token = tokenize_space(str, state);
 	else if (**str == '$')
 		token = tokenize_var(str, state);
+	else if (**str == '\"' || **str == '\'')
+		token = tokenize_quote(str, state);
 	else
 		token = tokenize_word(str, state);
 	return (token);
