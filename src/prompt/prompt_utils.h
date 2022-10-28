@@ -1,38 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   prompt_utils.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/27 15:18:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/28 12:10:57 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/10/28 10:22:26 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/10/28 11:39:20 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "prompt/prompt.h"
-#include "prompt/prompt_utils.h"
-#include "vector.h"
-#include "tokenizer.h"
-#include "token.h"
-#include "parser.h"
+#ifndef PROMPT_UTILS_H
 
-#include <stdio.h>
-#include "utils.h"
+# define PROMPT_UTILS_H
 
-int	main(void)
-{
-	char	*line;
-	t_token	**t;
+char	*get_git_branch(void);
 
-	while (true)
-	{
-		line = readline_with_prompt();
-		if (line == NULL)
-			break ;
-		line[ft_strlen(line) - 1] = '\0';
-		t = tokenize(line);
-		free_tokens(t);
-	}
-}
+/*
+ * Returns NULL if no prefix is found at the start
+ * of str. Otherwise returns a new heap allocated null
+ * terminated string with the replaced prefix.
+ */
+char	*replace_prefix(const char *str,
+			const char *prefix,
+			const char *new_prefix);
+
+#endif
