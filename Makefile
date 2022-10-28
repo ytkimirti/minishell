@@ -5,11 +5,12 @@ NAME = minishell
 CFLAGS = -MD -Wall -Wextra -Ilibft -g
 # LDFLAGS = -Llibft -fsanitize=address
 LDFLAGS = -Llibft
-LDLIBS = -lft
+LDLIBS = -lft -lreadline
 
 GTEST = libs/googletest
 LIB_GTEST = $(GTEST)/build/lib/libgtest.a $(GTEST)/build/lib/libgtest_main.a
 TEST_CFLAGS = -std=c++11 -Ilibft -I$(GTEST)/googletest/include
+TEST_LDFLAGS = -pthread -lreadline
 
 CC = gcc
 SHELL = /bin/sh
@@ -19,7 +20,7 @@ TEST_DIR = tests
 OBJ_DIR	:=	obj
 SRC_DIR	:=	src
 
-MODULES   := parser executer tokenizer utils map
+MODULES   := parser executer tokenizer utils map prompt
 SRC_DIRS   := $(addprefix src/,$(MODULES))
 OBJ_DIRS := $(addprefix obj/,$(MODULES))
 
@@ -74,7 +75,7 @@ test: $(TEST_BIN)
 
 $(TEST_BIN): $(TEST_OBJS) $(OBJS) $(GTEST)/build/lib/libgtest_main.a libft/libft.a
 	@echo "==== LINKING TEST FILES ===="
-	g++ $(TEST_CFLAGS) $(OBJS) $(TEST_OBJS) $(LIB_GTEST) libft/libft.a -pthread -o $@
+	g++ $(TEST_CFLAGS) $(OBJS) $(TEST_OBJS) $(LIB_GTEST) libft/libft.a $(TEST_LDFLAGS) -o $@
 
 $(TEST_DIR)/obj/%.o: $(TEST_DIR)/%.cpp | $(TEST_DIR)/obj
 	g++ $(TEST_CFLAGS) $(INCLUDES) -c $< -o $@  

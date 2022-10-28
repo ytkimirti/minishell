@@ -1,38 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   git_status_format.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/27 15:18:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/28 12:10:57 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/10/28 11:16:18 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/10/28 11:44:33 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "prompt/prompt.h"
-#include "prompt/prompt_utils.h"
-#include "vector.h"
-#include "tokenizer.h"
-#include "token.h"
-#include "parser.h"
+#include "git_status_utils.h"
+#include "prompt_utils.h"
 
-#include <stdio.h>
-#include "utils.h"
+#ifndef NO_GIT
 
-int	main(void)
+char	*handle_git_output(int fd)
 {
 	char	*line;
-	t_token	**t;
+	char	*res;
+	int		len_line;
 
-	while (true)
-	{
-		line = readline_with_prompt();
-		if (line == NULL)
-			break ;
-		line[ft_strlen(line) - 1] = '\0';
-		t = tokenize(line);
-		free_tokens(t);
-	}
+	line = get_next_line(fd);
+	if (line == NULL)
+		return (NULL);
+	len_line = ft_strlen(line);
+	if (len_line > 0 && line[len_line - 1] == '\n')
+		line[len_line - 1] = '\0';
+	res = replace_prefix(line, "refs/heads/", "");
+	if (res == NULL)
+		res = line;
+	else
+		free(line);
+	return (res);
 }
+
+#endif

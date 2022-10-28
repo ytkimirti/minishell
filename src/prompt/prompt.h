@@ -1,38 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   prompt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/27 15:18:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/28 12:10:57 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/10/28 09:01:05 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/10/28 12:11:06 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "prompt/prompt.h"
-#include "prompt/prompt_utils.h"
-#include "vector.h"
-#include "tokenizer.h"
-#include "token.h"
-#include "parser.h"
+#ifndef PROMPT_H
 
-#include <stdio.h>
-#include "utils.h"
+# define PROMPT_H
 
-int	main(void)
-{
-	char	*line;
-	t_token	**t;
+/*
+ * Reads a line from user using the gnu readline library.
+ */
+char	*readline_with_prompt(void);
 
-	while (true)
-	{
-		line = readline_with_prompt();
-		if (line == NULL)
-			break ;
-		line[ft_strlen(line) - 1] = '\0';
-		t = tokenize(line);
-		free_tokens(t);
-	}
-}
+#endif
