@@ -6,14 +6,13 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 18:21:55 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/28 07:21:48 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/28 08:09:23 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../libft/colors.h"
 #include "token.h"
-#include "executer.h"
 #include "utils.h"
 #include <stdio.h>
 
@@ -43,6 +42,8 @@ char	*token_type_tostr(enum e_token_type type)
 	return ("UNKNOWN");
 }
 
+#if 0
+
 void	print_cmd(t_cmd *cmd)
 {
 	char	*argv_str;
@@ -68,6 +69,8 @@ void	print_cmd(t_cmd *cmd)
 		cmd->path, cmd->argc, argv_str);
 	free(argv_str);
 }
+
+#endif
 
 void	print_token(t_token *token)
 {

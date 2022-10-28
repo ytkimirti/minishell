@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:18:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/10 23:02:06 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/28 08:09:41 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "vector.h"
 #include "tokenizer.h"
 #include "token.h"
-#include "executer.h"
 #include "parser.h"
 
 #include <stdio.h>
@@ -24,7 +23,6 @@ int	main(void)
 {
 	char	*line;
 	t_token	**t;
-	t_cmd	*cmd;
 
 	while (true)
 	{
@@ -33,9 +31,6 @@ int	main(void)
 			break ;
 		line[ft_strlen(line) - 1] = '\0';
 		t = tokenize(line);
-		cmd = create_cmd(t);
-		print_cmd(cmd);
 		free_tokens(t);
-		free_cmd(cmd);
 	}
 }

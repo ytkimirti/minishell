@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 14:19:17 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/28 08:00:38 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/28 08:03:46 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,13 @@
 # include "libft.h"
 # include "vector.h"
 
+# if 0
+
 int		calculate_length(t_token **tokens);
 char	*get_executable_path(const char *name);
 void	expand_all_args(t_cmd *cmd, t_token **tokens);
 char	*expand_tokens(t_token ***tokens_ref);
+
+# endif
 
 #endif

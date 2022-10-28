@@ -6,13 +6,12 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:00:53 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/28 08:00:15 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/28 08:04:06 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokenizer.h"
 #include "token.h"
-#include "executer.h"
 #include "utils.h"
 #include <assert.h>
 #include "parser_utils.h"
