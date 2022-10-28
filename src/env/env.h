@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 19:11:23 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/15 19:32:35 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/28 08:15:18 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ const char	*get_env(const char *name);
  * The holded strings should not be freeable. So no string
  * duplicating is required when implementing the function.
  */
-char		**extract_env();
+char		**extract_env(void);
 
 /*
  * Updates the internal $PWD variable using getcwd
  */
-void		update_pwd_variable();
+void		update_pwd_variable(void);
 
 /*
  *	This might change

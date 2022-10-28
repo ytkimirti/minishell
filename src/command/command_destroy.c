@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 13:19:09 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/26 15:41:33 by emakas           ###   ########.fr       */
+/*   Updated: 2022/10/28 08:15:33 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static void	free_command_name(t_command *command)
 void	destroy_command(t_command *command)
 {
 	free_args(command);
-	//arguable
 	free_command_path(command);
 	free(command);
 }

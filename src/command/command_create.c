@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:49:03 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/26 15:41:23 by emakas           ###   ########.fr       */
+/*   Updated: 2022/10/28 08:14:55 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_command	*create_builtin_command(t_cmdtype bin, t_token **tokens);
 
 t_command	*create_command(t_token **tokens)
 {
-	t_token *command_token;
+	t_token		*command_token;
 	t_cmdtype	cmd_type;
 
 	command_token = get_first_word(tokens);
@@ -34,21 +34,21 @@ t_command	*create_command(t_token **tokens)
 		return (create_system_command(tokens));
 	else
 		printf("Command %s not found\n", dup_token_str(command_token));
-
 }
 
 static t_command	*create_system_command(t_token **tokens)
-{}
+{
+}
 
 static t_command	*create_builtin_command(t_cmdtype bin, t_token **tokens)
 {
 	t_command	*command;
-	
+
 	if (tokens[0] == NULL)
 		return (NULL);
 	command = malloc(sizeof(t_command));
 	command->command_path = dup_token_str(tokens[0]);
-	command->argc = read_args(tokens + 1,&(command->argv));
+	command->argc = read_args(tokens, &(command->argv));
 	command->execute = get_bfun(bin);
 	return (command);
 }

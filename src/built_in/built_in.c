@@ -6,18 +6,20 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 18:23:18 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/26 15:40:40 by emakas           ###   ########.fr       */
+/*   Updated: 2022/10/28 08:13:38 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "built_in.h"
 #include <unistd.h>
 #include "libft.h"
+
 /**
  * @brief Gets the builtin command execution function
  * 
  * @param id 
- * @return int(*)(t_command* command, char** args) function pointer for command execution
+ * @return int(*)(t_command* command, char** args)
+ * function pointer for command execution
  */
 int	(*get_builtin(t_cmdtype type))(t_command *command, char **args)
 {
@@ -39,7 +41,7 @@ int	(*get_builtin(t_cmdtype type))(t_command *command, char **args)
 		return (NULL);
 }
 
-t_cmdtype get_ebin(t_token *token)
+t_cmdtype	get_ebin(t_token *token)
 {
 	if (ft_strncmp("cd", token->str, token->len) == 0)
 		return (CD);

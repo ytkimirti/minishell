@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 13:18:17 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/28 07:27:22 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/28 08:17:44 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,6 @@ typedef enum e_redir_type
 	IN
 }	t_redir_type;
 
-struct s_command {
-	char			**argv;
-	int				argc;
-	t_redir_type	redir_type;
-	char			*redir_file;
-};
-
 /**
  * @brief Represents commands in shell
  * Every command has some fields like:
@@ -37,7 +30,12 @@ struct s_command {
  * - Argument lists
  * - Environment Variables
  */
-typedef struct s_command	t_command;
+typedef struct s_command {
+	char			**argv;
+	int				argc;
+	t_redir_type	redir_type;
+	char			*redir_file;
+}	t_command;
 
 /**
  * @brief Create a command object
