@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 14:26:45 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/26 14:15:46 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/28 08:21:49 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,20 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+static void	destroy_all_entries(t_entry *entry, void (*del)(void *))
+{
+	while (entry != NULL)
+	{
+		if (entry->value != NULL)
+			del(entry->value);
+		free(entry);
+		entry = entry->next;
+	}
+}
+
 void	destroy_map(t_map *map, void (*del)(void *))
 {
 	int		i;
-	t_entry	*entry;
 
 	if (map == NULL)
 		return ;
@@ -27,20 +37,10 @@ void	destroy_map(t_map *map, void (*del)(void *))
 		while (i < map->size)
 		{
 			if (map->entries[i] != NULL)
-			{
-				entry = map->entries[i];
-				while (entry != NULL)
-				{
-					if (entry->value != NULL)
-						del(entry->value);
-					free(entry);
-					entry = entry->next;
-				}
-			}
+				destroy_all_entries(map->entries[i], del);
 			i++;
 		}
-	}
-	if (map->entries != NULL)
 		free(map->entries);
+	}
 	free(map);
 }
