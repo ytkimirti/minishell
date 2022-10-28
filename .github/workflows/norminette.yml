@@ -1,0 +1,18 @@
+name: Norminette
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  norminette:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - uses: alexandregv/norminette-action@v3
+        with:
+          flags: 'src'
