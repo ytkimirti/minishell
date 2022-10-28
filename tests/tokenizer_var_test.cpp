@@ -76,12 +76,12 @@ INSTANTIATE_TEST_SUITE_P(OneWordOutside, TokenizeVarTest, testing::Values(
 			TokenizeVarTestData((char *)"$,,,", (char *)""),
 			TokenizeVarTestData((char *)"$ahmet_mehmet", (char *)"ahmet_mehmet"),
 			TokenizeVarTestData((char *)"$ahmet$", (char *)"ahmet"),
-			TokenizeVarTestData((char *)"$$", (char *)"$"),
+			// TokenizeVarTestData((char *)"$$", (char *)"$"),
 			TokenizeVarTestData((char *)"$#", (char *)"#"),
 			TokenizeVarTestData((char *)"$1", (char *)"1"),
 			TokenizeVarTestData((char *)"$9", (char *)"9"),
 			TokenizeVarTestData((char *)"$12", (char *)"1"),
-			TokenizeVarTestData((char *)"$!", (char *)"!")
+			TokenizeVarTestData((char *)"$?", (char *)"?")
 			));
 
 
