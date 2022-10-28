@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:23:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/25 11:26:03 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/26 17:23:52 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ enum e_token_type
 	EMPTY,
 	WORD,
 	SPACE,
+	VAR,
 	PAREN_OPEN,
 	PAREN_CLOSE,
 	QUOTE_OPEN,

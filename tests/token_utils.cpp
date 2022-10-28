@@ -15,19 +15,19 @@ extern "C"
 
 std::ostream& operator<<(std::ostream& stream, const t_token& token)
 {
-	stream << "{";
+	stream << YEL << "{" << RST;
 
-	stream << " .type = " << token_type_tostr(token.type);
+	stream << " .type = " << MAG << token_type_tostr(token.type) << RST;
 
 	if (token.type & PRINTABLE)
 	{
 		std::string str(token.str, token.len);
-		stream << " .str = \"" << std::string(token.str, token.len) << "\"";
+		stream << " .str = " << GRN << "\"" << std::string(token.str, token.len) << "\"" << RST;
 
-		stream << " .len = " << token.len;
+		stream << " .len = " << MAG << token.len << RST;
 	}
 
-	stream << " }";
+	stream << YEL << " }" << RST;
 
   	return stream;
 }

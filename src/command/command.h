@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 13:18:17 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/26 17:59:42 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/28 07:27:22 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,14 @@ void		destroy_command(t_command *command);
  * @return int return code. -1 if execution failed.
  */
 int			execute_command(t_command *self);
+
+/**
+ * @brief Executes command in new process
+ * 
+ * @param newio 
+ * @param command 
+ * @return int return code of executed command
+ */
+// int			execute_forked(struct s_stdio newio, t_command *command);
 
 #endif

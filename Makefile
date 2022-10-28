@@ -19,7 +19,7 @@ TEST_DIR = tests
 OBJ_DIR	:=	obj
 SRC_DIR	:=	src
 
-MODULES   := parser executer tokenizer utils
+MODULES   := parser executer tokenizer utils map
 SRC_DIRS   := $(addprefix src/,$(MODULES))
 OBJ_DIRS := $(addprefix obj/,$(MODULES))
 

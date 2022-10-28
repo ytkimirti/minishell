@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:48:33 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/24 10:57:32 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/26 17:27:39 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "../libft/libft.h"
 
 // Name as in bash variable name characters
-bool	is_name(char c)
+static bool	is_name(char c)
 {
 	return (ft_isalpha(c) || c == '_');
 }
@@ -37,9 +37,8 @@ t_token	*tokenize_var(char **str, t_state *state)
 	(*str)++;
 	i = 0;
 	while (is_name((*str)[i]))
-	{
 		i++;
-	}
+	token->type = VAR;
 	token->str = *str;
 	token->len = i;
 	(*str) += i;

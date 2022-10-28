@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 18:21:55 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/25 14:29:18 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/28 07:21:48 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ char	*token_type_tostr(enum e_token_type type)
 		return ("PAREN_CLOSE");
 	if (type == EMPTY)
 		return ("EMPTY");
+	if (type == VAR)
+		return ("VAR");
 	return ("UNKNOWN");
 }
 

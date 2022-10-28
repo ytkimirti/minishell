@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 15:51:50 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/16 15:53:19 by emakas           ###   ########.fr       */
+/*   Updated: 2022/10/26 14:15:23 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 #include "hashing.h"
 #include <stdlib.h>
 
-void    *map_get(t_map *map, t_hash key)
+void	*map_get(t_map *map, t_hash key)
 {
-    int     index;
-    t_entry *entry;
+	int		index;
+	t_entry	*entry;
 
 	index = key % map->size;
-    if (map->entries[index] == NULL)
-        return (NULL);
-    entry = map->entries[index];
-    while (entry != NULL)
-    {
-        if (entry->key == key)
-            return (entry->value);
-        entry = entry->next;
-    }
-    return (NULL);
+	if (map->entries[index] == NULL)
+		return (NULL);
+	entry = map->entries[index];
+	while (entry != NULL)
+	{
+		if (entry->key == key)
+			return (entry->value);
+		entry = entry->next;
+	}
+	return (NULL);
 }
