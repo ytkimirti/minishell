@@ -84,6 +84,21 @@ INSTANTIATE_TEST_SUITE_P(OneWordOutside, TokenizeVarTest, testing::Values(
 			TokenizeVarTestData((char *)"$?", (char *)"?")
 			));
 
+INSTANTIATE_TEST_SUITE_P(OneWordInside, TokenizeVarTest, testing::Values(
+			TokenizeVarTestData((char *)"$ahmet", (char *)"ahmet", VAR, true),
+			TokenizeVarTestData((char *)"$ahmet\"mehmet", (char *)"ahmet", VAR, true),
+			TokenizeVarTestData((char *)"$\"mehmet", (char *)"", VAR, true),
+			TokenizeVarTestData((char *)"$", (char *)"", VAR, true),
+			TokenizeVarTestData((char *)"$,,,", (char *)"", VAR, true),
+			TokenizeVarTestData((char *)"$ahmet_mehmet", (char *)"ahmet_mehmet", VAR, true),
+			TokenizeVarTestData((char *)"$ahmet$", (char *)"ahmet", VAR, true),
+			// TokenizeVarTestData((char *)"$$", (char *)"$", VAR, true),
+			TokenizeVarTestData((char *)"$#", (char *)"#", VAR, true),
+			TokenizeVarTestData((char *)"$1", (char *)"1", VAR, true),
+			TokenizeVarTestData((char *)"$9", (char *)"9", VAR, true),
+			TokenizeVarTestData((char *)"$12", (char *)"1", VAR, true),
+			TokenizeVarTestData((char *)"$?", (char *)"?", VAR, true)
+			));
 
 
 
