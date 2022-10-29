@@ -6,23 +6,23 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 06:59:44 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/28 07:04:21 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/28 18:11:52 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ast.h"
 #include "built_in.h"
 #include "libft.h"
 
-int	ft_echo(t_command *cmd)
+int	ft_echo(t_command *command, t_stdio std)
 {
-	int	i;
+	char	**str;
 
-	i = 1;
-	while (i < cmd->argc)
+	str = command->argv + 1;
+	while (*str != NULL)
 	{
-		write(0, cmd->argv[i], ft_strlen(cmd->argv[i]));
-		i++;
+		ft_putstr_fd(*str, std.out);
+		str++;
 	}
-	write(0, "\n", 1);
 	return (0);
 }
