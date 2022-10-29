@@ -6,11 +6,13 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 13:19:09 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/28 08:15:33 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/28 18:16:10 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "command.h" 
+
+#if 0
 
 static void	free_args(t_command *command)
 {
@@ -29,3 +31,5 @@ void	destroy_command(t_command *command)
 	free_command_path(command);
 	free(command);
 }
+
+#endif
