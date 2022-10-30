@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 18:21:55 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/30 15:34:09 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/30 22:36:44 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	print_token(t_token *token)
 	printf("(t_token) { "
 		".type = " MAG "%s" RST,
 		token_type_tostr(token->type));
-	if (token->str != NULL && token->type & PRINTABLE)
+	if (token->str != NULL && is_printable(token->type))
 	{
 		token_str = dup_token_str(token);
 		printf(", .len = " MAG "%d" RST ", "

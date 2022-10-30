@@ -18,7 +18,7 @@ std::ostream& operator<<(std::ostream& stream, const t_token& token)
 
 	stream << " .type = " << MAG << token_type_tostr(token.type) << RST;
 
-	if (token.type & PRINTABLE)
+	if (is_printable(token.type))
 	{
 		std::string str(token.str, token.len);
 		if (token.str == nullptr)
@@ -38,7 +38,7 @@ bool operator==( const t_token& a, const t_token& b )
 {
 	if (a.type != b.type)
 		return false;
-	if (a.type & PRINTABLE)
+	if (is_printable(a.type))
 		return a.len == b.len && a.len >= 0 && b.len >= 0 && strncmp(a.str, b.str, a.len) == 0;
     return true;
 }

@@ -1,40 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token.h                                            :+:      :+:    :+:   */
+/*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/27 15:23:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/30 22:32:27 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/10/30 22:32:47 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/10/30 22:33:22 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKEN_H
+#include "token.h"
 
-# define TOKEN_H
-
-# include <stdbool.h>
-
-enum e_token_type
+inline bool	is_printable(enum e_token_type type)
 {
-	EMPTY,
-	WORD,
-	SPACE,
-	VAR,
-	PAREN_OPEN,
-	PAREN_CLOSE,
-	DOUBLE_QUOTE,
-	SINGLE_QUOTE,
-};
-
-typedef struct s_token
-{
-	int					len;
-	enum e_token_type	type;
-	const char			*str;
-}	t_token;
-
-bool	is_printable(enum e_token_type type);
-
-#endif
+	return (type == WORD);
+}
