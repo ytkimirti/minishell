@@ -83,7 +83,7 @@ TEST_P(TokenizeAllTest, Handle)
 	free_tokens(out);
 }
 
-INSTANTIATE_TEST_SUITE_P(OneWordOutside, TokenizeAllTest, testing::Values(
+INSTANTIATE_TEST_SUITE_P(Tokenizer, TokenizeAllTest, testing::Values(
 			TokenizeAllData{
 				.input = "hello world",
 				.correct_tokens = std::vector<DummyToken>{
