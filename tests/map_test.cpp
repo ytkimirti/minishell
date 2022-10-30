@@ -45,7 +45,7 @@ TEST(Map, HashingFunctions)
 
 	std::vector<hash_and_str> data;
 
-	for (int i = 0; i < 100000; i++)
+	for (int i = 0; i < 1000; i++)
 	{
 		char *str = random_str(4);
 		t_hash hash = hashcode_str(str);
