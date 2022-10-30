@@ -76,15 +76,13 @@ void	print_token(t_token *token)
 {
 	char	*token_str;
 
-	printf("(t_token) {"
-		".type = " MAG "%s" RST " "
-		"}\n",
+	printf("(t_token) { "
+		".type = " MAG "%s" RST,
 		token_type_tostr(token->type));
 	if (token->str != NULL && token->type & PRINTABLE)
 	{
 		token_str = dup_token_str(token);
-		printf("(t_token) {"
-			".len = " MAG "%d" RST ", "
+		printf(", .len = " MAG "%d" RST ", "
 			".str = " YEL "\"%s\" " RST,
 			token->len, token_str);
 		free(token_str);
