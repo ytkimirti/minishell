@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 15:05:11 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/28 19:33:32 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/30 22:48:14 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,19 @@
 #include "command.h"
 #include "libft.h"
 
-t_node	*create_node(t_node_type type, char *name, t_command *cmd, t_node *left, t_node *right)
-{
-	t_node	*node;
-
-	node = (t_node *)malloc(sizeof(t_node));
-	node->name = name;
-	node->left = left;
-	node->right = right;
-	node->type = type;
-	node->command = cmd;
-	return (node);
-}
+// t_node	*create_node(t_node_type type, char *name,
+// t_command *cmd, t_node *left, t_node *right)
+// {
+// 	t_node	*node;
+//
+// 	node = (t_node *)malloc(sizeof(t_node));
+// 	node->name = name;
+// 	node->left = left;
+// 	node->right = right;
+// 	node->type = type;
+// 	node->command = cmd;
+// 	return (node);
+// }
 
 t_command	*create_dummy_command(char *name, char *arg1)
 {
@@ -47,22 +48,22 @@ t_command	*create_dummy_command(char *name, char *arg1)
 	return (cmd);
 }
 
-t_node	*build_example_tree()
-{
-	t_command *a, *b, *c;
-	a = create_dummy_command("echo", "hello world");
-	b = create_dummy_command("echo", "asdf");
-	c = create_dummy_command("echo", "asdfasdf");
-
-	return (
-			create_node(PIPE, "top_pipe", NULL,
-				create_node(COMMAND, "a", a, NULL, NULL),
-				create_node(PIPE, "middle_pipe", NULL,
-					create_node(COMMAND, "b", b, NULL, NULL),
-					create_node(COMMAND, "c", c, NULL, NULL)
-					)
-				));
-}
+// t_node	*build_example_tree()
+// {
+// 	t_command *a, *b, *c;
+// 	a = create_dummy_command("echo", "hello world");
+// 	b = create_dummy_command("echo", "asdf");
+// 	c = create_dummy_command("echo", "asdfasdf");
+//
+// 	return (
+// 			create_node(PIPE, "top_pipe", NULL,
+// 				create_node(COMMAND, "a", a, NULL, NULL),
+// 				create_node(PIPE, "middle_pipe", NULL,
+// 					create_node(COMMAND, "b", b, NULL, NULL),
+// 					create_node(COMMAND, "c", c, NULL, NULL)
+// 					)
+// 				));
+// }
 //
 // int	main(void)
 // {
