@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:40:54 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/30 18:03:59 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/30 18:46:59 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ t_token	*tokenize_quote(const char **str, t_state *state)
 		state->in_squotes = !state->in_squotes;
 		token->type = SINGLE_QUOTE;
 	}
+	(*str)++;
 	return (token);
 }

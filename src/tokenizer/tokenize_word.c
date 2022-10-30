@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:27:23 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/28 12:31:06 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/30 20:33:47 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ bool	is_metacharacter(char c)
 	return (c == ' '
 		|| c == '\t'
 		|| c == '<'
+		|| c == '\''
+		|| c == '\"'
+		|| c == '$'
 		|| c == '>'
 		|| c == '('
 		|| c == ')'
@@ -38,8 +41,9 @@ t_token	*tokenize_word(const char **str, t_state *state)
 	token->type = WORD;
 	i = 0;
 	while ((*str)[i] != '\0'
-		&& ((state->in_quotes && (*str)[i] != '$' && (*str)[i] != '"')
-			|| (!state->in_quotes && !is_metacharacter((*str)[i]))
+		&& ((state->in_squotes && (*str)[i] != '\'')
+			|| (state->in_quotes && (*str)[i] != '"' && (*str)[i] != '$')
+			|| (!is_metacharacter((*str)[i]))
 			)
 		)
 	{
