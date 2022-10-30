@@ -7,6 +7,7 @@
 -Isrc/executer
 -Isrc/map
 -Isrc/ast
+-Isrc/built_in
 -Ilibs/googletest/googletest/include
 -stdlib=libc++
 -mmacosx-version-min=10.9
