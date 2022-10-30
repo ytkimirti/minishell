@@ -108,7 +108,7 @@ fclean: clean
 	rm -rf $(TEST_DIR)/bin
 
 norm:
-	norminette src
+	norminette src | grep Error
 
 # -include $(OBJ_DIR)/*.d
 -include $(foreach odir,$(OBJ_DIRS),$(wildcard $(odir)/*.d))
