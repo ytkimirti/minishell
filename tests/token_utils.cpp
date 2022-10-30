@@ -21,7 +21,10 @@ std::ostream& operator<<(std::ostream& stream, const t_token& token)
 	if (token.type & PRINTABLE)
 	{
 		std::string str(token.str, token.len);
-		stream << " .str = " << GRN << "\"" << std::string(token.str, token.len) << "\"" << RST;
+		if (token.str == nullptr)
+			stream << " .str = " << RED << "NULL" << RST;
+		else
+			stream << " .str = " << GRN << "\"" << std::string(token.str, token.len) << "\"" << RST;
 
 		stream << " .len = " << MAG << token.len << RST;
 	}
