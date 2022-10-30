@@ -61,7 +61,7 @@ TEST(Map, HashingFunctions)
 			if (data[i].hash == hash && strcmp(data[i].str, str) != 0)
 			{
 				// There is a hash collision
-				printf("Hash collision between these\n\t\"%s\" -> %d\n\t\"%s\" -> %d\n", data[i].str, data[i].hash, str, hash);
+				printf("Hash collision between these\n\t\"%s\" -> %lu\n\t\"%s\" -> %lu\n", data[i].str, data[i].hash, str, hash);
 				FAIL();
 			}
 		}
