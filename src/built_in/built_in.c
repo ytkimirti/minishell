@@ -6,13 +6,15 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 18:23:18 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/28 08:13:38 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/30 23:15:36 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "built_in.h"
-#include <unistd.h>
-#include "libft.h"
+#if 0
+
+# include "built_in.h"
+# include <unistd.h>
+# include "libft.h"
 
 /**
  * @brief Gets the builtin command execution function
@@ -60,3 +62,5 @@ t_cmdtype	get_ebin(t_token *token)
 	else
 		return (EXEC);
 }
+
+#endif
