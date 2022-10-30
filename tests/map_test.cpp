@@ -55,7 +55,7 @@ TEST(Map, HashingFunctions)
 		item.str = str;
 		item.hash = hash;
 
-
+		printf("Generated hash for item %d: %lu\n",i,hash);
 		for (int i = 0; i < data.size(); i++)
 		{
 			if (data[i].hash == hash && strcmp(data[i].str, str) != 0)
