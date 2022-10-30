@@ -6,13 +6,13 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:40:54 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/28 12:38:23 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/30 15:33:37 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokenize_state.h"
 #include "token.h"
-#include "../libft/libft.h"
+#include <stdlib.h>
 
 t_token	*tokenize_quote(char **str, t_state *state)
 {
@@ -23,19 +23,13 @@ t_token	*tokenize_quote(char **str, t_state *state)
 		return (NULL);
 	if (**str == '\"')
 	{
-		if (state->in_quotes)
-			token->type = QUOTE_CLOSE;
-		else
-			token->type = QUOTE_OPEN;
+		state->in_quotes = !state->in_quotes;
+		token->type = DOUBLE_QUOTE;
 	}
 	else if (**str == '\'')
 	{
-		if (state->in_quotes)
-			token->type = SQUOTE_CLOSE;
-		else
-			token->type = SQUOTE_CLOSE;
+		state->in_squotes = !state->in_squotes;
+		token->type = SINGLE_QUOTE;
 	}
-	while (**str == ' ' || **str == '\t')
-		(*str)++;
 	return (token);
 }

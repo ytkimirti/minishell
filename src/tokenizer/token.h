@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:23:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/26 17:23:52 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/30 14:12:23 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,8 @@ enum e_token_type
 	VAR,
 	PAREN_OPEN,
 	PAREN_CLOSE,
-	QUOTE_OPEN,
-	QUOTE_CLOSE,
-	SQUOTE_OPEN,
-	SQUOTE_CLOSE,
+	DOUBLE_QUOTE,
+	SINGLE_QUOTE,
 };
 
 # define PRINTABLE (WORD)
