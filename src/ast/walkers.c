@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:03:43 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/28 19:39:01 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/30 14:07:57 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ int	walk_pipe(t_node *tree, t_stdio std)
 	pipe(fds);
 	pid = 0;
 	if (tree->left->type == COMMAND)
-		execute_command(tree->left->command, (t_stdio){std.in, fds[1], std.err}, true);
+		execute_command(tree->left->command,
+			(t_stdio){std.in, fds[1], std.err}, true);
 	else
 	{
 		pid = fork();
