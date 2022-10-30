@@ -14,26 +14,27 @@ extern "C"
 #include "gtest/gtest.h"
 #include "../libs/googletest/googletest/include/gtest/gtest.h"
 
-class SampleCommand
+struct SampleCommand
 {
-
+	std::string msg;
 };
 
 class CommandTest : public testing::TestWithParam<SampleCommand>
 {
 	void SetUp()
 	{
-		// Reset state here
-		state.in_quotes = false;
 	}
-
-protected:
-	t_state state;
 };
 
 TEST_P(CommandTest, HandleInQuotes)
 {
-	
-	EXPECT_EQ("SELAM","SELAM");
+	SampleCommand data = GetParam();
 
+	EXPECT_EQ("SELAM","SELAM");
 }
+
+INSTANTIATE_TEST_SUITE_P(SelamVerEfenim, CommandTest, testing::Values(
+				SampleCommand{
+					.msg = "selaaam"
+				}
+			));
