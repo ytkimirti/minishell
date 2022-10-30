@@ -6,6 +6,7 @@
 -Isrc/utils
 -Isrc/executer
 -Isrc/map
+-Isrc/ast
 -Ilibs/googletest/googletest/include
 -stdlib=libc++
 -mmacosx-version-min=10.9

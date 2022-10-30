@@ -11,8 +11,12 @@
 /* ************************************************************************** */
 
 #ifndef COMMAND_H
+
 # define COMMAND_H
+
 # include "token.h"
+# include "stdbool.h"
+# include "tstdio.h"
 
 // typedef int		(*t_cmdfunc)(struct s_command *);
 
@@ -54,7 +58,7 @@ void		destroy_command(t_command *command);
  * @param envp environment list
  * @return int return code. -1 if execution failed.
  */
-int			execute_command(t_command *self);
+int			execute_command(t_command *command, t_stdio std, bool is_async);
 
 /**
  * @brief Executes command in new process

@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:49:03 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/28 08:14:55 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/28 18:15:47 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@
 #include "../utils/utils.h"
 #include "../../libft/libft.h" // Clion görmedi onu şaaparız
 
-static t_command	*create_system_command(t_token **tokens);
-static t_command	*create_builtin_command(t_cmdtype bin, t_token **tokens);
-//static int			in_path(t_token *token);
+#if 0
 
 t_command	*create_command(t_token **tokens)
 {
@@ -52,6 +50,8 @@ static t_command	*create_builtin_command(t_cmdtype bin, t_token **tokens)
 	command->execute = get_bfun(bin);
 	return (command);
 }
+
+#endif
 
 ///**
 // * @brief Looks in path for given command.

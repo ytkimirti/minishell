@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*   ast_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 06:59:44 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/28 18:11:52 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/10/28 16:55:42 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/10/28 19:13:45 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ast.h"
-#include "built_in.h"
-#include "libft.h"
+#ifndef AST_UTILS_H
 
-int	ft_echo(t_command *command, t_stdio std)
-{
-	char	**str;
+# define AST_UTILS_H
 
-	str = command->argv + 1;
-	while (*str != NULL)
-	{
-		ft_putstr_fd(*str, std.out);
-		str++;
-	}
-	return (0);
-}
+# include "ast.h"
+# include <stdbool.h>
+
+int	walk_tree(t_node *tree, t_stdio std);
+int	walk_or(t_node *tree, t_stdio std);
+int	walk_and(t_node *tree, t_stdio std);
+int	walk_pipe(t_node *tree, t_stdio std);
+
+#endif

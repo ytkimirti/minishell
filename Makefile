@@ -9,7 +9,7 @@ LDLIBS = -lft -lreadline
 
 GTEST = libs/googletest
 LIB_GTEST = $(GTEST)/build/lib/libgtest.a $(GTEST)/build/lib/libgtest_main.a
-TEST_CFLAGS = -std=c++11 -Ilibft -I$(GTEST)/googletest/include
+TEST_CFLAGS = -std=c++11 -Ilibft -I$(GTEST)/googletest/include -g
 TEST_LDFLAGS = -pthread -lreadline
 
 CC = gcc
@@ -108,7 +108,7 @@ fclean: clean
 	rm -rf $(TEST_DIR)/bin
 
 norm:
-	norminette src
+	norminette src | grep Error
 
 # -include $(OBJ_DIR)/*.d
 -include $(foreach odir,$(OBJ_DIRS),$(wildcard $(odir)/*.d))

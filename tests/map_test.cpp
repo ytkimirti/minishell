@@ -40,12 +40,12 @@ struct hash_and_str
 
 TEST(Map, HashingFunctions)
 {
-	GTEST_SKIP();
+	//GTEST_SKIP();
 	srand(42);
 
 	std::vector<hash_and_str> data;
 
-	for (int i = 0; i < 100000; i++)
+	for (int i = 0; i < 1000; i++)
 	{
 		char *str = random_str(4);
 		t_hash hash = hashcode_str(str);
@@ -55,7 +55,7 @@ TEST(Map, HashingFunctions)
 		item.str = str;
 		item.hash = hash;
 
-
+		// printf("Generated hash for item %d: %lu\n",i,hash);
 		for (int i = 0; i < data.size(); i++)
 		{
 			if (data[i].hash == hash && strcmp(data[i].str, str) != 0)

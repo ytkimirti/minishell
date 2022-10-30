@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*   tstdio.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 06:59:44 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/28 18:11:52 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/10/28 18:59:16 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/10/28 18:59:24 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ast.h"
-#include "built_in.h"
-#include "libft.h"
+#ifndef TSTDIO_H
 
-int	ft_echo(t_command *command, t_stdio std)
+# define TSTDIO_H
+
+typedef struct s_stdio
 {
-	char	**str;
+	int	in;
+	int	out;
+	int	err;
+}	t_stdio;
 
-	str = command->argv + 1;
-	while (*str != NULL)
-	{
-		ft_putstr_fd(*str, std.out);
-		str++;
-	}
-	return (0);
-}
+#endif
