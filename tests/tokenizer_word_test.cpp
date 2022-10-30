@@ -40,6 +40,7 @@ class TokenizeWordTest : public testing::TestWithParam<TokenizeTestData> {
 	{
 		// Reset state here
 		state.in_quotes = false;
+		state.in_squotes = false;
 	}
 
 	protected:
