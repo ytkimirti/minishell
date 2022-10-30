@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 17:26:35 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/30 15:30:48 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/30 18:04:05 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ t_token	*tokenize_space(const char **str, t_state *state);
  * Tokenizez both single and double quotes. It also modifies
  * the state variable.
  */
-t_token	*tokenize_quote(char **str, t_state *state);
+t_token	*tokenize_quote(const char **str, t_state *state);
 
 #endif

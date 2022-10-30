@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:40:54 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/30 15:33:37 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/30 18:03:59 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "token.h"
 #include <stdlib.h>
 
-t_token	*tokenize_quote(char **str, t_state *state)
+t_token	*tokenize_quote(const char **str, t_state *state)
 {
 	t_token	*token;
 
