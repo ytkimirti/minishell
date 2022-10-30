@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hashing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
+/*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 14:16:16 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/26 14:16:29 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/30 17:53:11 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <unistd.h>
 
-typedef int	t_hash;
+typedef unsigned long	t_hash;
 
 /**
  * @brief Generates unique hashcode from data

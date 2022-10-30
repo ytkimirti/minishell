@@ -7,14 +7,14 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-"-Ilibft",
-"-Isrc",
-"-Isrc/command",
-"-Isrc/parser",
-"-Isrc/tokenizer",
-"-Isrc/utils",
-"-Isrc/executer",
-"-Ilibs/googletest/googletest/include",
+				"-Ilibft",
+				"-Isrc",
+				"-Isrc/command",
+				"-Isrc/parser",
+				"-Isrc/tokenizer",
+				"-Isrc/utils",
+				"-Isrc/executer",
+				"-Ilibs/googletest/googletest/include",
             ],
             "options": {
                 "cwd": "${fileDirname}"

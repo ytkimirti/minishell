@@ -40,7 +40,7 @@ struct hash_and_str
 
 TEST(Map, HashingFunctions)
 {
-	GTEST_SKIP();
+	//GTEST_SKIP();
 	srand(42);
 
 	std::vector<hash_and_str> data;
