@@ -2,8 +2,7 @@ NAME = minishell
 
 # NOTE: Add -Werror here before pushing to intra
 # CFLAGS = -MD -Wall -Wextra -Ilibft -g -fsanitize=address
-# Ast flag is temporary fix since we can't include ast in the binary yet
-CFLAGS = -MD -Wall -Wextra -Ilibft -g -Isrc/ast -Isrc/built_in
+CFLAGS = -MD -Wall -Wextra -Ilibft -g
 # LDFLAGS = -Llibft -fsanitize=address
 LDFLAGS = -Llibft
 LDLIBS = -lft -lreadline
@@ -21,7 +20,7 @@ TEST_DIR = tests
 OBJ_DIR	:=	obj
 SRC_DIR	:=	src
 
-MODULES   := parser executer tokenizer utils map prompt command
+MODULES   := parser executer tokenizer utils map prompt command ast built_in
 SRC_DIRS   := $(addprefix src/,$(MODULES))
 OBJ_DIRS := $(addprefix obj/,$(MODULES))
 
