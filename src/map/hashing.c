@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 13:56:39 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/30 18:28:04 by emakas           ###   ########.fr       */
+/*   Updated: 2022/10/30 18:44:15 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 #include "libft.h"
 #include <unistd.h>
 
-static t_hash ft_pow(t_hash number, size_t power){
-	size_t times;
-	t_hash result = 1;
+static t_hash	ft_pow(t_hash number, size_t power)
+{
+	size_t	times;
+	t_hash	result;
 
+	result = 1;
 	times = 0;
 	while (times < power)
 	{
