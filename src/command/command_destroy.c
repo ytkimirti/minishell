@@ -6,30 +6,34 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 13:19:09 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/28 18:16:10 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/30 22:59:41 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "command.h" 
-
-#if 0
+#include <stdlib.h>
 
 static void	free_args(t_command *command)
 {
-	free_content(command->argv);
+	int	i;
+
+	i = 0;
+	while (command->argv[i] != NULL)
+	{
+		free(command->argv[i]);
+		i++;
+	}
 	free(command->argv);
 }
 
-static void	free_command_name(t_command *command)
+static void	free_redirection(t_command *command)
 {
-	free(command->command_path);
+	free(command->redir_file);
 }
 
-void	destroy_command(t_command *command)
+void	free_command(t_command *command)
 {
 	free_args(command);
-	free_command_path(command);
+	free_redirection(command);
 	free(command);
 }
-
-#endif
