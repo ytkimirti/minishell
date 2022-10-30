@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 13:18:17 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/30 22:59:39 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/30 23:12:11 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,6 @@ typedef struct s_command {
 	char			*redir_file;
 }	t_command;
 
-/**
- * @brief Create a command object by parsing tokens until it
- * sees a control structure.
- * 
- * @param tokens 
- * @return t_command* 
- */
-t_command	*create_command(t_token **tokens);
 void		free_command(t_command *command);
 
 /**
