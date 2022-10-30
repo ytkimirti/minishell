@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:00:53 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/28 08:04:06 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/30 23:45:11 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,65 +15,76 @@
 #include "utils.h"
 #include <assert.h>
 #include "parser_utils.h"
+#include "libft.h"
+#include "vector.h"
 
-#if 0
-
-char	*get_executable_path(const char *name)
+/*
+ * Expands token into string str. Returns chars
+ * expanded
+ */
+int	expand_token(t_token *token, char *str)
 {
-	(void)name;
-	return (ft_strdup("/bin/ls"));
-}
-
-void	free_cmd(t_cmd *cmd)
-{
-	int		i;
-
-	i = 0;
-	while (cmd->argv[i] != NULL)
+	if (token->type == WORD)
 	{
-		free(cmd->argv[i]);
-		i++;
+		ft_memcpy(str, token->str, token->len);
+		return (token->len);
 	}
-	free(cmd->argv);
-	if (cmd->path != NULL)
-		free(cmd->path);
-	free(cmd);
+	return (0);
 }
 
-// Calculates the char length the token will take
-// when it's expanded
-int	calculate_length(t_token **tokens)
+// If returns null, it means that it's the end of the command.
+// For example when it sees a bracket or pipe token
+char	*expand_tokens(t_token ***tokens_ref)
 {
-	int	len;
-	int	i;
+	t_token	**tokens;
+	int		i;
+	int		pos;
+	char	*str;
 
-	len = 0;
+	tokens = *tokens_ref;
+	str = (char *)malloc(sizeof(char) * length_tokens(tokens));
 	i = 0;
-	assert(*tokens != NULL && tokens[0]->type != SPACE);
+	pos = 0;
 	while (tokens[i] != NULL && tokens[i]->type != SPACE)
 	{
-		if (tokens[i]->type == WORD)
-		{
-			len += tokens[i]->len;
-		}
+		pos += expand_token(tokens[i], str + pos);
 		i++;
 	}
-	return (len);
+	*tokens_ref = tokens + i;
+	return (str);
 }
 
-t_cmd	*create_cmd(t_token **tokens)
+void	expand_all_args(t_command *cmd, t_token ***tokens_ref)
 {
-	t_cmd	*cmd;
+	char	*arg;
+	t_pvec	*args_vec;
+	t_token	**tokens;
 
-	cmd = (t_cmd *)malloc(sizeof(t_cmd));
-	cmd->stdin = 0;
-	cmd->stdout = 1;
-	cmd->stderr = 1;
+	tokens = *tokens_ref;
+	args_vec = pvec_new(16);
+	while (*tokens != NULL)
+	{
+		while (*tokens != NULL && (*tokens)->type == SPACE)
+			tokens++;
+		arg = expand_tokens(&tokens);
+		if (arg == NULL)
+			break ;
+		pvec_append(args_vec, arg);
+	}
+	pvec_append(args_vec, NULL);
+	cmd->argv = (char **)args_vec->arr;
+	cmd->argc = args_vec->len - 1;
+	free(args_vec);
+	*tokens_ref = tokens;
+}
+
+t_command	*create_cmd(t_token ***tokens)
+{
+	t_command	*cmd;
+
+	cmd = (t_command *)malloc(sizeof(t_command));
+	if (cmd == NULL)
+		return (NULL);
 	expand_all_args(cmd, tokens);
-	cmd->path = NULL;
-	if (cmd->argc > 0)
-		cmd->path = get_executable_path(cmd->argv[0]);
 	return (cmd);
 }
-
-#endif

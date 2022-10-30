@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_utils.h                                     :+:      :+:    :+:   */
+/*   length.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 14:19:17 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/30 23:43:13 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/10/30 23:42:08 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/10/30 23:43:26 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_UTILS_H
+#include "command.h"
+#include <stdlib.h>
 
-# define PARSER_UTILS_H
+int	length_token(t_token *token)
+{
+	if (token->type == WORD)
+		return (token->len);
+	return (0);
+}
 
-# include "command.h"
+int	length_tokens(t_token **tokens)
+{
+	int	len;
+	int	i;
 
-// Calculates the char length the token will take
-// when it's expanded
-// TODO: This doesn't support variable stuff, it
-// needs the environment stuff first for that
-int	length_token(t_token *token);
-
-int	length_tokens(t_token **tokens);
-
-#endif
+	len = 0;
+	i = 0;
+	while (tokens[i] != NULL && tokens[i]->type != SPACE)
+	{
+		len += length_token(tokens[i]);
+		i++;
+	}
+	return (len);
+}
