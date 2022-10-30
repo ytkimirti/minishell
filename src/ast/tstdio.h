@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STDIO_H
+#ifndef TSTDIO_H
 
-# define STDIO_H
+# define TSTDIO_H
 
 typedef struct s_stdio
 {
