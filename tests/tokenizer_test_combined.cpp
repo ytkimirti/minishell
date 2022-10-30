@@ -35,6 +35,7 @@ TEST_P(TokenizeAllTest, Handle)
 	const char *str = data.input.c_str();
 	t_token	**out = tokenize(str);
 
+	ASSERT_NE(out, nullptr) << "tokenizer returned null" << std::endl << "input: " << str;
 	int i = 0;
 
 	while (out[i] != NULL)
@@ -90,4 +91,55 @@ INSTANTIATE_TEST_SUITE_P(OneWordOutside, TokenizeAllTest, testing::Values(
 					DummyToken{"", SPACE},
 					DummyToken{"world", WORD},
 				}
-			}));
+			},
+			TokenizeAllData{
+				.input = "  asd $home$mehmet",
+				.correct_tokens = std::vector<DummyToken>{
+					DummyToken{"", SPACE},
+					DummyToken{"asd", WORD},
+					DummyToken{"", SPACE},
+					DummyToken{"home", VAR},
+					DummyToken{"mehmet", VAR},
+				}
+			},
+			TokenizeAllData{
+				.input = "heyo 'no $expansion ok|()?'",
+				.correct_tokens = std::vector<DummyToken>{
+					DummyToken{"heyo", WORD},
+					DummyToken{"", SPACE},
+					DummyToken{"", SINGLE_QUOTE},
+					DummyToken{"no $expansion ok|()?", WORD},
+					DummyToken{"", SINGLE_QUOTE},
+				}
+			},
+			TokenizeAllData{
+				.input = "heyo\"inside\"ahmet",
+				.correct_tokens = std::vector<DummyToken>{
+					DummyToken{"heyo", WORD},
+					DummyToken{"", DOUBLE_QUOTE},
+					DummyToken{"inside", WORD},
+					DummyToken{"", DOUBLE_QUOTE},
+					DummyToken{"ahmet", WORD},
+				}
+			},
+			TokenizeAllData{
+				.input = "\" asd $home asd \"ahmet",
+				.correct_tokens = std::vector<DummyToken>{
+					DummyToken{"", DOUBLE_QUOTE},
+					DummyToken{" asd ", WORD},
+					DummyToken{"home", VAR},
+					DummyToken{" asd ", WORD},
+					DummyToken{"", DOUBLE_QUOTE},
+					DummyToken{"ahmet", WORD},
+				}
+			},
+			TokenizeAllData{
+				.input = "\' asd $home asd \'ahmet",
+				.correct_tokens = std::vector<DummyToken>{
+					DummyToken{"", SINGLE_QUOTE},
+					DummyToken{" asd $home asd ", WORD},
+					DummyToken{"", SINGLE_QUOTE},
+					DummyToken{"ahmet", WORD},
+				}
+			}
+			));
