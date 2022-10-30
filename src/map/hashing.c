@@ -41,7 +41,7 @@ t_hash	hashcode(void *data, size_t len)
 	index = 0;
 	code = 0;
 	prime = 53;
-	module = ~(1 << (sizeof(t_hash) * 8) - 1);
+	module = ~(1 << ((sizeof(t_hash) * 8) - 1));
 	while (index < len)
 	{
 		code += (t_hash)(cdata[index] * ft_pow(prime, index));
