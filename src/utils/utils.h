@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:26:50 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/28 08:04:18 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/31 09:59:17 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 # define UTILS_H
 
+# include "command.h"
 # include "tokenizer.h"
 
 // Duplicate the str inside token
@@ -25,5 +26,6 @@ void	print_tokens(t_token **tokens);
 
 // Returns a non freeable string constant
 char	*token_type_tostr(enum e_token_type type);
+char	*redir_type_tostr(t_redir_type type);
 
 #endif

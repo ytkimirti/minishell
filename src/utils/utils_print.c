@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 18:21:55 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/30 22:36:44 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/31 10:10:24 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,35 +38,16 @@ char	*token_type_tostr(enum e_token_type type)
 	return ("UNKNOWN");
 }
 
-#if 0
-
-void	print_cmd(t_cmd *cmd)
+char	*redir_type_tostr(t_redir_type type)
 {
-	char	*argv_str;
-	char	*tmp;
-	char	*new_arg;
-	int		i;
-
-	argv_str = ft_strdup("");
-	i = 0;
-	while (i < cmd->argc)
-	{
-		asprintf(&new_arg, "\t\t" YEL "\"%s\"" RST ",\n", cmd->argv[i]);
-		tmp = argv_str;
-		argv_str = ft_strjoin(argv_str, new_arg);
-		free(tmp);
-		free(new_arg);
-		i++;
-	}
-	printf("(t_cmd) { "
-		".path = " YEL "\"%s\"" RST ", "
-		".argc = " MAG "%d" RST ", "
-		".argv = {\n%s\t}\n}\n",
-		cmd->path, cmd->argc, argv_str);
-	free(argv_str);
+	if (type == APPEND)
+		return ("APPEND");
+	if (type == IN)
+		return ("IN");
+	if (type == OUT)
+		return ("OUT");
+	return ("UNKNOWN");
 }
-
-#endif
 
 void	print_token(t_token *token)
 {
