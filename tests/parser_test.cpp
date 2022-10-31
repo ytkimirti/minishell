@@ -20,6 +20,11 @@ struct DummyCommandData
 	std::vector<std::string>	argv;
 	std::string					redir_file;
 	t_redir_type				redir_type;
+
+	// This prevents gtest from outputting nonsense hexadecimal output
+	friend std::ostream& operator<<(std::ostream& os, const DummyCommandData& bar) {
+		return os;
+	}
 };
 
 class ParserTest : public testing::TestWithParam<DummyCommandData> {
