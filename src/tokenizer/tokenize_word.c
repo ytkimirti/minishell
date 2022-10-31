@@ -6,29 +6,15 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:27:23 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/30 20:33:47 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/31 13:48:21 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokenize_state.h"
 #include "token.h"
+#include "tokenize_utils.h"
 #include "../libft/vector.h"
 #include "../libft/libft.h"
-
-bool	is_metacharacter(char c)
-{
-	return (c == ' '
-		|| c == '\t'
-		|| c == '<'
-		|| c == '\''
-		|| c == '\"'
-		|| c == '$'
-		|| c == '>'
-		|| c == '('
-		|| c == ')'
-		|| c == '&'
-		|| c == '|');
-}
 
 t_token	*tokenize_word(const char **str, t_state *state)
 {

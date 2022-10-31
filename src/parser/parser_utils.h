@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 14:19:17 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/28 08:03:46 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/30 23:43:13 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,14 @@
 
 # define PARSER_UTILS_H
 
-# include "parser.h"
-# include "libft.h"
-# include "vector.h"
+# include "command.h"
 
-# if 0
+// Calculates the char length the token will take
+// when it's expanded
+// TODO: This doesn't support variable stuff, it
+// needs the environment stuff first for that
+int	length_token(t_token *token);
 
-int		calculate_length(t_token **tokens);
-char	*get_executable_path(const char *name);
-void	expand_all_args(t_cmd *cmd, t_token **tokens);
-char	*expand_tokens(t_token ***tokens_ref);
-
-# endif
+int	length_tokens(t_token **tokens);
 
 #endif

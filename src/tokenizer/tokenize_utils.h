@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token.c                                            :+:      :+:    :+:   */
+/*   tokenize_utils.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 23:09:39 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/30 23:31:33 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/10/31 13:44:41 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/10/31 13:44:58 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "token.h"
+#ifndef TOKENIZE_UTILS_H
 
-inline bool	is_printable(enum e_token_type type)
-{
-	return (type == WORD
-		|| type == VAR);
-}
+# define TOKENIZE_UTILS_H
+
+# include <stdbool.h>
+
+bool	is_metacharacter(char c);
+
+#endif

@@ -8,6 +8,7 @@ extern "C"
 #include "tokenizer.h"
 #include "tokenizer_funcs.h"
 #include "colors.h"
+#include "command.h"
 }
 #include "gtest/gtest.h"
 #include "../libs/googletest/googletest/include/gtest/gtest.h"
@@ -43,3 +44,64 @@ bool operator==( const t_token& a, const t_token& b )
     return true;
 }
 
+void detailed_compare(char *a, char *b)
+{
+	printf("\"%s\"\n", a);
+	int j = 0;
+	printf(" ");
+	while (a[j] != '\0' && b[j] != '\0' && a[j] == b[j])
+	{
+		printf(" ");
+		j++;
+	}
+	if (a[j] == '\0' && b[j] == '\0')
+		printf("what??\n");
+	printf(RED "↕\n" RST);
+	printf("\"%s\"\n", b);
+	printf("%d != %d\n", (int)a[j], (int)b[j]);
+}
+
+bool operator==( const t_command& a, const t_command& b )
+{
+	if (a.argc != b.argc)
+		return false;
+	if (a.redir_file != NULL && b.redir_file != NULL && strcmp(a.redir_file, b.redir_file) != 0)
+		return false;
+	if (a.redir_file == NULL && b.redir_file != NULL)
+		return false;
+	if (b.redir_file == NULL && a.redir_file != NULL)
+		return false;
+	for (int i = 0; i < a.argc; i++)
+	{
+		if (strcmp(a.argv[i], b.argv[i]) != 0)
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+std::ostream& operator<<(std::ostream& stream, const t_command& command)
+{
+	stream << YEL << "(t_command) {" << RST;
+
+	if (command.redir_file == NULL)
+		stream << " .redir_file = " << RED << "NULL" << RST << ", ";
+	else
+	{
+		stream << " .redir_file = " << GRN << command.redir_file << RST << ", ";
+		stream << " .redir_type = " << MAG << redir_type_tostr(command.redir_type) << RST << ", ";
+	}
+	stream << " .argc = " << MAG << command.argc << RST;
+
+	stream << " .argv = [" << std::endl;
+	for (int i = 0; i < command.argc; i++)
+	{
+		stream << GRN << "        \"" << command.argv[i] << "\",\n" << RST;
+	}
+	stream << "    ]" << std::endl;
+
+	stream << YEL << "}\n" << RST;
+
+  	return stream;
+}

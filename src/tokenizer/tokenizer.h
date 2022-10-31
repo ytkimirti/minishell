@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:26:00 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/26 17:14:35 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/31 13:54:39 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@
 // Token 1    Token 3  Token 4
 t_token	**tokenize(const char *str);
 
+/*
+ * NULL means STOP tokenization. Eighter because it encountered
+ * a newline, a null character, a control character outside quotes,
+ * or a malloc error.
+ *
+ */
 t_token	*tokenize_single(const char **str, t_state *state);
 
 // Frees the token structs and the tokens pointer.

@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token.c                                            :+:      :+:    :+:   */
+/*   metacharacter.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 23:09:39 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/30 23:31:33 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/10/31 13:45:36 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/10/31 13:45:50 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "token.h"
+#include "tokenize_utils.h"
 
-inline bool	is_printable(enum e_token_type type)
+bool	is_metacharacter(char c)
 {
-	return (type == WORD
-		|| type == VAR);
+	return (c == ' '
+		|| c == '\t'
+		|| c == '<'
+		|| c == '\''
+		|| c == '\"'
+		|| c == '$'
+		|| c == '>'
+		|| c == '('
+		|| c == ')'
+		|| c == '&'
+		|| c == '|');
 }
