@@ -64,10 +64,10 @@ bool operator==( const t_command& a, const t_command& b )
 
 std::ostream& operator<<(std::ostream& stream, const t_command& command)
 {
-	stream << YEL << "{" << RST;
+	stream << YEL << "(t_command) {" << RST;
 
 	if (command.redir_file == NULL)
-		stream << " .redir_file = " << MAG << "NULL" << RST << ", ";
+		stream << " .redir_file = " << RED << "NULL" << RST << ", ";
 	else
 	{
 		stream << " .redir_file = " << GRN << command.redir_file << RST << ", ";
@@ -78,10 +78,9 @@ std::ostream& operator<<(std::ostream& stream, const t_command& command)
 	stream << " .argv = [" << std::endl;
 	for (int i = 0; i < command.argc; i++)
 	{
-		// stream << GRN << "\t\"" << command.argv[i] << "\"\n" << RST;
-		printf("%s\n", command.argv[i]);
+		stream << GRN << "        \"" << command.argv[i] << "\",\n" << RST;
 	}
-	stream << "\t]" << std::endl;
+	stream << "    ]" << std::endl;
 
 	stream << YEL << "}\n" << RST;
 

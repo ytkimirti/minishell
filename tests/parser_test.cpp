@@ -27,15 +27,12 @@ class ParserTest : public testing::TestWithParam<DummyCommandData> {
 
 void	fill_dummy_command(t_command *cmd, DummyCommandData &data)
 {
-	char	**argv;
-
-	argv = (char **)malloc(sizeof(char *) * (data.argv.size() + 1));
+	cmd->argv = (char **)malloc(sizeof(char *) * (data.argv.size() + 1));
 	for (int i = 0; i < data.argv.size(); i++)
 	{
-		argv[i] = (char *)data.argv[i].c_str();
-		printf("%s\n", argv[i]);
+		cmd->argv[i] = (char *)data.argv[i].c_str();
 	}
-	argv[data.argv.size()] = NULL;
+	cmd->argv[data.argv.size()] = NULL;
 	cmd->argc = data.argv.size();
 
 	if (data.redir_file.empty())
