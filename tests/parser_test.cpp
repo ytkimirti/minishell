@@ -65,8 +65,6 @@ TEST_P(ParserTest, Handle)
 
 	fill_dummy_command(&correct, data);
 
-	std::cout << correct;
-
 	str = data.input.c_str();
 	tokens = tokenize(str);
 
@@ -75,7 +73,6 @@ TEST_P(ParserTest, Handle)
 
 	tmp_tokens = tokens;
 	command = create_command(&tmp_tokens);
-	std::cout << command;
 
 	EXPECT_EQ(*command, correct);
 
