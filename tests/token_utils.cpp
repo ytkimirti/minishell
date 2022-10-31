@@ -44,6 +44,23 @@ bool operator==( const t_token& a, const t_token& b )
     return true;
 }
 
+void detailed_compare(char *a, char *b)
+{
+	printf("\"%s\"\n", a);
+	int j = 0;
+	printf(" ");
+	while (a[j] != '\0' && b[j] != '\0' && a[j] == b[j])
+	{
+		printf(" ");
+		j++;
+	}
+	if (a[j] == '\0' && b[j] == '\0')
+		printf("what??\n");
+	printf(RED "↕\n" RST);
+	printf("\"%s\"\n", b);
+	printf("%d != %d\n", (int)a[j], (int)b[j]);
+}
+
 bool operator==( const t_command& a, const t_command& b )
 {
 	if (a.argc != b.argc)
@@ -57,7 +74,9 @@ bool operator==( const t_command& a, const t_command& b )
 	for (int i = 0; i < a.argc; i++)
 	{
 		if (strcmp(a.argv[i], b.argv[i]) != 0)
+		{
 			return false;
+		}
 	}
 	return true;
 }
