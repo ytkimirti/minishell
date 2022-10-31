@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:26:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/30 20:36:14 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/31 13:53:09 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "utils.h"
+#include "tokenize_utils.h"
 
-// Returns new malloced t_token
 t_token	*tokenize_single(const char **str, t_state *state)
 {
 	if (state->in_squotes)
@@ -41,9 +41,10 @@ t_token	*tokenize_single(const char **str, t_state *state)
 			return (tokenize_var(str, state));
 		else if (**str == '"' || **str == '\'')
 			return (tokenize_quote(str, state));
+		else if (is_metacharacter(**str))
+			return (NULL);
 	}
 	return (tokenize_word(str, state));
-	return (NULL);
 }
 
 t_token	**tokenize(const char *str)
@@ -62,7 +63,7 @@ t_token	**tokenize(const char *str)
 	{
 		token = tokenize_single(&str, &state);
 		if (token == NULL)
-			return (NULL);
+			break ;
 		pvec_append(tokens, token);
 	}
 	pvec_append(tokens, NULL);
