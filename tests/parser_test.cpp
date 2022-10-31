@@ -99,5 +99,67 @@ INSTANTIATE_TEST_SUITE_P(Tokenizer, ParserTest, testing::Values(
 					"hello",
 					"world"
 				},
+			},
+			DummyCommandData{
+				.input = "echo \"hello world\"",
+				.argv = std::vector<std::string>{
+					"echo",
+					"hello world"
+				},
+			},
+			DummyCommandData{
+				.input = "\" ()|<>?asd\\ \"",
+				.argv = std::vector<std::string>{
+					" ()|<>?asd\\ ",
+				},
+			},
+			// DummyCommandData{
+			// 	.input = "oh my $god",
+			// 	.argv = std::vector<std::string>{
+			// 		"oh",
+			// 		"my",
+			// 	},
+			// },
+			DummyCommandData{
+				.input = "heyoo \"()\") continues here",
+				.argv = std::vector<std::string>{
+					"heyoo",
+					"()"
+				},
+			},
+			DummyCommandData{
+				.input = "heyoo \"()\"| continues here",
+				.argv = std::vector<std::string>{
+					"heyoo",
+					"()"
+				},
+			},
+			DummyCommandData{
+				.input = "heyoo \"()\"&& continues here",
+				.argv = std::vector<std::string>{
+					"heyoo",
+					"()"
+				},
+			},
+			DummyCommandData{
+				.input = "heyoo \"()\")| continues here",
+				.argv = std::vector<std::string>{
+					"heyoo",
+					"()"
+				},
+			},
+			DummyCommandData{
+				.input = "hello world",
+				.argv = std::vector<std::string>{
+					"hello",
+					"world"
+				},
+			},
+			DummyCommandData{
+				.input = "hello world",
+				.argv = std::vector<std::string>{
+					"hello",
+					"world"
+				},
 			}
 			));
