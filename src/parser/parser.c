@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:00:53 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/30 23:45:11 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/31 09:37:10 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	expand_all_args(t_command *cmd, t_token ***tokens_ref)
 	*tokens_ref = tokens;
 }
 
-t_command	*create_cmd(t_token ***tokens)
+t_command	*create_command(t_token ***tokens)
 {
 	t_command	*cmd;
 
