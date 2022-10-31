@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:00:53 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/31 13:13:16 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/31 13:30:40 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "token.h"
 #include "utils.h"
 #include <assert.h>
+#include <stdio.h>
 #include "parser_utils.h"
 #include "libft.h"
 #include "vector.h"
@@ -40,9 +41,12 @@ char	*expand_tokens(t_token ***tokens_ref)
 	int		i;
 	int		pos;
 	char	*str;
+	int		len;
 
 	tokens = *tokens_ref;
-	str = (char *)malloc(sizeof(char) * length_tokens(tokens));
+	len = length_tokens(tokens);
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	str[len] = '\0';
 	i = 0;
 	pos = 0;
 	while (tokens[i] != NULL && tokens[i]->type != SPACE)
