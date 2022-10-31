@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:00:53 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/31 09:37:10 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/31 13:13:16 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ t_command	*create_command(t_token ***tokens)
 	if (cmd == NULL)
 		return (NULL);
 	expand_all_args(cmd, tokens);
+	cmd->redir_file = NULL;
 	return (cmd);
 }

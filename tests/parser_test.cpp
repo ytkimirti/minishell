@@ -62,8 +62,6 @@ TEST_P(ParserTest, Handle)
 
 	std::cout << correct;
 
-	// free_dummy_command(&correct);
-	return ;
 	str = data.input.c_str();
 	tokens = tokenize(str);
 
@@ -72,6 +70,7 @@ TEST_P(ParserTest, Handle)
 
 	tmp_tokens = tokens;
 	command = create_command(&tmp_tokens);
+	std::cout << command;
 
 	EXPECT_EQ(*command, correct);
 
@@ -100,7 +99,5 @@ INSTANTIATE_TEST_SUITE_P(Tokenizer, ParserTest, testing::Values(
 					"hello",
 					"world"
 				},
-				.redir_file = "",
-				.redir_type = APPEND
 			}
 			));
