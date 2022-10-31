@@ -73,6 +73,9 @@ maketest: $(TEST_BIN)
 test: $(TEST_BIN)
 	./$(TEST_BIN)
 
+testerr: $(TEST_BIN)
+	./$(TEST_BIN) --gtest_brief=1
+
 $(TEST_BIN): $(TEST_OBJS) $(OBJS) $(GTEST)/build/lib/libgtest_main.a libft/libft.a
 	@echo "==== LINKING TEST FILES ===="
 	g++ $(TEST_CFLAGS) $(OBJS) $(TEST_OBJS) $(LIB_GTEST) libft/libft.a $(TEST_LDFLAGS) -o $@
@@ -113,4 +116,4 @@ norm:
 # -include $(OBJ_DIR)/*.d
 -include $(foreach odir,$(OBJ_DIRS),$(wildcard $(odir)/*.d))
 
-.PHONY: all re clean fclean checkdirs run test maketest norm
+.PHONY: all re clean fclean checkdirs run test testerr maketest norm
