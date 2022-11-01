@@ -18,6 +18,25 @@
 #include "parser_utils.h"
 #include "libft.h"
 #include "vector.h"
+/*
+ * Copies until it sees a NULL or reaches max_chars
+ * Returns number of chars copied
+ * If src is NULL returns 0
+ */
+static int	strlencpy(char *dst, const char *src, int max_chars)
+{
+	int	i;
+
+	if (src == NULL)
+		return (0);
+	i = 0;
+	while (i < max_chars && src[i] != '\0')
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	return (i);
+}
 
 /*
  * Expands token into string str. Returns chars
