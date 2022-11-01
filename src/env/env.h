@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 19:11:23 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/01 11:00:35 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/01 11:31:32 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@
  * It is just a pointer to the internal string
  * */
 const char	*get_env(const char *key);
+
+/*
+ * Returns length of the value of the env
+ */
+int			get_env_length(const char *key);
 
 /*
  * Returns a heap allocated array of pointers to full
