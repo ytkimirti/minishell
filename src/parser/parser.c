@@ -91,6 +91,8 @@ void	expand_all_args(t_command *cmd, t_token ***tokens_ref)
 	{
 		while (*tokens != NULL && (*tokens)->type == SPACE)
 			tokens++;
+		if (*tokens == NULL)
+			break ;
 		arg = expand_tokens(&tokens);
 		if (arg == NULL)
 			break ;
