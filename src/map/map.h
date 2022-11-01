@@ -28,6 +28,7 @@ struct s_map
 {
 	t_entry	**entries;
 	int		size;
+	int		entry_count;
 };
 typedef struct s_map	t_map;
 

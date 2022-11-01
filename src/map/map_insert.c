@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 14:35:57 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/26 14:17:50 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/01 11:11:43 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	map_insert(t_map *map, t_hash key, void *value)
 	entry->value = value;
 	entry->next = NULL;
 	index = key % map->size;
+	map->entry_count++;
 	if (map->entries[index] == NULL)
 		map->entries[index] = entry;
 	else
