@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 19:11:23 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/01 11:43:52 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/01 12:08:06 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,10 @@ void		set_env(const char *key, const char *value);
  * delete every environment variable.
  */
 void		unset_env(const char *key, const char *value);
+
+/*
+ * This is used for testing
+ */
+void		free_env_singleton(void);
 
 #endif
