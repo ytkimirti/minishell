@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:00:53 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/31 13:30:40 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/01 12:27:22 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 #include "parser_utils.h"
 #include "libft.h"
 #include "vector.h"
+#include "env.h"
+#include <limits.h>
+
 /*
  * Copies until it sees a NULL or reaches max_chars
  * Returns number of chars copied
@@ -45,10 +48,9 @@ static int	strlencpy(char *dst, const char *src, int max_chars)
 int	expand_token(t_token *token, char *str)
 {
 	if (token->type == WORD)
-	{
-		ft_memcpy(str, token->str, token->len);
-		return (token->len);
-	}
+		return (strlencpy(str, token->str, token->len));
+	if (token->type == VAR)
+		return (strlencpy(str, get_env(token->str, token->len), INT_MAX));
 	return (0);
 }
 
