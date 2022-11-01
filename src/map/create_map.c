@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 13:53:06 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/16 14:31:35 by emakas           ###   ########.fr       */
+/*   Updated: 2022/11/01 11:10:33 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ t_map	*create_map(int size)
 		return (NULL);
 	ft_bzero(map->entries, sizeof(t_entry *) * size);
 	map->size = size;
+	map->entry_count = 0;
 	return (map);
 }

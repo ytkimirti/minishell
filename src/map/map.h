@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 14:16:40 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/26 14:17:30 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/01 11:12:44 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ struct s_map
 {
 	t_entry	**entries;
 	int		size;
+	int		entry_count;
 };
 typedef struct s_map	t_map;
 
@@ -37,5 +38,22 @@ void	map_insert(t_map *map, t_hash key, void *value);
 void	map_remove(t_map *map, t_hash key, void (*del)(void *));
 void	*map_get(t_map *map, t_hash key);
 void	copy_map(t_map *map_dst, t_map *map_src);
+
+/*
+ * This function 
+ */
+typedef void *(map_select_func)(void *value);
+
+/*
+ * Allocates a new array of void pointers.
+ * Fills that array with the value of
+ * every element in the array
+ * map entries's values passed after a custom
+ * select function.
+ *
+ * Keys are discarded in this context since they
+ * are not stored in the map.
+ */
+void	**map_select(t_map *map, map_select_func func);
 
 #endif //MAP_H

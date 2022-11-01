@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 15:47:17 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/28 08:28:41 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/01 11:11:17 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	map_remove(t_map *map, t_hash key, void (*del)(void *))
 			if (prev == NULL)
 				map->entries[index] = entry->next;
 			remove_entry(prev, entry, del);
+			map->entry_count--;
 			return ;
 		}
 		prev = entry;

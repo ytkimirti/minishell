@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 19:11:23 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/28 08:15:18 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/01 11:00:35 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 /*
  * Returns a string representing only the env part of
  * the string. So get_env("USER") is just ytkimirti.
- * The returned string should not be freed by the user.
+ * The returned string should NOT be freed by the user.
  * It is just a pointer to the internal string
  * */
-const char	*get_env(const char *name);
+const char	*get_env(const char *key);
 
 /*
  * Returns a heap allocated array of pointers to full
@@ -32,13 +32,26 @@ const char	*get_env(const char *name);
 char		**extract_env(void);
 
 /*
- * Updates the internal $PWD variable using getcwd
+ * Updates the internal $PWD variable using getcwd. If
+ * none exist, it creates one.
+ *
+ * Since this is the only dynamically changing environment
+ * variable, we only need this function.
  */
 void		update_pwd_variable(void);
 
 /*
- *	This might change
+ *	If no entry is found with key. A new one is created and
+ *	internally a new string is created with format "key=value".
+ *
+ *	This can also be used to edit environment variables.
  */
 void		set_env(const char *key, const char *value);
+
+/*
+ * Deletes an environment variable from the list. Users can
+ * delete every environment variable.
+ */
+void		unset_env(const char *key, const char *value);
 
 #endif
