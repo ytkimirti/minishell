@@ -70,7 +70,6 @@ TEST_P(ParserTest, Handle)
 	t_command	correct;
 	const char	*str;
 
-	EXPECT_EQ("asd", "asd");
 	DummyCommandData data = GetParam();
 
 	fill_dummy_command(&correct, data);
