@@ -10,6 +10,7 @@ extern "C"
 #include "colors.h"
 #include "command.h"
 #include "parser.h"
+#include "env.h"
 }
 #include "test_utils.hpp"
 #include "gtest/gtest.h"
@@ -28,6 +29,15 @@ struct DummyCommandData
 };
 
 class ParserTest : public testing::TestWithParam<DummyCommandData> {
+	void SetUp()
+	{
+		free_env_singleton();
+		set_env("foo", "bar");
+		set_env("bar", "foo");
+		set_env("user", "mehmet");
+		set_env("under_score", "is_nice");
+		set_env("spaced", " <hello world> ");
+	}
 };
 
 void	fill_dummy_command(t_command *cmd, DummyCommandData &data)
@@ -103,6 +113,13 @@ INSTANTIATE_TEST_SUITE_P(Tokenizer, ParserTest, testing::Values(
 				},
 			},
 			DummyCommandData{
+				.input = "hello world   ",
+				.argv = std::vector<std::string>{
+					"hello",
+					"world"
+				},
+			},
+			DummyCommandData{
 				.input = "echo \"hello world\"",
 				.argv = std::vector<std::string>{
 					"echo",
@@ -115,13 +132,14 @@ INSTANTIATE_TEST_SUITE_P(Tokenizer, ParserTest, testing::Values(
 					" ()|<>?asd\\ ",
 				},
 			},
-			// DummyCommandData{
-			// 	.input = "oh my $god",
-			// 	.argv = std::vector<std::string>{
-			// 		"oh",
-			// 		"my",
-			// 	},
-			// },
+			DummyCommandData{
+				.input = "oh my $god",
+				.argv = std::vector<std::string>{
+					"oh",
+					"my",
+					"",
+				},
+			},
 			DummyCommandData{
 				.input = "heyoo \"()\") continues here",
 				.argv = std::vector<std::string>{
@@ -151,17 +169,53 @@ INSTANTIATE_TEST_SUITE_P(Tokenizer, ParserTest, testing::Values(
 				},
 			},
 			DummyCommandData{
-				.input = "hello world",
+				.input = "hello $foo",
 				.argv = std::vector<std::string>{
 					"hello",
-					"world"
+					"bar"
 				},
 			},
 			DummyCommandData{
-				.input = "hello world",
+				.input = "hello $bar",
 				.argv = std::vector<std::string>{
 					"hello",
-					"world"
+					"foo"
+				},
+			},
+			DummyCommandData{
+				.input = "hello $nonexistingnev",
+				.argv = std::vector<std::string>{
+					"hello",
+					""
+				},
+			},
+			DummyCommandData{
+				.input = "hello $foo$bar",
+				.argv = std::vector<std::string>{
+					"hello",
+					"barfoo"
+				},
+			},
+			DummyCommandData{
+				.input = "hello $foo $bar",
+				.argv = std::vector<std::string>{
+					"hello",
+					"bar",
+					"foo"
+				},
+			},
+			DummyCommandData{
+				.input = "hello \"my fav is|$foo|man\"   ",
+				.argv = std::vector<std::string>{
+					"hello",
+					"my fav is|bar|man",
+				},
+			},
+			DummyCommandData{
+				.input = "hello $spaced$bar",
+				.argv = std::vector<std::string>{
+					"hello",
+					" <hello world> foo",
 				},
 			}
 			));
