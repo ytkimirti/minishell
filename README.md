@@ -10,3 +10,7 @@ $ make
 ## Testing
 
 This project uses
+
+## Differences from bash
+
+It does not support word splitting.
