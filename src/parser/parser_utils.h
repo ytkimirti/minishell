@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 14:19:17 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/30 23:43:13 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/02 16:07:24 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@
 // when it's expanded
 // TODO: This doesn't support variable stuff, it
 // needs the environment stuff first for that
-int	length_token(t_token *token);
+int		length_token(t_token *token);
 
-int	length_tokens(t_token **tokens);
+int		length_tokens(t_token **tokens);
+
+bool	is_command_token(t_token *token);
 
 #endif

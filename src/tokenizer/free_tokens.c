@@ -1,46 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token.h                                            :+:      :+:    :+:   */
+/*   free_tokens.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/27 15:23:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/02 15:54:51 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/11/02 16:01:12 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/11/02 16:01:21 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKEN_H
+#include "token.h"
+#include <stdlib.h>
 
-# define TOKEN_H
-
-# include <stdbool.h>
-
-enum e_token_type
+void	free_tokens(t_token **tokens)
 {
-	EMPTY,
-	WORD,
-	SPACE,
-	VAR,
-	PAREN_OPEN,
-	PAREN_CLOSE,
-	DOUBLE_QUOTE,
-	SINGLE_QUOTE,
-	AND_TOKEN,
-	OR_TOKEN,
-	PIPE_TOKEN,
-	REDIR_IN,
-	REDIR_OUT,
-	REDIR_APPEND,
-};
+	int	i;
 
-typedef struct s_token
-{
-	int					len;
-	enum e_token_type	type;
-	const char			*str;
-}	t_token;
-
-bool	is_printable(enum e_token_type type);
-
-#endif
+	i = 0;
+	while (tokens[i] != NULL)
+	{
+		free(tokens[i]);
+		i++;
+	}
+	free(tokens);
+}

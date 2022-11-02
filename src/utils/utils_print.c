@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 18:21:55 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/31 10:10:24 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/02 16:27:01 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,23 @@
 #include "token.h"
 #include "utils.h"
 #include <stdio.h>
+
+char	*token_type_tostr2(enum e_token_type type)
+{
+	if (type == AND_TOKEN)
+		return ("AND_TOKEN");
+	if (type == OR_TOKEN)
+		return ("OR_TOKEN");
+	if (type == PIPE_TOKEN)
+		return ("PIPE_TOKEN");
+	if (type == REDIR_IN)
+		return ("REDIR_IN");
+	if (type == REDIR_OUT)
+		return ("REDIR_OUT");
+	if (type == REDIR_APPEND)
+		return ("REDIR_APPEND");
+	return ("UNKNOWN");
+}
 
 // Returns a non freeable string constant
 char	*token_type_tostr(enum e_token_type type)
@@ -35,7 +52,7 @@ char	*token_type_tostr(enum e_token_type type)
 		return ("EMPTY");
 	if (type == VAR)
 		return ("VAR");
-	return ("UNKNOWN");
+	return (token_type_tostr2(type));
 }
 
 char	*redir_type_tostr(t_redir_type type)

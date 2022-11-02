@@ -1,46 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token.h                                            :+:      :+:    :+:   */
+/*   builder.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/27 15:23:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/02 15:54:51 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/11/02 15:35:02 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/11/02 15:39:10 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKEN_H
+#include "ast.h"
+#include "parser.h"
 
-# define TOKEN_H
-
-# include <stdbool.h>
-
-enum e_token_type
+// ( a && (b || c) )
+//
+// a && b || c
+// The guaranteed thing is that when
+// you finish parsing a function. You
+// get a control structure.
+//
+//
+t_node	*build_tree(t_token **tokens)
 {
-	EMPTY,
-	WORD,
-	SPACE,
-	VAR,
-	PAREN_OPEN,
-	PAREN_CLOSE,
-	DOUBLE_QUOTE,
-	SINGLE_QUOTE,
-	AND_TOKEN,
-	OR_TOKEN,
-	PIPE_TOKEN,
-	REDIR_IN,
-	REDIR_OUT,
-	REDIR_APPEND,
-};
+	t_command	*left;
 
-typedef struct s_token
-{
-	int					len;
-	enum e_token_type	type;
-	const char			*str;
-}	t_token;
+	left = create_command(&tokens);
 
-bool	is_printable(enum e_token_type type);
-
-#endif
+}

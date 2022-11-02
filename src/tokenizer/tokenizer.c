@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:26:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/31 13:53:09 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/02 16:10:01 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,32 +19,53 @@
 #include "utils.h"
 #include "tokenize_utils.h"
 
+t_token	*tokenize_outside(const char **str, t_state *state)
+{
+	if (**str == ' ' || **str == '\t')
+		return (tokenize_space(str, state));
+	else if (**str == '$')
+		return (tokenize_var(str, state));
+	else if (**str == '"' || **str == '\'')
+		return (tokenize_quote(str, state));
+	else if ((**str == '&' && (*str)[1] == '&')
+			|| (**str == '|' && (*str)[1] == '|'))
+		return (tokenize_control(str, state));
+	else if (**str == '|')
+		return (tokenize_pipe(str, state));
+	else if (**str == '(' || **str == ')')
+		return (tokenize_paren(str, state));
+	else if (**str == '>' || **str == '<')
+		return (tokenize_redir(str, state));
+	else
+		return (tokenize_word(str, state));
+}
+
+t_token	*tokenize_in_squotes(const char **str, t_state *state)
+{
+	if (**str == '\'')
+		return (tokenize_quote(str, state));
+	else
+		return (tokenize_word(str, state));
+}
+
+t_token	*tokenize_in_quotes(const char **str, t_state *state)
+{
+	if (**str == '"')
+		return (tokenize_quote(str, state));
+	else if (**str == '$')
+		return (tokenize_var(str, state));
+	else
+		return (tokenize_word(str, state));
+}
+
 t_token	*tokenize_single(const char **str, t_state *state)
 {
 	if (state->in_squotes)
-	{
-		if (**str == '\'')
-			return (tokenize_quote(str, state));
-	}
+		return (tokenize_in_squotes(str, state));
 	else if (state->in_quotes)
-	{
-		if (**str == '"')
-			return (tokenize_quote(str, state));
-		else if (**str == '$')
-			return (tokenize_var(str, state));
-	}
+		return (tokenize_in_quotes(str, state));
 	else
-	{
-		if (**str == ' ' || **str == '\t')
-			return (tokenize_space(str, state));
-		else if (**str == '$')
-			return (tokenize_var(str, state));
-		else if (**str == '"' || **str == '\'')
-			return (tokenize_quote(str, state));
-		else if (is_metacharacter(**str))
-			return (NULL);
-	}
-	return (tokenize_word(str, state));
+		return (tokenize_outside(str, state));
 }
 
 t_token	**tokenize(const char *str)
@@ -70,17 +91,4 @@ t_token	**tokenize(const char *str)
 	tmp = (t_token **)tokens->arr;
 	free(tokens);
 	return (tmp);
-}
-
-void	free_tokens(t_token **tokens)
-{
-	int	i;
-
-	i = 0;
-	while (tokens[i] != NULL)
-	{
-		free(tokens[i]);
-		i++;
-	}
-	free(tokens);
 }

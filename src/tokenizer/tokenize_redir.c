@@ -1,46 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token.h                                            :+:      :+:    :+:   */
+/*   tokenize_redir.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/27 15:23:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/02 15:54:51 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/08/27 16:40:54 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/11/02 16:02:26 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKEN_H
+#include "tokenize_state.h"
+#include "token.h"
+#include "libft.h"
 
-# define TOKEN_H
-
-# include <stdbool.h>
-
-enum e_token_type
+// TODO: Finish implementing this m8
+t_token	*tokenize_redir(char **str, t_state *state)
 {
-	EMPTY,
-	WORD,
-	SPACE,
-	VAR,
-	PAREN_OPEN,
-	PAREN_CLOSE,
-	DOUBLE_QUOTE,
-	SINGLE_QUOTE,
-	AND_TOKEN,
-	OR_TOKEN,
-	PIPE_TOKEN,
-	REDIR_IN,
-	REDIR_OUT,
-	REDIR_APPEND,
-};
+	t_token	*token;
 
-typedef struct s_token
-{
-	int					len;
-	enum e_token_type	type;
-	const char			*str;
-}	t_token;
-
-bool	is_printable(enum e_token_type type);
-
-#endif
+	token = (t_token *)malloc(sizeof(t_token));
+	if (token == NULL)
+		return (NULL);
+	token->type = REDIR_OUT;
+	(*str)++;
+	return (token);
+}

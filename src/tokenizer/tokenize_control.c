@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:40:54 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/31 13:52:20 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/02 15:51:52 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ t_token	*tokenize_control(char **str, t_state *state)
 	token = (t_token *)malloc(sizeof(t_token));
 	if (token == NULL)
 		return (NULL);
-	token->type = SPACE;
-	while (**str == ' ' || **str == '\t')
-		(*str)++;
+	if (**str == '&')
+		token->type = AND_TOKEN;
+	else if (**str == '|')
+		token->type = OR_TOKEN;
+	(*str) += 2;
 	return (token);
 }

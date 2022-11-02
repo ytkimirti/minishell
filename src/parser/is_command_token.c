@@ -1,46 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token.h                                            :+:      :+:    :+:   */
+/*   is_command_token.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/27 15:23:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/02 15:54:51 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/11/02 16:07:04 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/11/02 16:21:00 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKEN_H
+#include "token.h"
+#include <stdlib.h>
 
-# define TOKEN_H
-
-# include <stdbool.h>
-
-enum e_token_type
+bool	is_command_token(t_token *token)
 {
-	EMPTY,
-	WORD,
-	SPACE,
-	VAR,
-	PAREN_OPEN,
-	PAREN_CLOSE,
-	DOUBLE_QUOTE,
-	SINGLE_QUOTE,
-	AND_TOKEN,
-	OR_TOKEN,
-	PIPE_TOKEN,
-	REDIR_IN,
-	REDIR_OUT,
-	REDIR_APPEND,
-};
-
-typedef struct s_token
-{
-	int					len;
-	enum e_token_type	type;
-	const char			*str;
-}	t_token;
-
-bool	is_printable(enum e_token_type type);
-
-#endif
+	return (token != NULL
+		&& token->type != PIPE_TOKEN
+		&& token->type != PAREN_OPEN
+		&& token->type != PAREN_CLOSE
+		&& token->type != AND_TOKEN
+		&& token->type != OR_TOKEN);
+}

@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:00:53 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/01 12:27:22 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/02 16:32:33 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	*expand_tokens(t_token ***tokens_ref)
 	str[len] = '\0';
 	i = 0;
 	pos = 0;
-	while (tokens[i] != NULL && tokens[i]->type != SPACE)
+	while (is_command_token(tokens[i]) && tokens[i]->type != SPACE)
 	{
 		pos += expand_token(tokens[i], str + pos);
 		i++;
@@ -87,11 +87,11 @@ void	expand_all_args(t_command *cmd, t_token ***tokens_ref)
 
 	tokens = *tokens_ref;
 	args_vec = pvec_new(16);
-	while (*tokens != NULL)
+	while (is_command_token(*tokens))
 	{
-		while (*tokens != NULL && (*tokens)->type == SPACE)
+		while (is_command_token(*tokens) && (*tokens)->type == SPACE)
 			tokens++;
-		if (*tokens == NULL)
+		if (!is_command_token(*tokens))
 			break ;
 		arg = expand_tokens(&tokens);
 		if (arg == NULL)
