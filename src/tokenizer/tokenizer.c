@@ -71,16 +71,3 @@ t_token	**tokenize(const char *str)
 	free(tokens);
 	return (tmp);
 }
-
-void	free_tokens(t_token **tokens)
-{
-	int	i;
-
-	i = 0;
-	while (tokens[i] != NULL)
-	{
-		free(tokens[i]);
-		i++;
-	}
-	free(tokens);
-}
