@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 17:26:35 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/30 18:04:05 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/02 16:10:14 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,13 @@ t_token	*tokenize_space(const char **str, t_state *state);
  * the state variable.
  */
 t_token	*tokenize_quote(const char **str, t_state *state);
+
+t_token	*tokenize_control(const char **str, t_state *state);
+
+t_token	*tokenize_paren(const char **str, t_state *state);
+
+t_token	*tokenize_redir(const char **str, t_state *state);
+
+t_token	*tokenize_pipe(const char **str, t_state *state);
 
 #endif

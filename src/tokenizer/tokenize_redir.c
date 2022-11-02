@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenize_control.c                                 :+:      :+:    :+:   */
+/*   tokenize_redir.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:40:54 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/02 15:51:52 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/02 16:02:26 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokenize_state.h"
 #include "token.h"
-#include "../libft/libft.h"
+#include "libft.h"
 
-/*
- * Tokenizes control characters () && || |
- * */
-t_token	*tokenize_control(char **str, t_state *state)
+// TODO: Finish implementing this m8
+t_token	*tokenize_redir(char **str, t_state *state)
 {
 	t_token	*token;
 
 	token = (t_token *)malloc(sizeof(t_token));
 	if (token == NULL)
 		return (NULL);
-	if (**str == '&')
-		token->type = AND_TOKEN;
-	else if (**str == '|')
-		token->type = OR_TOKEN;
-	(*str) += 2;
+	token->type = REDIR_OUT;
+	(*str)++;
 	return (token);
 }
