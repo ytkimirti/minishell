@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:23:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/30 22:32:27 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/02 15:54:51 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ enum e_token_type
 	PAREN_CLOSE,
 	DOUBLE_QUOTE,
 	SINGLE_QUOTE,
+	AND_TOKEN,
+	OR_TOKEN,
+	PIPE_TOKEN,
+	REDIR_IN,
+	REDIR_OUT,
+	REDIR_APPEND,
 };
 
 typedef struct s_token
