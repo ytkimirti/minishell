@@ -6,12 +6,13 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:35:02 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/02 15:39:10 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/02 16:36:52 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ast.h"
 #include "parser.h"
+#include <stdlib.h>
 
 // ( a && (b || c) )
 //
@@ -26,5 +27,5 @@ t_node	*build_tree(t_token **tokens)
 	t_command	*left;
 
 	left = create_command(&tokens);
-
+	return (NULL);
 }
