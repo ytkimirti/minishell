@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 13:56:39 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/30 18:44:15 by emakas           ###   ########.fr       */
+/*   Updated: 2022/11/02 14:21:25 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_hash	hashcode(void *data, size_t len)
 	index = 0;
 	code = 0;
 	prime = 53;
-	module = ~(1 << ((sizeof(t_hash) * 8) - 1));
+	module = ~((t_hash) 1 << ((sizeof(t_hash) * 8) - 1));
 	while (index < len)
 	{
 		code += (t_hash)(cdata[index] * ft_pow(prime, index));
