@@ -141,5 +141,41 @@ INSTANTIATE_TEST_SUITE_P(Tokenizer, TokenizeAllTest, testing::Values(
 					DummyToken{"", SINGLE_QUOTE},
 					DummyToken{"ahmet", WORD},
 				}
+			},
+			TokenizeAllData{
+				.input = "\"()\")| continues",
+				.correct_tokens = std::vector<DummyToken>{
+					DummyToken{"", DOUBLE_QUOTE},
+					DummyToken{"()", WORD},
+					DummyToken{"", DOUBLE_QUOTE},
+
+					DummyToken{"", PAREN_CLOSE},
+					DummyToken{"", PIPE_TOKEN},
+
+					DummyToken{"", SPACE},
+
+					DummyToken{"continues", WORD},
+				}
+			},
+			TokenizeAllData{
+				.input = "hello (bwuh >file) | echo||cat&&|",
+				.correct_tokens = std::vector<DummyToken>{
+					DummyToken{"hello", WORD},
+					DummyToken{"", SPACE},
+					DummyToken{"", PAREN_OPEN},
+					DummyToken{"bwuh", WORD},
+					DummyToken{"", SPACE},
+					DummyToken{"", REDIR_OUT},
+					DummyToken{"file", WORD},
+					DummyToken{"", PAREN_CLOSE},
+					DummyToken{"", SPACE},
+					DummyToken{"", PIPE_TOKEN},
+					DummyToken{"", SPACE},
+					DummyToken{"echo", WORD},
+					DummyToken{"", OR_TOKEN},
+					DummyToken{"cat", WORD},
+					DummyToken{"", AND_TOKEN},
+					DummyToken{"", PIPE_TOKEN},
+				}
 			}
 			));
