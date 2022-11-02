@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 14:57:19 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/28 19:13:58 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/02 15:34:56 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ typedef struct s_node
 }	t_node;
 
 t_node	*build_example_tree(void);
+
+t_node	*build_tree(t_token **tokens);
+
 int		walk_tree(t_node *tree, t_stdio std);
 
 #endif
