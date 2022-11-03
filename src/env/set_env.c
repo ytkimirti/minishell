@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 14:30:47 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/31 15:04:49 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/03 17:30:02 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static t_envdata	*create_envdata(const char *key, const char *value)
 	data = malloc(sizeof(t_envdata));
 	if (data == NULL)
 		return (NULL);
+	data->is_allocated = true;
 	data->len_key = ft_strlen(key);
 	data->len_value = ft_strlen(value);
 	str = malloc(sizeof(char) * (data->len_key + 1 + data->len_value
@@ -54,20 +55,16 @@ void	set_envdata_value(t_envdata *data, const char *new_value)
 	if (len_new + 1 > data->capacity - 1 - data->len_key)
 	{
 		new_str = malloc(sizeof(char) * (data->len_key + 1 + len_new + 1));
-		i = 0;
-		while (i < data->len_key + 1)
-		{
+		i = -1;
+		while (++i < data->len_key + 1)
 			new_str[i] = data->key[i];
-			i++;
-		}
-		i = 0;
-		while (i < len_new + 1)
-		{
+		i = -1;
+		while (++i < len_new + 1)
 			new_str[data->len_key + 1 + i] = new_value[i];
-			i++;
-		}
-		free(data->key);
+		if (data->is_allocated)
+			free(data->key);
 		data->key = new_str;
+		data->is_allocated = true;
 	}
 	else
 		ft_strlcpy(data->value, new_value, data->capacity - data->len_key - 1);

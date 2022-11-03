@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 19:11:23 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/01 12:08:06 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/03 17:03:17 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,10 @@ void		unset_env(const char *key, const char *value);
  * This is used for testing
  */
 void		free_env_singleton(void);
+
+/*
+ * Init all standard environment variables from outside
+ */
+void		init_env(char **envp);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 14:28:13 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/31 14:51:46 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/03 17:08:34 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define ENV_UTILS_H
 
 # include "map.h"
+# include <stdbool.h>
 
 /*
  * This is the internal struct that holds 
@@ -37,6 +38,7 @@ typedef struct s_envdata
 	char	*value;
 	int		len_value;
 	int		capacity;
+	bool	is_allocated;
 }	t_envdata;
 
 /*
