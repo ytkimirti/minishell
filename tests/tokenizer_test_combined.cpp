@@ -143,7 +143,7 @@ INSTANTIATE_TEST_SUITE_P(Tokenizer, TokenizeAllTest, testing::Values(
 				}
 			},
 			TokenizeAllData{
-				.input = "(ahmet)\n",
+				.input = "(ahmet)",
 				.correct_tokens = std::vector<DummyToken>{
 					DummyToken{"", PAREN_OPEN},
 					DummyToken{"ahmet", WORD},
