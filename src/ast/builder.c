@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:35:02 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/03 13:53:24 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/03 23:21:07 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,11 @@ t_node	*primary(t_token ***tokens)
 		(*tokens)++;
 		inside = expr(tokens);
 		if (**tokens != NULL && (**tokens)->type == PAREN_CLOSE)
+		{
 			(*tokens)++;
+			while (**tokens != NULL && (**tokens)->type == SPACE)
+				(*tokens)++;
+		}
 		else
 			ft_printf("Expected ')'\n");
 		return (inside);
