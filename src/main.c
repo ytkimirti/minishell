@@ -31,7 +31,7 @@ int	main(void)
 		line = readline_with_prompt();
 		if (line == NULL)
 			break ;
-		line[ft_strlen(line) - 1] = '\0';
+		line[ft_strlen(line)] = '\0';
 		t = tokenize(line);
 		free_tokens(t);
 	}
