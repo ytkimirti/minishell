@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 18:21:55 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/02 16:27:01 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/03 13:27:07 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,4 @@ void	print_tokens(t_token **tokens)
 		print_token(*tokens);
 		tokens++;
 	}
-	print_token(*tokens);
 }
