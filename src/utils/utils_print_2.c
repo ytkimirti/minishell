@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ast_utils.h                                        :+:      :+:    :+:   */
+/*   utils_print_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 16:55:42 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/03 13:46:01 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/11/03 13:03:25 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/11/03 13:05:00 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AST_UTILS_H
+#include "ast.h"
+#include "colors.h"
+#include <stdlib.h>
 
-# define AST_UTILS_H
-
-# include "ast.h"
-# include <stdbool.h>
-
-int		walk_tree(t_node *tree, t_stdio std);
-int		walk_or(t_node *tree, t_stdio std);
-int		walk_and(t_node *tree, t_stdio std);
-int		walk_pipe(t_node *tree, t_stdio std);
-void	print_tree(t_node *root);
-
-t_node	*new_node(t_node *left, t_node_type type, t_node *right);
-
-t_node	*wrap_command(t_command *command);
-
-#endif
+char	*node_type_tostr(t_node_type type)
+{
+	if (type == AND_NODE)
+		return ("AND");
+	if (type == OR_NODE)
+		return ("OR");
+	if (type == PIPE_NODE)
+		return ("PIPE");
+	if (type == COMMAND_NODE)
+		return ("COMMAND");
+	return ("UNKNOWN");
+}

@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 14:57:19 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/02 15:34:56 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/03 11:29:09 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 
 typedef enum e_node_type
 {
-	PIPE,
-	AND,
-	OR,
-	COMMAND
+	PIPE_NODE,
+	AND_NODE,
+	OR_NODE,
+	COMMAND_NODE,
 }	t_node_type;
 
 typedef struct s_node

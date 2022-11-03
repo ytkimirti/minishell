@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:03:43 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/30 14:07:57 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/03 11:39:05 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@
 
 int	walk_tree(t_node *tree, t_stdio std)
 {
-	if (tree->type == PIPE)
+	if (tree->type == PIPE_NODE)
 		walk_pipe(tree, std);
-	else if (tree->type == AND)
+	else if (tree->type == AND_NODE)
 		walk_and(tree, std);
-	else if (tree->type == OR)
+	else if (tree->type == OR_NODE)
 		walk_or(tree, std);
-	else if (tree->type == COMMAND)
+	else if (tree->type == COMMAND_NODE)
 		execute_command(tree->command, std, false);
 	return (-1);
 }
@@ -59,7 +59,7 @@ int	walk_pipe(t_node *tree, t_stdio std)
 
 	pipe(fds);
 	pid = 0;
-	if (tree->left->type == COMMAND)
+	if (tree->left->type == COMMAND_NODE)
 		execute_command(tree->left->command,
 			(t_stdio){std.in, fds[1], std.err}, true);
 	else
