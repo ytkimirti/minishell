@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 13:26:15 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/28 18:12:16 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/04 11:25:01 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ int			ft_exit(t_command *command, t_stdio std);
 int			ft_export(t_command *command, t_stdio std);
 int			ft_pwd(t_command *command, t_stdio std);
 int			ft_unset(t_command *command, t_stdio std);
+int			ft_path(t_command *command, t_stdio std);
 
 #endif
