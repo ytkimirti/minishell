@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 13:45:19 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/03 13:46:05 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/04 12:03:23 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ t_node	*new_node(t_node *left, t_node_type type, t_node *right)
 	node->command = NULL;
 	node->left = left;
 	node->right = right;
-	node->name = NULL;
 	return (node);
 }
 
@@ -35,6 +34,5 @@ t_node	*wrap_command(t_command *command)
 	node->command = command;
 	node->left = NULL;
 	node->right = NULL;
-	node->name = NULL;
 	return (node);
 }
