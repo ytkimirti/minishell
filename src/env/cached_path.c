@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 23:42:58 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/04 11:45:33 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/04 11:55:19 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 /*
  * Every path pointer is a t_cvec pointer
  */
-typedef struct path_cache
+typedef struct s_path_cache
 {
 	t_pvec	*paths;
 	bool	is_empty;
