@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 23:32:46 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/04 11:41:05 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/04 11:50:46 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "command_utils.h"
 #include "libft.h"
 #include "env.h"
-#include "global.h"
 #include "colors.h"
 
 const char	*find_executable(const char *name)
