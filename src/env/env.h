@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 19:11:23 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/03 17:03:17 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/04 10:49:56 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,16 @@ void		free_env_singleton(void);
  * Init all standard environment variables from outside
  */
 void		init_env(char **envp);
+
+/*
+ * Returns a non freeable string which is like this
+ * path[index] + '/' + executable_name
+ *
+ * So if you have /bin in index 0 of your path
+ * get_joined_path("ls", 0);
+ * returns you
+ * "/bin/ls"
+ */
+const char	*get_joined_path(const char *executable_name, int index);
 
 #endif
