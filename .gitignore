@@ -4,3 +4,4 @@
 /tests/test
 /minishell
 .DS_Store
+.vscode/
