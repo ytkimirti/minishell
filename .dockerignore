@@ -1,0 +1,6 @@
+/obj/
+/tests/obj/
+/tests/bin
+/tests/test
+/minishell
+.DS_Store
