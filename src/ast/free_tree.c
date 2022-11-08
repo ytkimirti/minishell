@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 12:02:16 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/04 12:05:34 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/08 18:11:59 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 void	free_tree(t_node	*tree)
 {
+	if (tree == NULL)
+		return ;
 	if (tree->left)
 		free_tree(tree->left);
 	if (tree->right)
