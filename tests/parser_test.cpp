@@ -19,8 +19,9 @@ struct DummyCommandData
 {
 	std::string					input;
 	std::vector<std::string>	argv;
-	std::string					redir_file;
-	t_redir_type				redir_type;
+	std::string					in_file;
+	std::string					out_file;
+	bool						is_append;
 
 	// This prevents gtest from outputting nonsense hexadecimal output
 	friend std::ostream& operator<<(std::ostream& os, const DummyCommandData& bar) {
@@ -50,11 +51,16 @@ void	fill_dummy_command(t_command *cmd, DummyCommandData &data)
 	cmd->argv[data.argv.size()] = NULL;
 	cmd->argc = data.argv.size();
 
-	if (data.redir_file.empty())
-		cmd->redir_file = NULL;
+	if (data.out_file.empty())
+		cmd->out_file = NULL;
 	else
-		cmd->redir_file = (char *)data.redir_file.c_str();
-	cmd->redir_type = data.redir_type;
+		cmd->out_file = (char *)data.out_file.c_str();
+
+	if (data.in_file.empty())
+		cmd->in_file = NULL;
+	else
+		cmd->in_file = (char *)data.in_file.c_str();
+	cmd->is_append = data.is_append;
 }
 
 void	free_dummy_command(t_command *cmd)
@@ -109,24 +115,24 @@ INSTANTIATE_TEST_SUITE_P(Tokenizer, ParserTest, testing::Values(
 				.argv = std::vector<std::string>{
 					"ahmet",
 				},
-				.redir_file = "file",
-				.redir_type = OUT,
+				.out_file = "file",
+				.is_append = false,
 			},
 			DummyCommandData{
 				.input = "ahmet <file",
 				.argv = std::vector<std::string>{
 					"ahmet",
 				},
-				.redir_file = "file",
-				.redir_type = IN,
+				.in_file = "file",
+				.is_append = false,
 			},
 			DummyCommandData{
 				.input = "ahmet >>file",
 				.argv = std::vector<std::string>{
 					"ahmet",
 				},
-				.redir_file = "file",
-				.redir_type = APPEND,
+				.out_file = "file",
+				.is_append = true,
 			},
 			DummyCommandData{
 				.input = "hello world",

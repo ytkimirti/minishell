@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 13:19:09 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/31 14:38:15 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/08 16:18:50 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ static void	free_args(t_command *command)
 
 static void	free_redirection(t_command *command)
 {
-	if (command->redir_file == NULL)
-		return ;
-	free(command->redir_file);
+	if (command->in_file != NULL)
+		free(command->in_file);
+	if (command->out_file != NULL)
+		free(command->out_file);
 }
 
 void	free_command(t_command *command)

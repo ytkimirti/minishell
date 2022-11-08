@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 18:21:55 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/03 13:27:07 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/08 13:17:32 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,6 @@ char	*token_type_tostr(enum e_token_type type)
 	if (type == VAR)
 		return ("VAR");
 	return (token_type_tostr2(type));
-}
-
-char	*redir_type_tostr(t_redir_type type)
-{
-	if (type == APPEND)
-		return ("APPEND");
-	if (type == IN)
-		return ("IN");
-	if (type == OUT)
-		return ("OUT");
-	return ("UNKNOWN");
 }
 
 void	print_token(t_token *token)

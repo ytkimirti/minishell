@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   token_utils.cpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/08 16:42:12 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/11/08 16:46:27 by ykimirti         ###   ########.tr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <cstring>
 #include <string>
 extern "C" 
@@ -65,11 +77,15 @@ bool operator==( const t_command& a, const t_command& b )
 {
 	if (a.argc != b.argc)
 		return false;
-	if (a.redir_file != NULL && b.redir_file != NULL && strcmp(a.redir_file, b.redir_file) != 0)
+	if (a.in_file != NULL && b.in_file != NULL && strcmp(a.in_file, b.in_file) != 0)
 		return false;
-	if (a.redir_file == NULL && b.redir_file != NULL)
+	if ((a.in_file != NULL && b.in_file == NULL) || (a.in_file == NULL && b.in_file != NULL))
 		return false;
-	if (b.redir_file == NULL && a.redir_file != NULL)
+	if (a.out_file != NULL && b.out_file != NULL && strcmp(a.out_file, b.out_file) != 0)
+		return false;
+	if ((a.out_file != NULL && b.out_file == NULL) || (a.out_file == NULL && b.out_file != NULL))
+		return false;
+	if (a.is_append != b.is_append)
 		return false;
 	for (int i = 0; i < a.argc; i++)
 	{
@@ -85,19 +101,18 @@ std::ostream& operator<<(std::ostream& stream, const t_command& command)
 {
 	stream << YEL << "(t_command) {" << RST;
 
-	if (command.redir_file == NULL)
-		stream << " .redir_file = " << RED << "NULL" << RST << ", ";
-	else
-	{
-		stream << " .redir_file = " << GRN << command.redir_file << RST << ", ";
-		stream << " .redir_type = " << MAG << redir_type_tostr(command.redir_type) << RST << ", ";
-	}
-	stream << " .argc = " << MAG << command.argc << RST;
+	if (command.in_file != NULL)
+		stream << "in_file = " << GRN << "\"" << command.in_file << "\"" << RST << ", ";
+	if (command.out_file != NULL)
+		stream << "out_file = " << GRN << "\"" << command.out_file << "\"" << RST << ", ";
+	stream << "is_append = " << MAG << (command.is_append ? "false" : "true") << RST << ", ";
 
-	stream << " .argv = [" << std::endl;
+	stream << "argc = " << MAG << command.argc << RST << ", ";
+
+	stream << "argv = [" << std::endl;
 	for (int i = 0; i < command.argc; i++)
 	{
-		stream << GRN << "        \"" << command.argv[i] << "\",\n" << RST;
+		stream << GRN << "        \"" << command.argv[i] << "\"" << RST << ",\n";
 	}
 	stream << "    ]" << std::endl;
 

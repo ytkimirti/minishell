@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:00:53 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/08 13:05:37 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/08 16:40:46 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,19 @@ static char	*expand_tokens(t_token ***tokens)
 // TODO: Add tokenizer fail here
 static void	parse_redir(t_command *cmd, t_token ***tokens)
 {
-	if ((**tokens)->type == REDIR_IN)
-		cmd->redir_type = IN;
-	else if ((**tokens)->type == REDIR_OUT)
-		cmd->redir_type = OUT;
-	else
-		cmd->redir_type = APPEND;
+	char				*file;
+	enum e_token_type	type;
+
+	type = (**tokens)->type;
 	(*tokens)++;
-	cmd->redir_file = expand_tokens(tokens);
+	file = expand_tokens(tokens);
+	if (type == REDIR_IN)
+		cmd->in_file = file;
+	else
+	{
+		cmd->out_file = file;
+		cmd->is_append = type == REDIR_APPEND;
+	}
 }
 
 void	parse_step(t_command *cmd, t_token ***tokens, t_pvec *args_vec)
@@ -85,7 +90,9 @@ t_command	*create_command(t_token ***tokens)
 	cmd = (t_command *)malloc(sizeof(t_command));
 	if (cmd == NULL)
 		return (NULL);
-	cmd->redir_file = NULL;
+	cmd->out_file = NULL;
+	cmd->in_file = NULL;
+	cmd->is_append = false;
 	args_vec = pvec_new(16);
 	while (is_command_token(**tokens))
 	{
