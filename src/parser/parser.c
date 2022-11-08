@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:00:53 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/02 16:32:33 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/08 11:20:57 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,19 @@ char	*expand_tokens(t_token ***tokens_ref)
 	return (str);
 }
 
+// TODO: Add tokenizer fail here
+void	parse_redir(t_command *cmd, t_token ***tokens)
+{
+	if ((**tokens)->type == REDIR_IN)
+		cmd->redir_type = IN;
+	else if ((**tokens)->type == REDIR_OUT)
+		cmd->redir_type = OUT;
+	else
+		cmd->redir_type = APPEND;
+	(*tokens)++;
+	cmd->redir_file = expand_tokens(tokens);
+}
+
 void	expand_all_args(t_command *cmd, t_token ***tokens_ref)
 {
 	char	*arg;
@@ -93,6 +106,11 @@ void	expand_all_args(t_command *cmd, t_token ***tokens_ref)
 			tokens++;
 		if (!is_command_token(*tokens))
 			break ;
+		if (is_redir_token(*tokens))
+		{
+			parse_redir(cmd, &tokens);
+			continue ;
+		}
 		arg = expand_tokens(&tokens);
 		if (arg == NULL)
 			break ;
@@ -112,7 +130,7 @@ t_command	*create_command(t_token ***tokens)
 	cmd = (t_command *)malloc(sizeof(t_command));
 	if (cmd == NULL)
 		return (NULL);
-	expand_all_args(cmd, tokens);
 	cmd->redir_file = NULL;
+	expand_all_args(cmd, tokens);
 	return (cmd);
 }
