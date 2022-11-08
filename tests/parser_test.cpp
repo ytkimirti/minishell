@@ -105,6 +105,30 @@ TEST_P(ParserTest, Handle)
 
 INSTANTIATE_TEST_SUITE_P(Tokenizer, ParserTest, testing::Values(
 			DummyCommandData{
+				.input = "ahmet >file",
+				.argv = std::vector<std::string>{
+					"ahmet",
+				},
+				.redir_file = "file",
+				.redir_type = OUT,
+			},
+			DummyCommandData{
+				.input = "ahmet <file",
+				.argv = std::vector<std::string>{
+					"ahmet",
+				},
+				.redir_file = "file",
+				.redir_type = IN,
+			},
+			DummyCommandData{
+				.input = "ahmet >>file",
+				.argv = std::vector<std::string>{
+					"ahmet",
+				},
+				.redir_file = "file",
+				.redir_type = APPEND,
+			},
+			DummyCommandData{
 				.input = "hello world",
 				.argv = std::vector<std::string>{
 					"hello",
