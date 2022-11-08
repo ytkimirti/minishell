@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 13:18:17 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/30 23:12:11 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/08 13:16:10 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,6 @@
 # include "tstdio.h"
 
 /**
- * @brief Types of redirections.
- * Append (>>)
- * OUT (>)
- * IN (<)
- * */
-typedef enum e_redir_type
-{
-	APPEND,
-	OUT,
-	IN
-}	t_redir_type;
-
-/**
  * @brief Holds minimum data required for a command
  * to be executed in shell. The command path is found
  * from argv[0]
@@ -39,8 +26,9 @@ typedef enum e_redir_type
 typedef struct s_command {
 	char			**argv;
 	int				argc;
-	t_redir_type	redir_type;
-	char			*redir_file;
+	char			*out_file;
+	char			*in_file;
+	bool			is_append;
 }	t_command;
 
 void		free_command(t_command *command);
