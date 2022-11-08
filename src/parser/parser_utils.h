@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 14:19:17 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/07 15:55:48 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/08 13:01:39 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,9 @@ int		length_tokens(t_token **tokens);
 bool	is_command_token(t_token *token);
 
 bool	is_redir_token(t_token *token);
+
+int		strlencpy(char *dst, const char *src, int max_chars);
+
+void	skip_spaces(t_token ***tokens);
 
 #endif
