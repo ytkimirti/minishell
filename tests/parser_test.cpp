@@ -134,6 +134,41 @@ INSTANTIATE_TEST_SUITE_P(Tokenizer, ParserTest, testing::Values(
 				.out_file = "file",
 				.is_append = true,
 			},
+
+			DummyCommandData{
+				.input = "ahmet <\"a space\"",
+				.argv = std::vector<std::string>{
+					"ahmet",
+				},
+				.in_file = "a space",
+				.is_append = false,
+			},
+			DummyCommandData{
+				.input = "ahmet >>$foo$foo",
+				.argv = std::vector<std::string>{
+					"ahmet",
+				},
+				.out_file = "barbar",
+				.is_append = true,
+			},
+			DummyCommandData{
+				.input = "ahmet >>$foo$foo$asdas$asdlkfja $foo",
+				.argv = std::vector<std::string>{
+					"ahmet",
+					"bar",
+				},
+				.out_file = "barbar",
+				.is_append = true,
+			},
+			DummyCommandData{
+				.input = "ahmet >>\"I said $foo\"\" bwuh\"",
+				.argv = std::vector<std::string>{
+					"ahmet",
+				},
+				.out_file = "I said bar bwuh",
+				.is_append = true,
+			},
+
 			DummyCommandData{
 				.input = "hello world",
 				.argv = std::vector<std::string>{
