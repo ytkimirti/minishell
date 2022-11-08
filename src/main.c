@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:18:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/04 12:06:09 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/08 18:06:37 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	main(int argc, char *argv[], char *envp[])
 		line[ft_strlen(line)] = '\0';
 		t = tokenize(line);
 		tree = build_tree(t);
+		print_tree(tree);
 		free_tokens(t);
 		free_tree(tree);
 	}
