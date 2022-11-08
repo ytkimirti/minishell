@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 14:19:17 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/08 13:01:39 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/08 17:01:29 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 
 // Calculates the char length the token will take
 // when it's expanded
-// TODO: This doesn't support variable stuff, it
-// needs the environment stuff first for that
 int		length_token(t_token *token);
 
 int		length_tokens(t_token **tokens);
