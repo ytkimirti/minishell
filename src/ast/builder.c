@@ -6,57 +6,48 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:35:02 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/03 23:21:07 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/08 17:53:57 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ast.h"
 #include "ast_utils.h"
+#include "error.h"
 #include "libft.h"
 #include "parser.h"
 #include <stdlib.h>
 #include "parser_utils.h"
 
-t_node	*expr(t_token ***tokens);
-
 t_node	*primary(t_token ***tokens)
 {
-	t_node		*inside;
-
 	while (**tokens != NULL && (**tokens)->type == SPACE)
 		(*tokens)++;
 	if (**tokens == NULL)
 		return (NULL);
 	if ((**tokens)->type == PAREN_OPEN)
-	{
-		(*tokens)++;
-		inside = expr(tokens);
-		if (**tokens != NULL && (**tokens)->type == PAREN_CLOSE)
-		{
-			(*tokens)++;
-			while (**tokens != NULL && (**tokens)->type == SPACE)
-				(*tokens)++;
-		}
-		else
-			ft_printf("Expected ')'\n");
-		return (inside);
-	}
+		return (primary_paren(tokens));
 	else if (is_command_token(**tokens))
-		return (wrap_command(create_command(tokens)));
+		return (primary_command(tokens));
 	else
-		ft_printf("Unexpected token\n");
+		error("Unexpected token");
 	return (NULL);
 }
 
 t_node	*pipeline(t_token ***tokens)
 {
 	t_node	*node;
+	t_node	*tmp;
 
 	node = primary(tokens);
+	if (node == NULL)
+		return (node);
 	while (**tokens != NULL && (**tokens)->type == PIPE_TOKEN)
 	{
 		(*tokens)++;
-		node = new_node(node, PIPE_NODE, primary(tokens));
+		tmp = primary(tokens);
+		if (tmp == NULL)
+			break ;
+		node = new_node(node, PIPE_NODE, tmp);
 	}
 	return (node);
 }
@@ -64,9 +55,12 @@ t_node	*pipeline(t_token ***tokens)
 t_node	*expr(t_token ***tokens)
 {
 	t_node		*node;
+	t_node		*tmp;
 	t_node_type	type;
 
 	node = pipeline(tokens);
+	if (node == NULL)
+		return (node);
 	while (**tokens != NULL
 		&& ((**tokens)->type == OR_TOKEN
 			|| (**tokens)->type == AND_TOKEN))
@@ -76,7 +70,10 @@ t_node	*expr(t_token ***tokens)
 		else
 			type = AND_NODE;
 		(*tokens)++;
-		node = new_node(node, type, pipeline(tokens));
+		tmp = pipeline(tokens);
+		if (tmp == NULL)
+			break ;
+		node = new_node(node, type, tmp);
 	}
 	return (node);
 }
