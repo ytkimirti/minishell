@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 15:05:11 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/30 22:48:14 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/08 13:16:54 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ t_command	*create_dummy_command(char *name, char *arg1)
 	cmd->argv[0] = ft_strdup(name);
 	cmd->argv[1] = ft_strdup(arg1);
 	cmd->argv[2] = NULL;
-	cmd->redir_file = NULL;
-	cmd->redir_type = 0;
+	cmd->out_file = NULL;
+	cmd->in_file = NULL;
+	cmd->is_append = false;
 	return (cmd);
 }
 
