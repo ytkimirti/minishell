@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:00:53 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/08 11:20:57 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/08 13:05:37 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,30 +22,10 @@
 #include <limits.h>
 
 /*
- * Copies until it sees a NULL or reaches max_chars
- * Returns number of chars copied
- * If src is NULL returns 0
+ * Expands token into string str.
+ * Returns count of chars expanded
  */
-static int	strlencpy(char *dst, const char *src, int max_chars)
-{
-	int	i;
-
-	if (src == NULL)
-		return (0);
-	i = 0;
-	while (i < max_chars && src[i] != '\0')
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	return (i);
-}
-
-/*
- * Expands token into string str. Returns chars
- * expanded
- */
-int	expand_token(t_token *token, char *str)
+static int	expand_token(t_token *token, char *str)
 {
 	if (token->type == WORD)
 		return (strlencpy(str, token->str, token->len));
@@ -54,33 +34,30 @@ int	expand_token(t_token *token, char *str)
 	return (0);
 }
 
-// If returns null, it means that it's the end of the command.
-// For example when it sees a bracket or pipe token
-char	*expand_tokens(t_token ***tokens_ref)
+/*
+ * Expands and joins tokens until it sees a space or
+ * a non command token. Returns a string
+ */
+static char	*expand_tokens(t_token ***tokens)
 {
-	t_token	**tokens;
-	int		i;
 	int		pos;
 	char	*str;
 	int		len;
 
-	tokens = *tokens_ref;
-	len = length_tokens(tokens);
+	len = length_tokens(*tokens);
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	str[len] = '\0';
-	i = 0;
 	pos = 0;
-	while (is_command_token(tokens[i]) && tokens[i]->type != SPACE)
+	while (is_command_token(**tokens) && (**tokens)->type != SPACE)
 	{
-		pos += expand_token(tokens[i], str + pos);
-		i++;
+		pos += expand_token(**tokens, str + pos);
+		(*tokens)++;
 	}
-	*tokens_ref = tokens + i;
 	return (str);
 }
 
 // TODO: Add tokenizer fail here
-void	parse_redir(t_command *cmd, t_token ***tokens)
+static void	parse_redir(t_command *cmd, t_token ***tokens)
 {
 	if ((**tokens)->type == REDIR_IN)
 		cmd->redir_type = IN;
@@ -92,45 +69,34 @@ void	parse_redir(t_command *cmd, t_token ***tokens)
 	cmd->redir_file = expand_tokens(tokens);
 }
 
-void	expand_all_args(t_command *cmd, t_token ***tokens_ref)
+void	parse_step(t_command *cmd, t_token ***tokens, t_pvec *args_vec)
 {
-	char	*arg;
-	t_pvec	*args_vec;
-	t_token	**tokens;
-
-	tokens = *tokens_ref;
-	args_vec = pvec_new(16);
-	while (is_command_token(*tokens))
-	{
-		while (is_command_token(*tokens) && (*tokens)->type == SPACE)
-			tokens++;
-		if (!is_command_token(*tokens))
-			break ;
-		if (is_redir_token(*tokens))
-		{
-			parse_redir(cmd, &tokens);
-			continue ;
-		}
-		arg = expand_tokens(&tokens);
-		if (arg == NULL)
-			break ;
-		pvec_append(args_vec, arg);
-	}
-	pvec_append(args_vec, NULL);
-	cmd->argv = (char **)args_vec->arr;
-	cmd->argc = args_vec->len - 1;
-	free(args_vec);
-	*tokens_ref = tokens;
+	if (is_redir_token(**tokens))
+		parse_redir(cmd, tokens);
+	else
+		pvec_append(args_vec, expand_tokens(tokens));
 }
 
 t_command	*create_command(t_token ***tokens)
 {
 	t_command	*cmd;
+	t_pvec		*args_vec;
 
 	cmd = (t_command *)malloc(sizeof(t_command));
 	if (cmd == NULL)
 		return (NULL);
 	cmd->redir_file = NULL;
-	expand_all_args(cmd, tokens);
+	args_vec = pvec_new(16);
+	while (is_command_token(**tokens))
+	{
+		skip_spaces(tokens);
+		if (!is_command_token(**tokens))
+			break ;
+		parse_step(cmd, tokens, args_vec);
+	}
+	pvec_append(args_vec, NULL);
+	cmd->argv = (char **)args_vec->arr;
+	cmd->argc = args_vec->len - 1;
+	free(args_vec);
 	return (cmd);
 }
