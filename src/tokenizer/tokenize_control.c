@@ -12,7 +12,7 @@
 
 #include "tokenize_state.h"
 #include "token.h"
-#include "../libft/libft.h"
+#include "libft.h"
 #include "error.h"
 
 /*

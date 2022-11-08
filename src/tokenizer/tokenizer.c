@@ -14,7 +14,7 @@
 #include <unistd.h>
 #include "error.h"
 #include "tokenizer_funcs.h"
-#include "../libft/vector.h"
+#include "vector.h"
 #include <unistd.h>
 #include <stdlib.h>
 #include "utils.h"

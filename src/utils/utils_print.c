@@ -6,12 +6,12 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 18:21:55 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/08 13:17:32 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/08 18:15:33 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include "../libft/colors.h"
+#include "libft.h"
+#include "colors.h"
 #include "token.h"
 #include "utils.h"
 #include <stdio.h>

@@ -12,8 +12,8 @@
 
 #include "tokenize_state.h"
 #include "token.h"
-#include "../libft/vector.h"
-#include "../libft/libft.h"
+#include "vector.h"
+#include "libft.h"
 #include "error.h"
 
 // Name as in bash variable name characters

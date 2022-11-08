@@ -13,8 +13,8 @@
 #include "tokenize_state.h"
 #include "token.h"
 #include "tokenize_utils.h"
-#include "../libft/vector.h"
-#include "../libft/libft.h"
+#include "vector.h"
+#include "libft.h"
 #include "error.h"
 
 t_token	*tokenize_word(const char **str, t_state *state)

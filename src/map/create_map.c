@@ -14,7 +14,6 @@
 #include "hashing.h"
 #include <stdlib.h>
 #include <unistd.h>
-#include "../../libft/libft.h" // BUNLAR NİYE HATALI :(
 #include "libft.h"
 
 t_map	*create_map(int size)
