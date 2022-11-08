@@ -85,6 +85,37 @@ TEST_P(TokenizeAllTest, Handle)
 
 INSTANTIATE_TEST_SUITE_P(Tokenizer, TokenizeAllTest, testing::Values(
 			TokenizeAllData{
+				.input = "<file <<file <<<file >file >>file >>>file",
+				.correct_tokens = std::vector<DummyToken>{
+					DummyToken{"", REDIR_IN},
+					DummyToken{"file", WORD},
+
+					DummyToken{"", SPACE},
+					DummyToken{"", REDIR_IN},
+					DummyToken{"", REDIR_IN},
+					DummyToken{"file", WORD},
+
+					DummyToken{"", SPACE},
+					DummyToken{"", REDIR_IN},
+					DummyToken{"", REDIR_IN},
+					DummyToken{"", REDIR_IN},
+					DummyToken{"file", WORD},
+
+					DummyToken{"", SPACE},
+					DummyToken{"", REDIR_OUT},
+					DummyToken{"file", WORD},
+
+					DummyToken{"", SPACE},
+					DummyToken{"", REDIR_APPEND},
+					DummyToken{"file", WORD},
+
+					DummyToken{"", SPACE},
+					DummyToken{"", REDIR_APPEND},
+					DummyToken{"", REDIR_OUT},
+					DummyToken{"file", WORD},
+				}
+			},
+			TokenizeAllData{
 				.input = "hello world",
 				.correct_tokens = std::vector<DummyToken>{
 					DummyToken{"hello", WORD},
