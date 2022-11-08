@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 18:21:55 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/08 18:15:33 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/08 18:35:13 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,29 +55,19 @@ char	*token_type_tostr(enum e_token_type type)
 	return (token_type_tostr2(type));
 }
 
-void	print_token(t_token *token)
+char	*token_tostr(t_token *token)
 {
-	char	*token_str;
-
-	printf("(t_token) { "
-		".type = " MAG "%s" RST,
-		token_type_tostr(token->type));
-	if (token->str != NULL && is_printable(token->type))
-	{
-		token_str = dup_token_str(token);
-		printf(", .len = " MAG "%d" RST ", "
-			".str = " YEL "\"%s\" " RST,
-			token->len, token_str);
-		free(token_str);
-	}
-	printf("}\n");
-}
-
-void	print_tokens(t_token **tokens)
-{
-	while (*tokens != NULL)
-	{
-		print_token(*tokens);
-		tokens++;
-	}
+	if (token->type == SPACE)
+		return (" ");
+	if (token->type == DOUBLE_QUOTE)
+		return ("\"");
+	if (token->type == SINGLE_QUOTE)
+		return ("\'");
+	if (token->type == PAREN_OPEN)
+		return ("(");
+	if (token->type == PAREN_CLOSE)
+		return (")");
+	if (token->type == VAR)
+		return ("$");
+	return (token_type_tostr(token->type));
 }
