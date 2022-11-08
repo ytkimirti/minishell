@@ -6,12 +6,13 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 23:42:58 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/04 11:55:19 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/08 17:19:19 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "env.h"
+#include "error.h"
 #include "libft.h"
 #include "vector.h"
 #include <stdbool.h>
@@ -41,6 +42,8 @@ static void	fill_paths(const char *str, t_path_cache *data)
 	while (str[i] != '\0')
 	{
 		curr = cvec_new(128);
+		if (curr == NULL)
+			malloc_error();
 		while (str[i] != ':' && str[i] != '\0')
 		{
 			cvec_append(curr, str[i]);
@@ -69,6 +72,8 @@ static void	update_path(void)
 	if (!data->is_empty)
 		clear_cache(data);
 	data->paths = pvec_new(32);
+	if (data->paths == NULL)
+		malloc_error();
 	data->is_empty = false;
 	str = get_env("PATH", 4);
 	fill_paths(str, data);

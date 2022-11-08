@@ -6,11 +6,12 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 17:03:52 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/03 17:29:49 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/08 17:19:39 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
+#include "error.h"
 #include "map.h"
 #include "env_utils.h"
 #include <stdlib.h>
@@ -52,7 +53,7 @@ static void	insert_env_noalloc(char *str)
 	map = get_env_singleton();
 	data = malloc(sizeof(t_envdata));
 	if (data == NULL)
-		return ;
+		malloc_error();
 	data->len_key = len_key;
 	data->len_value = len_value;
 	data->is_allocated = false;

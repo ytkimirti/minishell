@@ -6,11 +6,12 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 14:30:47 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/03 17:30:02 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/08 17:20:34 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env_utils.h"
+#include "error.h"
 #include "hashing.h"
 #include "map.h"
 #include "env.h"
@@ -27,12 +28,14 @@ static t_envdata	*create_envdata(const char *key, const char *value)
 
 	data = malloc(sizeof(t_envdata));
 	if (data == NULL)
-		return (NULL);
+		malloc_error();
 	data->is_allocated = true;
 	data->len_key = ft_strlen(key);
 	data->len_value = ft_strlen(value);
 	str = malloc(sizeof(char) * (data->len_key + 1 + data->len_value
 				+ 1 + buffer));
+	if (str == NULL)
+		malloc_error();
 	data->capacity = data->len_key + 1 + data->len_value + 1 + buffer;
 	ft_strlcpy(str, key, data->len_key + 1);
 	ft_strlcpy(str + data->len_key + 1, value, data->len_value + 1);
@@ -55,6 +58,8 @@ void	set_envdata_value(t_envdata *data, const char *new_value)
 	if (len_new + 1 > data->capacity - 1 - data->len_key)
 	{
 		new_str = malloc(sizeof(char) * (data->len_key + 1 + len_new + 1));
+		if (new_str == NULL)
+			malloc_error();
 		i = -1;
 		while (++i < data->len_key + 1)
 			new_str[i] = data->key[i];

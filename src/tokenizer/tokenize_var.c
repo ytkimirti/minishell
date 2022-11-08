@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:48:33 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/28 12:31:06 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/08 17:11:22 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "token.h"
 #include "../libft/vector.h"
 #include "../libft/libft.h"
+#include "error.h"
 
 // Name as in bash variable name characters
 inline static bool	is_name(char c)
@@ -34,7 +35,7 @@ t_token	*tokenize_var(char **str, t_state *state)
 	(void)state;
 	token = (t_token *)malloc(sizeof(t_token));
 	if (token == NULL)
-		return (NULL);
+		malloc_error();
 	(*str)++;
 	i = 0;
 	if ((*str)[0] != '\0' && is_special_var((*str)[i]))
