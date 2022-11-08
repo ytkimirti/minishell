@@ -20,7 +20,7 @@ TEST_DIR = tests
 OBJ_DIR	:=	obj
 SRC_DIR	:=	src
 
-MODULES   := parser executer tokenizer utils map prompt command ast built_in env
+MODULES   := parser executer tokenizer utils map prompt command ast built_in env error
 SRC_DIRS   := $(addprefix src/,$(MODULES))
 OBJ_DIRS := $(addprefix obj/,$(MODULES))
 

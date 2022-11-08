@@ -9,6 +9,7 @@
 -Isrc/ast
 -Isrc/env
 -Isrc/built_in
+-Isrc/error
 -Ilibs/googletest/googletest/include
 -stdlib=libc++
 -mmacosx-version-min=10.9
