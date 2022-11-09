@@ -5,7 +5,7 @@ NAME = minishell
 CFLAGS = -MD -Wall -Wextra -Ilibft -g
 # LDFLAGS = -Llibft -fsanitize=address
 LDFLAGS = -Llibft
-LDLIBS = -lft -lreadline
+LDLIBS = -lft -lreadline -ldl
 
 GTEST = libs/googletest
 LIB_GTEST = $(GTEST)/build/lib/libgtest.a $(GTEST)/build/lib/libgtest_main.a
