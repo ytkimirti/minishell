@@ -41,7 +41,6 @@ int	main(int argc, char *argv[], char *envp[])
 		line[ft_strlen(line)] = '\0';
 		t = tokenize(line);
 		tree = build_tree(t);
-		print_tree(tree);
 		free_tokens(t);
 		free_tree(tree);
 	}
