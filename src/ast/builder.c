@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:35:02 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/08 17:53:57 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/09 17:51:21 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@
 #include "parser.h"
 #include <stdlib.h>
 #include "parser_utils.h"
+#include "coz.h"
 
 t_node	*primary(t_token ***tokens)
 {
+		COZ_PROGRESS;
 	while (**tokens != NULL && (**tokens)->type == SPACE)
 		(*tokens)++;
 	if (**tokens == NULL)
@@ -35,6 +37,7 @@ t_node	*primary(t_token ***tokens)
 
 t_node	*pipeline(t_token ***tokens)
 {
+		COZ_PROGRESS;
 	t_node	*node;
 	t_node	*tmp;
 
@@ -54,6 +57,7 @@ t_node	*pipeline(t_token ***tokens)
 
 t_node	*expr(t_token ***tokens)
 {
+		COZ_PROGRESS;
 	t_node		*node;
 	t_node		*tmp;
 	t_node_type	type;
@@ -84,5 +88,6 @@ t_node	*expr(t_token ***tokens)
 // primary -> command | ( "(" expr ")" )
 t_node	*build_tree(t_token **tokens)
 {
+		COZ_PROGRESS;
 	return (expr(&tokens));
 }

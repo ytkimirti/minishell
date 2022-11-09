@@ -6,18 +6,20 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 13:45:19 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/08 17:44:15 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/09 17:51:44 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ast.h"
 #include "error.h"
 #include <stdlib.h>
+#include "coz.h"
 
 t_node	*new_node(t_node *left, t_node_type type, t_node *right)
 {
 	t_node	*node;
 
+		COZ_PROGRESS;
 	node = malloc(sizeof(t_node));
 	if (node == NULL)
 		malloc_error();

@@ -6,10 +6,11 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:18:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/08 18:06:37 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/09 17:46:28 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "coz.h"
 #include "env.h"
 #include "libft.h"
 #include "prompt/prompt.h"
@@ -43,5 +44,6 @@ int	main(int argc, char *argv[], char *envp[])
 		tree = build_tree(t);
 		free_tokens(t);
 		free_tree(tree);
+		COZ_PROGRESS;
 	}
 }

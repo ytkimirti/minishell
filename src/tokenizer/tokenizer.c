@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:26:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/08 17:11:56 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/09 17:55:05 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@
 #include <stdlib.h>
 #include "utils.h"
 #include "tokenize_utils.h"
+#include "coz.h"
 
 t_token	*tokenize_outside(const char **str, t_state *state)
 {
+	COZ_PROGRESS;
 	if (**str == ' ' || **str == '\t')
 		return (tokenize_space(str, state));
 	else if (**str == '$')
@@ -51,6 +53,7 @@ t_token	*tokenize_in_squotes(const char **str, t_state *state)
 
 t_token	*tokenize_in_quotes(const char **str, t_state *state)
 {
+	COZ_PROGRESS;
 	if (**str == '"')
 		return (tokenize_quote(str, state));
 	else if (**str == '$')
@@ -61,6 +64,7 @@ t_token	*tokenize_in_quotes(const char **str, t_state *state)
 
 t_token	*tokenize_single(const char **str, t_state *state)
 {
+	COZ_PROGRESS;
 	if (state->in_squotes)
 		return (tokenize_in_squotes(str, state));
 	else if (state->in_quotes)
@@ -87,6 +91,7 @@ t_token	**tokenize(const char *str)
 		if (token == NULL)
 			break ;
 		pvec_append(tokens, token);
+		COZ_PROGRESS;
 	}
 	pvec_append(tokens, NULL);
 	tmp = (t_token **)tokens->arr;

@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:00:53 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/08 16:40:46 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/09 17:53:53 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "vector.h"
 #include "env.h"
 #include <limits.h>
+#include "coz.h"
 
 /*
  * Expands token into string str.
@@ -27,6 +28,7 @@
  */
 static int	expand_token(t_token *token, char *str)
 {
+	COZ_PROGRESS;
 	if (token->type == WORD)
 		return (strlencpy(str, token->str, token->len));
 	if (token->type == VAR)
@@ -44,6 +46,7 @@ static char	*expand_tokens(t_token ***tokens)
 	char	*str;
 	int		len;
 
+	COZ_PROGRESS;
 	len = length_tokens(*tokens);
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	str[len] = '\0';
@@ -62,6 +65,7 @@ static void	parse_redir(t_command *cmd, t_token ***tokens)
 	char				*file;
 	enum e_token_type	type;
 
+	COZ_PROGRESS;
 	type = (**tokens)->type;
 	(*tokens)++;
 	file = expand_tokens(tokens);
@@ -76,6 +80,7 @@ static void	parse_redir(t_command *cmd, t_token ***tokens)
 
 void	parse_step(t_command *cmd, t_token ***tokens, t_pvec *args_vec)
 {
+	COZ_PROGRESS;
 	if (is_redir_token(**tokens))
 		parse_redir(cmd, tokens);
 	else
@@ -105,5 +110,6 @@ t_command	*create_command(t_token ***tokens)
 	cmd->argv = (char **)args_vec->arr;
 	cmd->argc = args_vec->len - 1;
 	free(args_vec);
+	COZ_PROGRESS;
 	return (cmd);
 }

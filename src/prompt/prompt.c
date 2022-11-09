@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 09:02:37 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/28 12:10:39 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/09 17:54:30 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "libft.h"
 #include "colors.h"
 #include "prompt_utils.h"
+#include "coz.h"
 
 char	*get_formatted_cwd(void)
 {
@@ -57,6 +58,7 @@ char	*readline_with_prompt(void)
 	char	*str;
 	char	*res;
 
+	COZ_PROGRESS;
 	str = create_prompt();
 	res = readline(str);
 	free(str);

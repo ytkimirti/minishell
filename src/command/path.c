@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 23:32:46 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/04 11:50:46 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/09 17:52:26 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 #include "libft.h"
 #include "env.h"
 #include "colors.h"
+#include "coz.h"
 
 const char	*find_executable(const char *name)
 {
 	const char	*str;
 	int			i;
 
+	COZ_PROGRESS;
 	i = 0;
 	while (true)
 	{
