@@ -11,8 +11,10 @@ static char	**search_nodes(char *source, char *pattern, int len_pattern);
  * Example wildcard is: "logs/ *-12-1999/ *.log"
  *
  * * First get into logs/ and search occurences for "logs"
- * * if "logs" is a folder (it is) search next pattern matches
- *   "*-12-1999" inside the matched folders for "logs"
+ * * Assign occurences into MATCHES
+ * * iterate to next pattern "*-12-1999"
+ * * search each matches for each directories in previous MATCHES
+ * * Assign MATCHES to new MATCHES
  *
  * @param token
  * @return char** List of all occurences
@@ -20,13 +22,18 @@ static char	**search_nodes(char *source, char *pattern, int len_pattern);
 char	**expand_wildcard(t_token *token)
 {
 	char	**matches;
+	char	*pattern;
 	int		index;
+	int		index_new;
 	// We need to iterate through slashes (/)
+	// It is not that constraint but according to this algorithm.. yes it is.
 	index = 0;
 	while (index < token->len)
 	{
+		index_new = pattern_next(pattern); // finds next pattern 
 		// do stuff
-		index = pattern_next(token->str); // finds next pattern 
+		// matches = search_nodes(?,pattern,index_new - index);
+		index = index_new;
 	}
 	return (matches);
 }
