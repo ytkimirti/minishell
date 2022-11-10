@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:35:02 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/08 17:53:57 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/10 19:32:49 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,23 @@
 #include "parser.h"
 #include <stdlib.h>
 #include "parser_utils.h"
+#include "token.h"
 
 t_node	*primary(t_token ***tokens)
 {
 	while (**tokens != NULL && (**tokens)->type == SPACE)
 		(*tokens)++;
 	if (**tokens == NULL)
+	{
+		error_unexpected(**tokens, EMPTY);
 		return (NULL);
+	}
 	if ((**tokens)->type == PAREN_OPEN)
 		return (primary_paren(tokens));
 	else if (is_command_token(**tokens))
 		return (primary_command(tokens));
 	else
-		error("Unexpected token");
+		error_unexpected(**tokens, EMPTY);
 	return (NULL);
 }
 
@@ -84,5 +88,10 @@ t_node	*expr(t_token ***tokens)
 // primary -> command | ( "(" expr ")" )
 t_node	*build_tree(t_token **tokens)
 {
-	return (expr(&tokens));
+	t_node	*tree;
+
+	tree = expr(&tokens);
+	if (*tokens != NULL)
+		error_unexpected(*tokens, EMPTY);
+	return (tree);
 }
