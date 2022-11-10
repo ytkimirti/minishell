@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:56:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/08 18:29:19 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/10 19:16:38 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,14 @@ void	error(const char *msg);
 
 /*
  * Prints a unexpected token error with relevant info
- * about where the token is.
+ * about where the token is. If expected token is null
+ * it only says "Unexpected token: <token_name>"
  */
-void	error_unexpected(const t_token *token);
+void	error_unexpected(const t_token *token, t_token_type expected);
 
+/*
+ * Print's out perror and exits
+ */
 void	*malloc_error(void);
 
 /*
@@ -37,7 +41,7 @@ void	*malloc_error(void);
  * it can find which token it belongs to
  * and print relevant info.
  */
-void	begin_trace(t_token **tokens);
+void	begin_trace(t_token **tokens, char *line);
 
 /*
  * Invalidate the last trace data. Call this
