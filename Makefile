@@ -126,7 +126,7 @@ fclean: clean
 	rm -rf $(TEST_DIR)/bin
 
 norm:
-	norminette src | grep Error
+	@norminette src | grep Error || ( (command -v &>/dev/null && cowsay "All clear" ) || echo "(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ All clear")
 
 -include $(foreach odir,$(OBJ_DIRS),$(wildcard $(odir)/*.d))
 
