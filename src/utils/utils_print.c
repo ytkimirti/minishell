@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 18:21:55 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/08 18:35:13 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/10 19:15:41 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "utils.h"
 #include <stdio.h>
 
-char	*token_type_tostr2(enum e_token_type type)
+static char	*token_type_tostr2(enum e_token_type type)
 {
 	if (type == AND_TOKEN)
 		return ("AND_TOKEN");
@@ -55,19 +55,27 @@ char	*token_type_tostr(enum e_token_type type)
 	return (token_type_tostr2(type));
 }
 
-char	*token_tostr(t_token *token)
+char	*token_type_repr(t_token_type type)
 {
-	if (token->type == SPACE)
-		return (" ");
-	if (token->type == DOUBLE_QUOTE)
+	if (type == DOUBLE_QUOTE)
 		return ("\"");
-	if (token->type == SINGLE_QUOTE)
+	if (type == SINGLE_QUOTE)
 		return ("\'");
-	if (token->type == PAREN_OPEN)
+	if (type == PAREN_OPEN)
 		return ("(");
-	if (token->type == PAREN_CLOSE)
+	if (type == PAREN_CLOSE)
 		return (")");
-	if (token->type == VAR)
-		return ("$");
-	return (token_type_tostr(token->type));
+	if (type == REDIR_IN)
+		return ("<");
+	if (type == REDIR_OUT)
+		return (">");
+	if (type == REDIR_APPEND)
+		return (">>");
+	if (type == AND_TOKEN)
+		return ("&&");
+	if (type == OR_TOKEN)
+		return ("||");
+	if (type == PIPE_TOKEN)
+		return ("|");
+	return (token_type_tostr(type));
 }
