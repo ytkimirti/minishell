@@ -16,3 +16,5 @@
 -stdlib=libc++
 -mmacosx-version-min=10.9
 -DUSE_STD_NAMESPACE
+
+-Wall -Wextra -Werror
