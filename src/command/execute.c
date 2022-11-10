@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:58:12 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/28 19:07:36 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/10 15:45:09 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "built_in.h"
 #include "libft.h"
 #include <stdbool.h>
+#include <sys/wait.h>
 
 static void	close_std(t_stdio std)
 {
