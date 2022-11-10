@@ -4,3 +4,6 @@
 [submodule "libs/googletest"]
 	path = libs/googletest
 	url = https://github.com/google/googletest
+[submodule "libs/readline"]
+	path = libs/readline
+	url = https://github.com/sailfishos-mirror/readline
