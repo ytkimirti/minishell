@@ -9,6 +9,7 @@
 -Isrc/env
 -Isrc/built_in
 -Isrc/error
+-Isrc/print
 -Ilibs/googletest/googletest/include
 -Ilibs
 -Ilibft
