@@ -6,11 +6,12 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:18:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/08 18:06:37 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/10 19:22:05 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
+#include "error.h"
 #include "libft.h"
 #include "prompt/prompt.h"
 #include "prompt/prompt_utils.h"
@@ -40,8 +41,10 @@ int	main(int argc, char *argv[], char *envp[])
 			break ;
 		line[ft_strlen(line)] = '\0';
 		t = tokenize(line);
+		begin_trace(t, line);
 		tree = build_tree(t);
 		print_tree(tree);
+		end_trace();
 		free_tokens(t);
 		free_tree(tree);
 	}
