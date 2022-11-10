@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:23:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/02 15:54:51 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/10 19:09:50 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 # include <stdbool.h>
 
-enum e_token_type
+typedef enum e_token_type
 {
 	EMPTY,
 	WORD,
@@ -32,7 +32,7 @@ enum e_token_type
 	REDIR_IN,
 	REDIR_OUT,
 	REDIR_APPEND,
-};
+}	t_token_type;
 
 typedef struct s_token
 {
