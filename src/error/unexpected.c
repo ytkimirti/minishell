@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:54:35 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/10 19:31:18 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/10 19:58:26 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,12 @@ void	error_unexpected(const t_token *token, t_token_type expected)
 	data->is_tracing = true;
 	highlight_token(token);
 	if (expected == EMPTY)
-		ft_printf(RED "Unexpected token" RST "\n");
+	{
+		if (token == NULL)
+			ft_printf(RED "Expected token" RST "\n");
+		else
+			ft_printf(RED "Unexpected token" RST "\n");
+	}
 	else
 		ft_printf(RED "Expected " YEL "%s" RST "\n",
 			token_type_repr(expected));
