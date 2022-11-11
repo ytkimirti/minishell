@@ -125,6 +125,14 @@ INSTANTIATE_TEST_SUITE_P(Tokenizer, TokenizeAllTest, testing::Values(
 				}
 			},
 			TokenizeAllData{
+				.input = "ahmet>>file",
+				.correct_tokens = std::vector<DummyToken>{
+					DummyToken{"ahmet", WORD},
+					DummyToken{"", REDIR_APPEND},
+					DummyToken{"file", WORD},
+				}
+			},
+			TokenizeAllData{
 				.input = "hello world",
 				.correct_tokens = std::vector<DummyToken>{
 					DummyToken{"hello", WORD},
