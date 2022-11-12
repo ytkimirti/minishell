@@ -11,7 +11,7 @@ LIB_READLINE = $(READLINE_DIR)/libreadline.a
 LIB_GTEST = $(GTEST_DIR)/build/lib/libgtest.a $(GTEST)/build/lib/libgtest_main.a
 
 TEST_CFLAGS = -std=c++11 -Ilibft -I$(GTEST)/googletest/include -g
-TEST_LDFLAGS = -pthread -lreadline
+TEST_LDFLAGS = -pthread -ltermcap
 
 CFLAGS = -MD -Wall -Wextra -Werror -I$(FT_DIR) -Ilibs -g
 
@@ -66,7 +66,7 @@ endef
 $(foreach bdir,$(OBJ_DIRS),$(eval $(call make-goal,$(bdir))))
 
 $(NAME): $(OBJS) $(ENTRY_OBJS) $(LIB_FT) $(LIB_READLINE)
-	$(CC) $(OBJS) $(ENTRY_OBJS) $(LDFLAGS) $(LIB_FT) $(LIB_READLINE) -o $@
+	$(CC) $(OBJS) $(ENTRY_OBJS) $(LIB_FT) $(LIB_READLINE) $(LDFLAGS) -o $@
 
 $(LIB_FT):
 	make -C $(FT_DIR)
@@ -93,7 +93,7 @@ testerr: $(TEST_BIN)
 
 $(TEST_BIN): $(TEST_OBJS) $(OBJS) $(LIB_GTEST)
 	@echo "==== LINKING TEST FILES ===="
-	g++ $(TEST_CFLAGS) $(OBJS) $(TEST_OBJS) $(LIB_GTEST) $(LIB_FT) $(TEST_LDFLAGS) -o $@
+	g++ $(TEST_CFLAGS) $(OBJS) $(TEST_OBJS) $(LIB_GTEST) $(LIB_FT) $(LIB_READLINE) $(TEST_LDFLAGS) -o $@
 
 $(TEST_DIR)/obj/%.o: $(TEST_DIR)/%.cpp | $(TEST_DIR)/obj
 	g++ $(TEST_CFLAGS) $(INCLUDES) -c $< -o $@  
