@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 09:02:37 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/28 12:10:39 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/12 09:56:24 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,7 @@ char	*readline_with_prompt(void)
 	str = create_prompt();
 	res = readline(str);
 	free(str);
+	if (res != NULL && res[0] != '\0')
+		add_history(res);
 	return (res);
 }
