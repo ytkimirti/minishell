@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 14:57:19 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/04 12:06:33 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/13 14:43:57 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,39 @@ t_node	*build_example_tree(void);
 
 t_node	*build_tree(t_token **tokens);
 
-int		walk_tree(t_node *tree, t_stdio std);
+/*
+ * Walks a given tree starting from the leftmost deepest node.
+ * When is_sync is true, it waits until the command is finishes
+ * and uses it's exit status.
+ *
+ * If it's false it continues without waiting for it to finish.
+ * For example:
+ *
+ *
+ * ((echo "Hello!" | tr a-z A-Z) | cat ) && echo "DONE!"
+ *
+ *                AND (sync)
+ *                 |
+ *             |--------------------|
+ *             |                    |
+ *           PIPE (sync)         COMMAND (sync)
+ *             |
+ *        |-------------|
+ *        |             |
+ *      PIPE (async)   CMD (sync)
+ *        |
+ *    |------------|
+ *   CMD (async)   CMD (async)
+ *
+ *
+ * Async pipes and commands doesn't require extra forks, they
+ * just don't wait for the right command to finish.
+ *
+ * Async AND's and OR's fork themselves before running. The still
+ * wait for the left one to finish but because of the fork, it doesn't
+ * cause the main thread to wait.
+ */
+int		walk_tree(t_node *tree, t_stdio std, bool is_sync);
 
 void	free_tree(t_node *tree);
 

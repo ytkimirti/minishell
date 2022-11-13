@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:35:02 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/10 19:32:49 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/13 15:08:49 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_node	*pipeline(t_token ***tokens)
 		(*tokens)++;
 		tmp = primary(tokens);
 		if (tmp == NULL)
-			break ;
+			return (NULL);
 		node = new_node(node, PIPE_NODE, tmp);
 	}
 	return (node);
@@ -76,7 +76,7 @@ t_node	*expr(t_token ***tokens)
 		(*tokens)++;
 		tmp = pipeline(tokens);
 		if (tmp == NULL)
-			break ;
+			return (NULL);
 		node = new_node(node, type, tmp);
 	}
 	return (node);
@@ -91,7 +91,13 @@ t_node	*build_tree(t_token **tokens)
 	t_node	*tree;
 
 	tree = expr(&tokens);
+	if (tree == NULL)
+		return (NULL);
 	if (*tokens != NULL)
+	{
 		error_unexpected(*tokens, EMPTY);
+		free_tree(tree);
+		return (NULL);
+	}
 	return (tree);
 }
