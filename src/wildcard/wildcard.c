@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:08:45 by emakas            #+#    #+#             */
-/*   Updated: 2022/11/13 15:19:20 by emakas           ###   ########.fr       */
+/*   Updated: 2022/11/13 15:29:34 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,7 @@ static t_pvec	*search_nodes(char *source, char *pattern, size_t len_pattern)
 		if (check_match(entry->d_name, pattern))
 		{
 			if (len_next_pattern > 0)
-				append_all(matches,
-					recurse(source,
+				append_all(matches, recurse(source,
 					entry->d_name,next_pattern,len_next_pattern));
 			else
 				append_vector(matches,source,entry->d_name);
