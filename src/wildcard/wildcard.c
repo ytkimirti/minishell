@@ -6,12 +6,13 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:08:45 by emakas            #+#    #+#             */
-/*   Updated: 2022/11/13 15:29:34 by emakas           ###   ########.fr       */
+/*   Updated: 2022/11/20 16:11:33 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wildcard.h"
 #include "vector.h"
+#include "util.h"
 #include <libft.h>
 #include <dirent.h>
 #include <errno.h>
@@ -21,11 +22,11 @@ static char		**find_matches(char *str, int len);
 
 static int		compare_pattern(char *source, char *pattern, int len_pattern);
 
-static t_pvec	*search_nodes(char *source, char *pattern, int len_pattern);
+static t_pvec	*search_nodes(char *source, char **patterns);
 
 static int		check_match(char *source, char *pattern);
 
-static t_pvec	*recurse(char *source, char *dir, char *pattern, size_t len_p);
+static char		*concat_dir(char *dir1, char *dir);
 
 /*!
  * @brief Lists all matches of given wildcard
@@ -40,13 +41,17 @@ char	**expand_wildcard(t_token *token)
 {
 	t_pvec	*match_vector;
 	char	**matches;
-	char	*pattern;
+	char	**patterns;
 	char	*source;
-	int		*pattern_len;
+	char	*pattern;
 
-	match_vector = search_nodes(source, pattern, pattern_len);
+	// set up source directory...
+	pattern  = dup_token_str(token);
+	patterns = ft_split(pattern,"/");
+	match_vector = search_nodes(source, patterns);
 	matches = (char **) match_vector->arr;
 	free(match_vector);
+	free(pattern);
 	return (matches);
 }
 
@@ -66,34 +71,56 @@ char	**expand_wildcard(t_token *token)
  * @param len_pattern
  * @return t_pvec * char array vector
  */
-static t_pvec	*search_nodes(char *source, char *pattern, size_t len_pattern)
+static t_pvec	*search_nodes(char *source, char **patterns)
 {
 	struct dirent	*entry;
 	t_pvec			*matches;
-	char			*next_pattern;
-	size_t			*len_next_pattern
 	DIR				*dir;
 
 	matches = pvec_new(1);
-	next_pattern = ft_strnstr(pattern, "/", len_pattern) + 1;
-	len_next_pattern = len_pattern - (next_pattern - pattern);
 	dir = opendir(source);
 	if (dir == NULL)
 		return (matches);
 	entry = readdir(dir);
 	while (entry != NULL)
 	{
-		if (check_match(entry->d_name, pattern))
+		//TODO: Solve free malloc problem for source
+		if (check_match(entry->d_name, patterns[0]))
 		{
-			if (len_next_pattern > 0)
-				append_all(matches, recurse(source,
-					entry->d_name,next_pattern,len_next_pattern));
+			if (patterns[1] != NULL)
+				vector_append_all(matches,search_nodes(
+					concat_dir(source, patterns[0]), &patterns[1]));
 			else
-				append_vector(matches,source,entry->d_name);
+				pvec_append(matches, concat_dir(source, entry->d_name));
 		}
 		entry = readdir(dir);
 	}
+	closedir(source);
+	free(source);
 	return (matches);
+}
+
+static int	check_match(char *source, char *pattern)
+{
+	return (0);
+}
+
+static char	*concat_dir(char *dir1, char *dir2)
+{
+	char	*result;
+	size_t	len;
+	size_t	index;
+
+	index = 0;
+	len = ft_strlen(dir1) + ft_strlen(dir2) + 2;
+	result = malloc(sizeof (char) *len);
+	while (*dir1 != '\0')
+		result[index++] = *(dir1++);
+	result[index++] = "/";
+	while (*dir2 != '\0')
+		result[index++] = *(dir2++);
+	result[index] = '\0';
+	return (result);
 }
 /*
 
