@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:58:12 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/21 12:20:33 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/21 14:24:27 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,12 @@ static void	exec_child(t_command *command, t_stdio std)
 
 	path = find_executable(command->argv[0]);
 	if (path == NULL)
+	{
+		ft_putstr_fd("minishell: Unknown command: ", 2);
+		ft_putstr_fd(command->argv[0], 2);
+		ft_putstr_fd("\n", 2);
 		exit(127);
+	}
 	envp = extract_env();
 	ft_dup2(std.in, 0);
 	ft_dup2(std.out, 1);
