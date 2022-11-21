@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:58:12 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/21 14:24:27 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/21 17:19:58 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int	execute_command(t_command *command, t_stdio std, bool is_sync)
 		return (ft_echo(command, std));
 	if (ft_strncmp(command->argv[0], "path", sizeof("path")) == 0)
 		return (ft_path(command, std));
+	if (ft_strncmp(command->argv[0], "cd", sizeof("cd")) == 0)
+		return (ft_cd(command, std));
 	pid = fork();
 	if (pid == -1)
 		return (perror("fork failed"), SHELL_ERROR);
