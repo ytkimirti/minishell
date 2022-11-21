@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 14:57:19 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/04 12:06:33 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/21 07:34:55 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,21 @@ t_node	*build_example_tree(void);
 
 t_node	*build_tree(t_token **tokens);
 
-int		walk_tree(t_node *tree, t_stdio std);
+/*
+ * Executes a tree using walk_tree in the background
+ * but this is a simpler facade for main.
+ */
+int		execute_tree(t_node	*root);
+
+/*
+ * This is the value returned by walk_tree or any other
+ * walker function in case of an error caused by creation
+ * of pipes, not finding the file etc.
+ *
+ * Since all other programs can only return from 0 - 255
+ * this can't be used elsewhere.
+ */
+# define SHELL_ERROR 425
 
 void	free_tree(t_node *tree);
 
