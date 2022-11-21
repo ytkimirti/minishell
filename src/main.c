@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:18:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/21 12:08:18 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/21 14:12:43 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include "parser.h"
 
 #include <stdio.h>
+#include <sys/wait.h>
 #include "utils.h"
 #include "ast_utils.h"
 
