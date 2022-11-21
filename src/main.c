@@ -46,6 +46,8 @@ int	main(int argc, char *argv[], char *envp[])
 		print_tree(tree);
 		end_trace();
 		execute_tree(tree);
+		while (waitpid(-1, 0, 0) != -1)
+			;
 		free_tokens(t);
 		free_tree(tree);
 	}
