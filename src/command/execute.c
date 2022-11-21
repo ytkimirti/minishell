@@ -73,6 +73,8 @@ int	execute_command(t_command *command, t_stdio std, bool is_sync)
 		return (ft_cd(command, std));
 	if (ft_strncmp(command->argv[0], "pwd", sizeof("pwd")) == 0)
 		return (ft_pwd(command, std));
+	if (ft_strncmp(command->argv[0], "exit", sizeof("exit")) == 0)
+		return (ft_exit(command, std));
 	pid = fork();
 	if (pid == -1)
 		return (perror("fork failed"), SHELL_ERROR);
