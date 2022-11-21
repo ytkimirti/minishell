@@ -6,50 +6,70 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:58:12 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/10 15:45:09 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/21 12:20:33 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ast.h"
+#include "ast_utils.h"
 #include "built_in.h"
 #include "libft.h"
 #include <stdbool.h>
 #include <sys/wait.h>
+#include "command_utils.h"
+#include <stdio.h>
+#include "env.h"
+#include <error.h>
+#include <errno.h>
 
-static void	close_std(t_stdio std)
+static void	ft_dup2(int src, int target)
 {
-	if (std.in != 0)
-		close(std.in);
-	if (std.out != 1)
-		close(std.out);
-	if (std.err != 2)
-		close(std.err);
+	if (src == target)
+		return ;
+	if (dup2(src, target) == -1)
+		exit((perror("dup2 error"), SHELL_ERROR));
 }
 
 static void	exec_child(t_command *command, t_stdio std)
 {
-	dup2(std.in, 0);
-	dup2(std.out, 1);
-	dup2(std.err, 2);
-	close_std(std);
-	execve(command->argv[0], command->argv, NULL);
-	exit(127);
+	const char	*path;
+	char		**envp;
+
+	path = find_executable(command->argv[0]);
+	if (path == NULL)
+		exit(127);
+	envp = extract_env();
+	ft_dup2(std.in, 0);
+	ft_dup2(std.out, 1);
+	ft_dup2(std.err, 2);
+	if (!close_unwanted(std.unwanted_fds))
+		exit(SHELL_ERROR);
+	execve(path, command->argv, envp);
+	perror("execve error");
+	if (errno == ENOEXEC)
+		exit(128);
+	if (errno == ENOENT)
+		exit (127);
+	exit(126);
 }
 
-int	execute_command(t_command *command, t_stdio std, bool is_async)
+int	execute_command(t_command *command, t_stdio std, bool is_sync)
 {
 	pid_t	pid;
 	int		status;
 
-	if (command->argv[0] == NULL)
-		return (1);
+	if (command == NULL || command->argv[0] == NULL)
+		return (SHELL_ERROR);
 	if (ft_strncmp(command->argv[0], "echo", sizeof("echo")) == 0)
 		return (ft_echo(command, std));
+	if (ft_strncmp(command->argv[0], "path", sizeof("path")) == 0)
+		return (ft_path(command, std));
 	pid = fork();
+	if (pid == -1)
+		return (perror("fork failed"), SHELL_ERROR);
 	if (pid == 0)
 		exec_child(command, std);
-	close_std(std);
-	if (!is_async)
+	if (is_sync)
 	{
 		waitpid(pid, &status, 0);
 		return (WEXITSTATUS(status));
