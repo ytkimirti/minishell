@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tstdio.h                                           :+:      :+:    :+:   */
+/*   walk_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 18:59:16 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/21 07:45:27 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/11/21 07:47:15 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/11/21 12:20:39 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TSTDIO_H
+#include "ast_utils.h"
+#include <stdio.h>
+#include <unistd.h>
 
-# define TSTDIO_H
-
-# include "vector.h"
-
-/*
- * Unwanted_fds are the file descriptors
- * you MUST close after you fork and dup2
- *
- * If you don't close them, because of the
- * other references to these filedescriptors
- * some SIGPIPES or EOF would not be sent.
- */
-typedef struct s_stdio
+bool	close_unwanted(t_ivec *fds)
 {
-	int		in;
-	int		out;
-	int		err;
-	t_ivec	*unwanted_fds;
-}	t_stdio;
-
-#endif
+	while (fds->len > 0)
+	{
+		if (close(fds->arr[fds->len - 1]) == -1)
+		{
+			perror("pipe close error");
+			return (false);
+		}
+		fds->len -= 1;
+	}
+	return (true);
+}
