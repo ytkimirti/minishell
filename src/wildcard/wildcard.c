@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:08:45 by emakas            #+#    #+#             */
-/*   Updated: 2022/11/22 14:44:18 by emakas           ###   ########.fr       */
+/*   Updated: 2022/11/22 14:47:22 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int		compare_pattern(char *source, char *pattern, int len_pattern);
 
 static t_pvec	*search_nodes(char *source, char **patterns);
 
-static int		check_match(char *source, char *pattern);
+
 
 static t_pvec	*recurse(char *source, char *dir, char *pattern, size_t len_p);
 
@@ -101,10 +101,6 @@ static t_pvec	*search_nodes(char *source, char **patterns)
 	return (matches);
 }
 
-static int	check_match(char *source, char *pattern)
-{
-	return (0);
-}
 
 static char	*concat_dir(char *dir1, char *dir2)
 {
