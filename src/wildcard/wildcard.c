@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:08:45 by emakas            #+#    #+#             */
-/*   Updated: 2022/11/22 14:18:35 by emakas           ###   ########.fr       */
+/*   Updated: 2022/11/22 14:44:18 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char		**find_matches(char *str, int len);
 
 static int		compare_pattern(char *source, char *pattern, int len_pattern);
 
-static t_pvec	*search_nodes(char *source, char *pattern, int len_pattern);
+static t_pvec	*search_nodes(char *source, char **patterns);
 
 static int		check_match(char *source, char *pattern);
 
@@ -55,8 +55,6 @@ char	**expand_wildcard(t_token *token)
 
 	
 }
-
-aşlsdkasşdklasldmö
 
 /**
  * @brief Searches pattern and returns matches
