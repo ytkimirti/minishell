@@ -3,23 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   wildcard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:08:45 by emakas            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/11/20 16:11:33 by emakas           ###   ########.fr       */
-=======
-/*   Updated: 2022/11/13 15:29:34 by emakas           ###   ########.fr       */
->>>>>>> 6d02b14f2155d41bfcf4d9f9cb6aed32e9b61a27
+/*   Updated: 2022/11/22 14:18:35 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wildcard.h"
 #include "vector.h"
-<<<<<<< HEAD
-#include "util.h"
-=======
->>>>>>> 6d02b14f2155d41bfcf4d9f9cb6aed32e9b61a27
 #include <libft.h>
 #include <dirent.h>
 #include <errno.h>
@@ -29,19 +21,11 @@ static char		**find_matches(char *str, int len);
 
 static int		compare_pattern(char *source, char *pattern, int len_pattern);
 
-<<<<<<< HEAD
-static t_pvec	*search_nodes(char *source, char **patterns);
-
-static int		check_match(char *source, char *pattern);
-
-static char		*concat_dir(char *dir1, char *dir);
-=======
 static t_pvec	*search_nodes(char *source, char *pattern, int len_pattern);
 
 static int		check_match(char *source, char *pattern);
 
 static t_pvec	*recurse(char *source, char *dir, char *pattern, size_t len_p);
->>>>>>> 6d02b14f2155d41bfcf4d9f9cb6aed32e9b61a27
 
 /*!
  * @brief Lists all matches of given wildcard
@@ -68,7 +52,11 @@ char	**expand_wildcard(t_token *token)
 	free(match_vector);
 	free(pattern);
 	return (matches);
+
+	
 }
+
+aşlsdkasşdklasldmö
 
 /**
  * @brief Searches pattern and returns matches
