@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:58:12 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/21 17:33:20 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/23 08:49:58 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,12 @@ static int	execute_builtin(t_command *command, t_stdio std)
 		return (ft_pwd(command, std));
 	if (ft_strncmp(command->argv[0], "exit", sizeof("exit")) == 0)
 		return (ft_exit(command, std));
+	if (ft_strncmp(command->argv[0], "env", sizeof("env")) == 0)
+		return (ft_env(command, std));
+	if (ft_strncmp(command->argv[0], "export", sizeof("export")) == 0)
+		return (ft_export(command, std));
+	if (ft_strncmp(command->argv[0], "unset", sizeof("unset")) == 0)
+		return (ft_unset(command, std));
 	return (-1);
 }
 
