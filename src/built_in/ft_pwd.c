@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 06:59:44 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/23 09:26:40 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/11/21 17:12:09 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/11/23 09:28:44 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ast.h"
 #include "built_in.h"
 #include "libft.h"
+#include "env.h"
+#include <errno.h>
+#include <stdio.h>
+#include <string.h>
 
-int	ft_echo(t_command *command, t_stdio std)
+int	ft_pwd(t_command *command, t_stdio std)
 {
-	char	**str;
-	bool	send_newline;
+	const char	*str;
 
-	if (command->argc == 0)
-		return (ft_putendl_fd("", std.out), 0);
-	str = command->argv + 1;
-	send_newline = true;
-	if (*str != NULL && ft_strncmp(*str, "-n", 3) == 0)
+	(void)command;
+	str = get_env("PWD", 3);
+	if (str[0] == '\0')
 	{
-		send_newline = false;
-		str++;
+		ft_putendl_fd("PWD environment variable is not set!", std.err);
+		return (1);
 	}
-	while (*str != NULL)
-	{
-		ft_putstr_fd(*str, std.out);
-		str++;
-	}
-	if (send_newline)
-		write(std.out, "\n", 1);
+	ft_putendl_fd(str, std.out);
 	return (0);
 }

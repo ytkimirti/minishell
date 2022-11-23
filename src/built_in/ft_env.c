@@ -1,39 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 06:59:44 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/23 09:26:40 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/11/21 17:12:09 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/11/23 08:31:42 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ast.h"
 #include "built_in.h"
 #include "libft.h"
+#include "env.h"
+#include <errno.h>
+#include <stdio.h>
+#include <string.h>
 
-int	ft_echo(t_command *command, t_stdio std)
+int	ft_env(t_command *command, t_stdio std)
 {
-	char	**str;
-	bool	send_newline;
+	char	**env_str;
+	int		i;
 
-	if (command->argc == 0)
-		return (ft_putendl_fd("", std.out), 0);
-	str = command->argv + 1;
-	send_newline = true;
-	if (*str != NULL && ft_strncmp(*str, "-n", 3) == 0)
+	(void)command;
+	env_str = extract_env();
+	if (env_str == NULL)
+		return (1);
+	i = 0;
+	while (env_str[i] != NULL)
 	{
-		send_newline = false;
-		str++;
+		ft_putendl_fd(env_str[i], std.out);
+		i++;
 	}
-	while (*str != NULL)
-	{
-		ft_putstr_fd(*str, std.out);
-		str++;
-	}
-	if (send_newline)
-		write(std.out, "\n", 1);
+	free(env_str);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:58:12 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/21 14:24:27 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/23 08:49:58 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,38 @@ static void	exec_child(t_command *command, t_stdio std)
 	exit(126);
 }
 
-int	execute_command(t_command *command, t_stdio std, bool is_sync)
+static int	execute_builtin(t_command *command, t_stdio std)
 {
-	pid_t	pid;
-	int		status;
-
-	if (command == NULL || command->argv[0] == NULL)
-		return (SHELL_ERROR);
 	if (ft_strncmp(command->argv[0], "echo", sizeof("echo")) == 0)
 		return (ft_echo(command, std));
 	if (ft_strncmp(command->argv[0], "path", sizeof("path")) == 0)
 		return (ft_path(command, std));
+	if (ft_strncmp(command->argv[0], "cd", sizeof("cd")) == 0)
+		return (ft_cd(command, std));
+	if (ft_strncmp(command->argv[0], "pwd", sizeof("pwd")) == 0)
+		return (ft_pwd(command, std));
+	if (ft_strncmp(command->argv[0], "exit", sizeof("exit")) == 0)
+		return (ft_exit(command, std));
+	if (ft_strncmp(command->argv[0], "env", sizeof("env")) == 0)
+		return (ft_env(command, std));
+	if (ft_strncmp(command->argv[0], "export", sizeof("export")) == 0)
+		return (ft_export(command, std));
+	if (ft_strncmp(command->argv[0], "unset", sizeof("unset")) == 0)
+		return (ft_unset(command, std));
+	return (-1);
+}
+
+int	execute_command(t_command *command, t_stdio std, bool is_sync)
+{
+	pid_t	pid;
+	int		status;
+	int		builtin_status;
+
+	if (command == NULL || command->argv[0] == NULL)
+		return (SHELL_ERROR);
+	builtin_status = execute_builtin(command, std);
+	if (builtin_status != -1)
+		return (builtin_status);
 	pid = fork();
 	if (pid == -1)
 		return (perror("fork failed"), SHELL_ERROR);

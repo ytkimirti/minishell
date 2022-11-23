@@ -1,39 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 06:59:44 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/23 09:26:40 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/11/21 17:12:09 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/11/23 09:24:14 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ast.h"
 #include "built_in.h"
 #include "libft.h"
+#include "env.h"
+#include <errno.h>
+#include <stdio.h>
+#include <string.h>
 
-int	ft_echo(t_command *command, t_stdio std)
+int	ft_cd(t_command *command, t_stdio std)
 {
-	char	**str;
-	bool	send_newline;
+	const char	*path;
 
-	if (command->argc == 0)
-		return (ft_putendl_fd("", std.out), 0);
-	str = command->argv + 1;
-	send_newline = true;
-	if (*str != NULL && ft_strncmp(*str, "-n", 3) == 0)
+	(void)std;
+	if (command->argc > 1)
+		path = command->argv[1];
+	else
 	{
-		send_newline = false;
-		str++;
+		path = get_env("HOME", 4);
+		if (path[0] == '\0')
+			return (
+				ft_putendl_fd("env variable 'HOME' is not set", std.err), 1);
 	}
-	while (*str != NULL)
+	if (chdir(path) == -1)
 	{
-		ft_putstr_fd(*str, std.out);
-		str++;
+		ft_putstr_fd(strerror(errno), std.err);
+		ft_putstr_fd("\n", std.err);
+		return (1);
 	}
-	if (send_newline)
-		write(std.out, "\n", 1);
 	return (0);
 }
