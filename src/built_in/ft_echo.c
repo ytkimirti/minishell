@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 06:59:44 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/21 17:11:06 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/23 09:26:40 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	ft_echo(t_command *command, t_stdio std)
 	char	**str;
 	bool	send_newline;
 
+	if (command->argc == 0)
+		return (ft_putendl_fd("", std.out), 0);
 	str = command->argv + 1;
 	send_newline = true;
 	if (*str != NULL && ft_strncmp(*str, "-n", 3) == 0)
