@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:12:09 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/23 09:15:26 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/23 09:24:14 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ int	ft_cd(t_command *command, t_stdio std)
 	const char	*path;
 
 	(void)std;
-	path = command->argv[1];
-	if (path == NULL)
+	if (command->argc > 1)
+		path = command->argv[1];
+	else
 	{
 		path = get_env("HOME", 4);
 		if (path[0] == '\0')
