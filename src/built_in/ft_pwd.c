@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:12:09 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/21 17:28:58 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/23 09:28:44 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_pwd(t_command *command, t_stdio std)
 
 	(void)command;
 	str = get_env("PWD", 3);
-	if (str == NULL)
+	if (str[0] == '\0')
 	{
 		ft_putendl_fd("PWD environment variable is not set!", std.err);
 		return (1);
