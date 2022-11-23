@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 19:11:23 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/04 10:49:56 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/23 09:08:02 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void		set_env(const char *key, const char *value);
  * Deletes an environment variable from the list. Users can
  * delete every environment variable.
  */
-void		unset_env(const char *key, const char *value);
+void		unset_env(const char *key, int len);
 
 /*
  * This is used for testing
