@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:12:09 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/21 17:20:40 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/23 09:15:26 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,12 @@ int	ft_cd(t_command *command, t_stdio std)
 	(void)std;
 	path = command->argv[1];
 	if (path == NULL)
+	{
 		path = get_env("HOME", 4);
+		if (path[0] == '\0')
+			return (
+				ft_putendl_fd("env variable 'HOME' is not set", std.err), 1);
+	}
 	if (chdir(path) == -1)
 	{
 		ft_putstr_fd(strerror(errno), std.err);
