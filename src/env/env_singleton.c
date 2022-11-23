@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 14:32:51 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/01 12:07:22 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/23 09:12:54 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ t_map	**get_env_doubleptr(void)
 
 void	free_envdata(t_envdata *data)
 {
-	free(data->key);
+	if (data->is_allocated)
+		free(data->key);
 	free(data);
 }
 
