@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 14:26:45 by emakas            #+#    #+#             */
-/*   Updated: 2022/10/28 08:21:49 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/24 21:32:24 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,15 @@
 
 static void	destroy_all_entries(t_entry *entry, void (*del)(void *))
 {
+	t_entry	*tmp;
+
 	while (entry != NULL)
 	{
 		if (entry->value != NULL)
 			del(entry->value);
-		free(entry);
+		tmp = entry;
 		entry = entry->next;
+		free(tmp);
 	}
 }
 
