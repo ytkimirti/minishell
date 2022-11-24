@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 14:28:13 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/03 17:08:34 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/23 09:07:16 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,7 @@ typedef struct s_envdata
  * in it as a static variable.
  */
 t_map	*get_env_singleton(void);
+
+void	free_envdata(t_envdata *data);
 
 #endif

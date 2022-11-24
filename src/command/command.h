@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 13:18:17 by emakas            #+#    #+#             */
-/*   Updated: 2022/11/08 13:16:10 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/14 18:10:03 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void		free_command(t_command *command);
  * @brief Main command execution command. This checks against
  * builtin functions. If not found, finds binary from PATH
  *
- * @return int return code. -1 if execution failed.
+ * @return int return code. On error, prints it to stderr and
+ * returns SHELL_ERROR
  */
 int			execute_command(t_command *command, t_stdio std, bool is_async);
 

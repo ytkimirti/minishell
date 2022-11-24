@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 23:32:46 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/04 11:50:46 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/21 12:21:58 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ const char	*find_executable(const char *name)
 			return (str);
 		i++;
 	}
+	if (name != NULL && (name[0] == '.' || name[0] == '/'))
+		return (name);
 	return (NULL);
 }

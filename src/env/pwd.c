@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_env.c                                          :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/01 10:59:59 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/23 08:58:16 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/11/24 13:53:13 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/11/24 13:53:30 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <sys/param.h>
+#include <stdio.h>
 #include "env.h"
-#include "env_utils.h"
+#include <unistd.h>
 
-const char	*get_env(const char *key, int len)
+void	update_pwd_variable(void)
 {
-	t_map		*map;
-	t_envdata	*entry;
+	char	buf[MAXPATHLEN];
 
-	map = get_env_singleton();
-	entry = map_get(map, hashcode((void *)key, len));
-	if (entry == NULL)
-		return ("");
-	return (entry->value);
+	if (getcwd(buf, MAXPATHLEN) == NULL)
+	{
+		perror("getcwd error");
+		return ;
+	}
+	set_env("PWD", buf);
 }

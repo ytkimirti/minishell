@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sender.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
+/*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:02:58 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/12 20:26:47 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/24 21:13:48 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ int	main(int argc, char *argv[])
 	signal(SIGINT, on_sigpipe);
 	while (argv[1][i] != '\0')
 	{
-		if (write(1, &argv[1][i], 1) == -1)
+		char c = argv[1][i];
+		if (c == 'n')
+			c = '\n';
+		if (write(1, &c, 1) == -1)
 		{
 			perror("Write error!");
 			break ;
