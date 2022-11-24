@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:12:09 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/23 09:24:14 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/24 13:53:43 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ int	ft_cd(t_command *command, t_stdio std)
 		ft_putstr_fd("\n", std.err);
 		return (1);
 	}
+	update_pwd_variable();
 	return (0);
 }
