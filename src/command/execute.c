@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:58:12 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/23 08:49:58 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/24 13:11:42 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include "env.h"
 #include <error.h>
 #include <errno.h>
+#include <fcntl.h>
 
 static void	ft_dup2(int src, int target)
 {
@@ -28,6 +29,36 @@ static void	ft_dup2(int src, int target)
 		return ;
 	if (dup2(src, target) == -1)
 		exit((perror("dup2 error"), SHELL_ERROR));
+}
+
+/*
+ * This is only for processes that are forked
+ */
+static void	dup_fds(t_command *command, t_stdio std)
+{
+	int	fd;
+
+	if (command->out_file != NULL)
+	{
+		fd = open_output_file(command->out_file, command->is_append);
+		if (fd == -1)
+			exit(SHELL_ERROR);
+		ft_dup2(fd, 1);
+		close(fd);
+	}
+	else
+		ft_dup2(std.out, 1);
+	if (command->in_file != NULL)
+	{
+		fd = open_input_file(command->in_file);
+		if (fd == -1)
+			exit(SHELL_ERROR);
+		ft_dup2(fd, 0);
+		close(fd);
+	}
+	else
+		ft_dup2(std.in, 0);
+	ft_dup2(std.err, 2);
 }
 
 static void	exec_child(t_command *command, t_stdio std)
@@ -44,9 +75,7 @@ static void	exec_child(t_command *command, t_stdio std)
 		exit(127);
 	}
 	envp = extract_env();
-	ft_dup2(std.in, 0);
-	ft_dup2(std.out, 1);
-	ft_dup2(std.err, 2);
+	dup_fds(command, std);
 	if (!close_unwanted(std.unwanted_fds))
 		exit(SHELL_ERROR);
 	execve(path, command->argv, envp);
@@ -56,27 +85,6 @@ static void	exec_child(t_command *command, t_stdio std)
 	if (errno == ENOENT)
 		exit (127);
 	exit(126);
-}
-
-static int	execute_builtin(t_command *command, t_stdio std)
-{
-	if (ft_strncmp(command->argv[0], "echo", sizeof("echo")) == 0)
-		return (ft_echo(command, std));
-	if (ft_strncmp(command->argv[0], "path", sizeof("path")) == 0)
-		return (ft_path(command, std));
-	if (ft_strncmp(command->argv[0], "cd", sizeof("cd")) == 0)
-		return (ft_cd(command, std));
-	if (ft_strncmp(command->argv[0], "pwd", sizeof("pwd")) == 0)
-		return (ft_pwd(command, std));
-	if (ft_strncmp(command->argv[0], "exit", sizeof("exit")) == 0)
-		return (ft_exit(command, std));
-	if (ft_strncmp(command->argv[0], "env", sizeof("env")) == 0)
-		return (ft_env(command, std));
-	if (ft_strncmp(command->argv[0], "export", sizeof("export")) == 0)
-		return (ft_export(command, std));
-	if (ft_strncmp(command->argv[0], "unset", sizeof("unset")) == 0)
-		return (ft_unset(command, std));
-	return (-1);
 }
 
 int	execute_command(t_command *command, t_stdio std, bool is_sync)
