@@ -27,7 +27,7 @@ TEST_DIR = tests
 OBJ_DIR	:=	obj
 SRC_DIR	:=	src
 
-MODULES   := parser executer tokenizer utils map prompt command ast built_in env error print
+MODULES   := parser executer tokenizer utils map prompt command ast built_in env error print wildcard regex_engine
 SRC_DIRS   := $(addprefix src/,$(MODULES))
 OBJ_DIRS := $(addprefix obj/,$(MODULES))
 
