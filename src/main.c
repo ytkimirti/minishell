@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:18:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/21 14:42:00 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/24 14:35:34 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@
 #include "token.h"
 #include "parser.h"
 
+#include <signal.h>
 #include <stdio.h>
 #include <sys/wait.h>
 #include "utils.h"
 #include "ast_utils.h"
+#include "readline/readline.h"
 
 static void	execute_and_set_status(t_node *tree)
 {
@@ -66,11 +68,26 @@ static void	shell_loop(void)
 	}
 }
 
+void	signal_handler(int sig)
+{
+	if (sig == SIGINT)
+	{
+		if (waitpid(-1, 0, 0) != -1)
+			return ;
+		rl_replace_line("", 1);
+		printf("\n");
+		rl_on_new_line();
+		rl_redisplay();
+	}
+}
+
 int	main(int argc, char *argv[], char *envp[])
 {
 	(void)argc;
 	(void)argv;
 	(void)envp;
 	init_env(envp);
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, signal_handler);
 	shell_loop();
 }
