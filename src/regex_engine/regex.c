@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   regex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:46:49 by emakas            #+#    #+#             */
-/*   Updated: 2022/11/22 13:40:18 by emakas           ###   ########.fr       */
+/*   Updated: 2022/11/24 22:00:25 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "regex.h"
+#include "ft_regex.h"
 #include <stdlib.h>
 #include "libft.h"
 
