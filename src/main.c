@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:18:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/24 14:35:34 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/26 10:43:15 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ static void	shell_loop(void)
 		tokens = tokenize(line);
 		begin_trace(tokens, line);
 		tree = build_tree(tokens);
-		print_tree(tree);
 		end_trace();
 		execute_and_set_status(tree);
 		while (waitpid(-1, 0, 0) != -1)
