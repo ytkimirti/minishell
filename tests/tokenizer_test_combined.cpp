@@ -91,13 +91,11 @@ INSTANTIATE_TEST_SUITE_P(Tokenizer, TokenizeAllTest, testing::Values(
 					DummyToken{"file", WORD},
 
 					DummyToken{"", SPACE},
-					DummyToken{"", REDIR_IN},
-					DummyToken{"", REDIR_IN},
+					DummyToken{"", REDIR_HEREDOC},
 					DummyToken{"file", WORD},
 
 					DummyToken{"", SPACE},
-					DummyToken{"", REDIR_IN},
-					DummyToken{"", REDIR_IN},
+					DummyToken{"", REDIR_HEREDOC},
 					DummyToken{"", REDIR_IN},
 					DummyToken{"file", WORD},
 
