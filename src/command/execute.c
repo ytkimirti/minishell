@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:58:12 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/24 13:11:42 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/26 19:30:42 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	dup_fds(t_command *command, t_stdio std)
 		ft_dup2(std.out, 1);
 	if (command->in_file != NULL)
 	{
-		fd = open_input_file(command->in_file);
+		fd = open_input_file(command->in_file, command->is_heredoc);
 		if (fd == -1)
 			exit(SHELL_ERROR);
 		ft_dup2(fd, 0);

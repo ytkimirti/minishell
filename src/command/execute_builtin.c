@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 12:47:00 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/24 13:08:55 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/26 19:31:27 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	in_file_thing(t_command *command, t_stdio *std, int *ifile)
 		*ifile = -1;
 		return (true);
 	}
-	*ifile = open_input_file(command->in_file);
+	*ifile = open_input_file(command->in_file, command->is_heredoc);
 	if (*ifile == -1)
 		return (false);
 	std->in = *ifile;
