@@ -90,24 +90,24 @@ INSTANTIATE_TEST_SUITE_P(Tokenizer, TokenizeAllTest, testing::Values(
 					DummyToken{"", REDIR_IN},
 					DummyToken{"file", WORD},
 
-					DummyToken{"", SPACE},
+					DummyToken{"", SPACE_TOKEN},
 					DummyToken{"", REDIR_HEREDOC},
 					DummyToken{"file", WORD},
 
-					DummyToken{"", SPACE},
+					DummyToken{"", SPACE_TOKEN},
 					DummyToken{"", REDIR_HEREDOC},
 					DummyToken{"", REDIR_IN},
 					DummyToken{"file", WORD},
 
-					DummyToken{"", SPACE},
+					DummyToken{"", SPACE_TOKEN},
 					DummyToken{"", REDIR_OUT},
 					DummyToken{"file", WORD},
 
-					DummyToken{"", SPACE},
+					DummyToken{"", SPACE_TOKEN},
 					DummyToken{"", REDIR_APPEND},
 					DummyToken{"file", WORD},
 
-					DummyToken{"", SPACE},
+					DummyToken{"", SPACE_TOKEN},
 					DummyToken{"", REDIR_APPEND},
 					DummyToken{"", REDIR_OUT},
 					DummyToken{"file", WORD},
@@ -117,7 +117,7 @@ INSTANTIATE_TEST_SUITE_P(Tokenizer, TokenizeAllTest, testing::Values(
 				.input = "ahmet >>file",
 				.correct_tokens = std::vector<DummyToken>{
 					DummyToken{"ahmet", WORD},
-					DummyToken{"", SPACE},
+					DummyToken{"", SPACE_TOKEN},
 					DummyToken{"", REDIR_APPEND},
 					DummyToken{"file", WORD},
 				}
@@ -134,16 +134,16 @@ INSTANTIATE_TEST_SUITE_P(Tokenizer, TokenizeAllTest, testing::Values(
 				.input = "hello world",
 				.correct_tokens = std::vector<DummyToken>{
 					DummyToken{"hello", WORD},
-					DummyToken{"", SPACE},
+					DummyToken{"", SPACE_TOKEN},
 					DummyToken{"world", WORD},
 				}
 			},
 			TokenizeAllData{
 				.input = "  asd $home$mehmet",
 				.correct_tokens = std::vector<DummyToken>{
-					DummyToken{"", SPACE},
+					DummyToken{"", SPACE_TOKEN},
 					DummyToken{"asd", WORD},
-					DummyToken{"", SPACE},
+					DummyToken{"", SPACE_TOKEN},
 					DummyToken{"home", VAR},
 					DummyToken{"mehmet", VAR},
 				}
@@ -152,7 +152,7 @@ INSTANTIATE_TEST_SUITE_P(Tokenizer, TokenizeAllTest, testing::Values(
 				.input = "heyo 'no $expansion ok|()?'",
 				.correct_tokens = std::vector<DummyToken>{
 					DummyToken{"heyo", WORD},
-					DummyToken{"", SPACE},
+					DummyToken{"", SPACE_TOKEN},
 					DummyToken{"", SINGLE_QUOTE},
 					DummyToken{"no $expansion ok|()?", WORD},
 					DummyToken{"", SINGLE_QUOTE},
@@ -206,7 +206,7 @@ INSTANTIATE_TEST_SUITE_P(Tokenizer, TokenizeAllTest, testing::Values(
 					DummyToken{"", PAREN_CLOSE},
 					DummyToken{"", PIPE_TOKEN},
 
-					DummyToken{"", SPACE},
+					DummyToken{"", SPACE_TOKEN},
 
 					DummyToken{"continues", WORD},
 				}
@@ -215,16 +215,16 @@ INSTANTIATE_TEST_SUITE_P(Tokenizer, TokenizeAllTest, testing::Values(
 				.input = "hello (bwuh >file) | echo||cat&&|",
 				.correct_tokens = std::vector<DummyToken>{
 					DummyToken{"hello", WORD},
-					DummyToken{"", SPACE},
+					DummyToken{"", SPACE_TOKEN},
 					DummyToken{"", PAREN_OPEN},
 					DummyToken{"bwuh", WORD},
-					DummyToken{"", SPACE},
+					DummyToken{"", SPACE_TOKEN},
 					DummyToken{"", REDIR_OUT},
 					DummyToken{"file", WORD},
 					DummyToken{"", PAREN_CLOSE},
-					DummyToken{"", SPACE},
+					DummyToken{"", SPACE_TOKEN},
 					DummyToken{"", PIPE_TOKEN},
-					DummyToken{"", SPACE},
+					DummyToken{"", SPACE_TOKEN},
 					DummyToken{"echo", WORD},
 					DummyToken{"", OR_TOKEN},
 					DummyToken{"cat", WORD},

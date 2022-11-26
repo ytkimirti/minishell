@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 09:42:42 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/10 17:08:28 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/26 22:15:25 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_cstate
 int	find_token_len(t_token *token)
 {
 	if (token->type == WORD
-		|| token->type == SPACE)
+		|| token->type == SPACE_TOKEN)
 		return (token->len);
 	else if (token->type == VAR)
 		return (token->len + 1);
@@ -42,7 +42,7 @@ int	find_token_len(t_token *token)
 
 const char	*find_token_color(const t_token	*token, const t_cstate *state)
 {
-	if (token->type == SPACE)
+	if (token->type == SPACE_TOKEN)
 		return (RST);
 	else if (token->type == WORD)
 	{
@@ -74,7 +74,7 @@ static void	update_state(t_cstate *state, t_token *prev,
 {
 	if (prev == NULL || !is_command_token(curr))
 		state->is_first = true;
-	else if (curr->type == SPACE && is_command_token(prev))
+	else if (curr->type == SPACE_TOKEN && is_command_token(prev))
 		state->is_first = false;
 	if (curr->type == DOUBLE_QUOTE)
 		state->in_quotes = !state->in_quotes;
@@ -82,7 +82,7 @@ static void	update_state(t_cstate *state, t_token *prev,
 		state->in_squotes = !state->in_squotes;
 	if (is_redir_token(curr))
 		state->is_redir = true;
-	else if (curr->type == SPACE)
+	else if (curr->type == SPACE_TOKEN)
 		state->is_redir = false;
 }
 

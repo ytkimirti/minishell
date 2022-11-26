@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:35:02 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/13 15:08:49 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/26 22:14:46 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 t_node	*primary(t_token ***tokens)
 {
-	while (**tokens != NULL && (**tokens)->type == SPACE)
+	while (**tokens != NULL && (**tokens)->type == SPACE_TOKEN)
 		(*tokens)++;
 	if (**tokens == NULL)
 	{

@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 08:25:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/11 08:27:52 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/26 22:14:31 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	*expand_tokens(t_token ***tokens)
 	str[len] = '\0';
 	pos = 0;
 	state = (t_expand_state){false, false};
-	while (is_command_token(**tokens) && (**tokens)->type != SPACE
+	while (is_command_token(**tokens) && (**tokens)->type != SPACE_TOKEN
 		&& !is_redir_token(**tokens))
 	{
 		update_expand_state(&state, (**tokens)->type);
