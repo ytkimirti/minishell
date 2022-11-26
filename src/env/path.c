@@ -6,15 +6,13 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 23:32:46 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/21 12:21:58 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/26 10:22:38 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
-#include "command_utils.h"
 #include "libft.h"
 #include "env.h"
-#include "colors.h"
 
 const char	*find_executable(const char *name)
 {
