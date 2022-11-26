@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:18:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/26 10:43:15 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/26 22:18:34 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,19 @@ static void	shell_loop(void)
 			break ;
 		line[ft_strlen(line)] = '\0';
 		tokens = tokenize(line);
+		if (tokens == NULL || tokens[0] == NULL
+			|| (tokens[0]->type == SPACE_TOKEN && tokens[1] == NULL))
+		{
+			(free(line), free_tokens(tokens));
+			continue ;
+		}
 		begin_trace(tokens, line);
 		tree = build_tree(tokens);
 		end_trace();
 		execute_and_set_status(tree);
 		while (waitpid(-1, 0, 0) != -1)
 			;
-		free_tokens(tokens);
-		free_tree(tree);
+		(free_tokens(tokens), free_tree(tree));
 	}
 }
 
