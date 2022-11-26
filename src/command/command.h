@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 13:18:17 by emakas            #+#    #+#             */
-/*   Updated: 2022/11/14 18:10:03 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/26 10:50:48 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_command {
 	char			*out_file;
 	char			*in_file;
 	bool			is_append;
+	bool			is_heredoc;
 }	t_command;
 
 void		free_command(t_command *command);
