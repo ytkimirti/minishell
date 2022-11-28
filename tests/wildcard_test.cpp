@@ -113,7 +113,7 @@ TEST_P(WildcardDirectoryChecker, DirectoryChecking)
 
 
 INSTANTIATE_TEST_SUITE_P(DirectoryChecking, WildcardDirectoryChecker, testing::Values(
-	WildcardData { "/Users/emakas/Documents/42Cursus/minishell/tests/*.cpp", "p*" },
-	WildcardData { "/Users/emakas/Documents/42Cursus/minishell/*/*.c", "*D" },
-	WildcardData { "/Users/emakas/Documents/42Cursus/minishell/src/built*/*.c", "*a" }
+	WildcardData { "/Users/emakas/Documents/42Cursus/minishell", "tests/*.cpp" },
+	WildcardData { "/Users/emakas/Documents/42Cursus/minishell", "*/*.c" },
+	WildcardData { "/Users/emakas/Documents/42Cursus/minishell", "src/built*/*.c" }
 ));
