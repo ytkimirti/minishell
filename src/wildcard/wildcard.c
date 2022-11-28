@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:08:45 by emakas            #+#    #+#             */
-/*   Updated: 2022/11/26 21:24:06 by emakas           ###   ########.fr       */
+/*   Updated: 2022/11/28 17:07:26 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include <errno.h>
 #include <stdio.h>
 
-static t_pvec	*search_nodes(char *source, char **patterns);
+t_pvec	*search_nodes(char *source, char **patterns);
 
 static char		*concat_dir(char *dir1, char *dir2);
 
@@ -82,7 +82,7 @@ static void dig_in_dir(char *source, char *d_name, char **patterns, t_pvec *matc
  * @param len_pattern
  * @return t_pvec * char array vector
  */
-static t_pvec	*search_nodes(char *source, char **patterns)
+t_pvec	*search_nodes(char *source, char **patterns)
 {
 	struct dirent	*entry;
 	t_pvec			*matches;
