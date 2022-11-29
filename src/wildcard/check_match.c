@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:46:42 by emakas            #+#    #+#             */
-/*   Updated: 2022/11/26 23:01:10 by emakas           ###   ########.fr       */
+/*   Updated: 2022/11/29 15:31:49 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 static int check_edges(char *str, char *contains);
 static int	check_inside(char *str, char **contains);
+
+// test -> test
 
 int	check_match(char *str, char *pattern)
 {

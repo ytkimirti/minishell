@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:08:45 by emakas            #+#    #+#             */
-/*   Updated: 2022/11/28 17:07:26 by emakas           ###   ########.fr       */
+/*   Updated: 2022/11/29 17:34:09 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,9 @@ t_pvec	*search_nodes(char *source, char **patterns)
 		entry = readdir(dir);
 	}
 	closedir(dir);
+	for (int i = 0; matches->arr[i] != NULL; i++){
+		printf("%d -> %s [%p]\n", i, matches->arr[i], matches->arr[i]);
+	}
 	return (matches);
 }
 

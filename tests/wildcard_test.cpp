@@ -62,7 +62,8 @@ INSTANTIATE_TEST_SUITE_P(PatternsMatching, WildcardMatcherTest, testing::Values(
 	WildcardMatchData { "Desktop", "*e*p", true },
 	WildcardMatchData { "Desktop", "D*p", true },
 	WildcardMatchData { "Desktop", "Desktop*", true },
-	WildcardMatchData { "Desktop", "D**e**p", true }
+	WildcardMatchData { "Desktop", "D**e**p", true },
+	WildcardMatchData { "test", "test", true }
 ));
 
 INSTANTIATE_TEST_SUITE_P(PatternsNotMatching, WildcardMatcherTest, testing::Values(
@@ -71,7 +72,10 @@ INSTANTIATE_TEST_SUITE_P(PatternsNotMatching, WildcardMatcherTest, testing::Valu
 	WildcardMatchData { "Desktop", "*a", false },
 	WildcardMatchData { "Desktop", "Desk*ktop", false },
 	WildcardMatchData { "Desktop", "D*o*e*p", false },
-	WildcardMatchData { "Desktop", "*o*e*p", false }
+	WildcardMatchData { "Desktop", "*o*e*p", false },
+	WildcardMatchData { "..", "*.c", false },
+	WildcardMatchData { ".", "*.c", false },
+	WildcardMatchData { "Desktop", "test", false }
 ));
 
 
@@ -90,13 +94,13 @@ std::ostream& operator<<(std::ostream& stream, const WildcardData& data)
 {
 	
 	stream << YEL;
-	stream << "string: " << data.source << ", ";
+	stream << "source: " << data.source << ", ";
 	stream << "pattern: " << data.pattern << std::endl;
-	
+	stream << "dirs: " << std::endl;
 	for (int i = 0; i < data.list.size(); i++){
-		stream << "\t" << data.list[i];
+		stream << "\t" << data.list.at(i);
 	}
-
+	stream << std::endl << "end of dirs ";
 	stream << RST;
 	
 	return stream;
@@ -107,8 +111,16 @@ TEST_P(WildcardDirectoryChecker, DirectoryChecking)
 {
 	WildcardData data = GetParam();
 	char **patterns = ft_split((char *) data.pattern.c_str(),'/');
-	char ** list = (char **) search_nodes((char *) data.source.c_str(), patterns)->arr;
-	FAIL();
+	t_pvec *vect = search_nodes((char *) data.source.c_str(), patterns);
+	// void **arr = vect->arr;
+	// char **list = (char **)arr;
+	// int i = 0;
+	// while (list[i]){
+	// 	printf("Address of %d: %p\n",i,list[i]);
+	// 	std::string str(list[i]);
+	// 	std::cout << i << " " << str << std::endl;
+	// 	i++;
+	// }
 }
 
 
