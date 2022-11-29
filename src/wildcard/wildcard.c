@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:08:45 by emakas            #+#    #+#             */
-/*   Updated: 2022/11/29 17:34:09 by emakas           ###   ########.fr       */
+/*   Updated: 2022/11/29 19:43:22 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,28 @@ char	**expand_wildcard(t_token *token)
 	return (matches);
 }
 
-static void dig_in_dir(char *source, char *d_name, char **patterns, t_pvec *matches)
+static void	\
+dig_in_dir(char *source, char *d_name, char **patterns, t_pvec *matches)
 {
 	char	*source_new;
+	t_pvec	*pvec;
 
 	source_new = concat_dir(source, d_name);
-	vector_append_all(matches,search_nodes(source_new, patterns));
+	pvec = search_nodes(source_new, patterns);
+	if (pvec->len > 0)
+		vector_append_all(matches,pvec);
+	free(pvec->arr);
+	free(pvec);
 	free(source_new);
+}
+
+static int	check_spec_dirs(char *dirname)
+{
+	int len_dir;
+
+	len_dir = ft_strlen(dirname);
+	return (ft_strncmp(dirname,".",len_dir) == 0
+		|| ft_strncmp(dirname,"..",len_dir) == 0);
 }
 
 /**
@@ -88,27 +103,25 @@ t_pvec	*search_nodes(char *source, char **patterns)
 	t_pvec			*matches;
 	DIR				*dir;
 
-	matches = pvec_new(1);
+	matches = pvec_new(5);
 	dir = opendir(source);
 	entry = readdir(dir);
 	while (entry != NULL && dir != NULL)
 	{
-		if (check_match(entry->d_name, patterns[0]))
+		if ( !check_spec_dirs(entry->d_name) 
+			&& check_match(entry->d_name, patterns[0]))
 		{
-			if (patterns[1] != NULL)
+			if (patterns[1] != NULL && entry->d_type == DT_DIR)
 				dig_in_dir(source, entry->d_name,&patterns[1],matches);
-			else
+			else if (patterns[1] == NULL)
 				pvec_append(matches, concat_dir(source, entry->d_name));
 		}
 		entry = readdir(dir);
 	}
 	closedir(dir);
-	for (int i = 0; matches->arr[i] != NULL; i++){
-		printf("%d -> %s [%p]\n", i, matches->arr[i], matches->arr[i]);
-	}
+	pvec_append(matches, NULL);
 	return (matches);
 }
-
 
 static char	*concat_dir(char *dir1, char *dir2)
 {

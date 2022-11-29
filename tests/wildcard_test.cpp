@@ -112,15 +112,14 @@ TEST_P(WildcardDirectoryChecker, DirectoryChecking)
 	WildcardData data = GetParam();
 	char **patterns = ft_split((char *) data.pattern.c_str(),'/');
 	t_pvec *vect = search_nodes((char *) data.source.c_str(), patterns);
-	// void **arr = vect->arr;
-	// char **list = (char **)arr;
-	// int i = 0;
-	// while (list[i]){
-	// 	printf("Address of %d: %p\n",i,list[i]);
-	// 	std::string str(list[i]);
-	// 	std::cout << i << " " << str << std::endl;
-	// 	i++;
-	// }
+	void **arr = vect->arr;
+	char **list = (char **)arr;
+	int i = 0;
+	std::cout << YEL << std::endl << data.source << "\t" << data.pattern << RST << std::endl;
+	while (list[i]){
+		printf("%d [%p] -> %s\n", i, list[i], list[i]);
+		i++;
+	}
 }
 
 
