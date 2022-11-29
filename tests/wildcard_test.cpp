@@ -80,7 +80,7 @@ struct WildcardData
 {
 	std::string source;
 	std::string pattern;
-	char ** list;
+	std::vector<std::string> list;
 };
 
 
@@ -93,7 +93,7 @@ std::ostream& operator<<(std::ostream& stream, const WildcardData& data)
 	stream << "string: " << data.source << ", ";
 	stream << "pattern: " << data.pattern << std::endl;
 	
-	for (int i = 0; data.list[i] != NULL; i++){
+	for (int i = 0; i < data.list.size(); i++){
 		stream << "\t" << data.list[i];
 	}
 
