@@ -128,6 +128,12 @@ int	run_primary(t_token ***tokens, t_stdio std, bool is_sync)
 		return (error_unexpected(**tokens, EMPTY), SHELL_ERROR);
 }
 
+static void	ft_close(int fd)
+{
+	if (close(fd) == -1)
+		perror("ft_close error");
+}
+
 int	run_pipeline(t_token ***tokens, t_stdio std, bool is_sync)
 {
 	int	fds[2];
