@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 09:44:54 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/04 18:56:53 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/04 19:02:04 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int	run_pipeline(t_token ***tokens, t_stdio std, bool is_sync)
 		std.in = fds[0];
 		(*tokens)++;
 	}
+	std.out = original_out;
 	status = run_primary(tokens, std, true);
 	close_if_not_eq(std.in, 0);
 	while (is_sync && waitpid(-1, 0, 0) != -1)
