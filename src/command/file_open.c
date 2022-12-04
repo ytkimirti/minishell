@@ -17,6 +17,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "libft.h"
+#include "signal.h"
 
 int	open_output_file(const char *file, bool is_append)
 {
