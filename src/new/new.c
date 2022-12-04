@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 09:44:54 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/27 16:33:34 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/04 18:36:19 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,14 +151,17 @@ int	run_pipeline(t_token ***tokens, t_stdio std, bool is_sync)
 			return (SHELL_ERROR);
 		if (**tokens == NULL || (**tokens)->type != PIPE_TOKEN)
 			break ;
-		close(fds[1]);
+		ft_close(fds[1]);
 		std.unwanted_fds->len--;
+		if (std.in != 0)
+			ft_close(std.in);
 		std.in = fds[0];
 		(*tokens)++;
 	}
-	ivec_append(std.unwanted_fds, std.in);
 	std.out = original_out;
 	status = run_primary(tokens, std, true);
+	if (std.in != 0)
+		ft_close(std.in);
 	while (is_sync && waitpid(-1, 0, 0) != -1)
 		;
 	return (status);
