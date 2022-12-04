@@ -24,6 +24,7 @@
 #include <unistd.h>
 #include "error.h"
 #include "libft.h"
+#include "utils.h"
 
 int	run_paren(t_token ***tokens, t_stdio std, bool is_sync)
 {

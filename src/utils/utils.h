@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:26:50 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/10 19:14:58 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/04 18:59:28 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,13 @@ char	*node_type_tostr(t_node_type type);
  * in the future
  */
 char	*token_type_repr(t_token_type type);
+
+/*
+* Closes fd only if fd != exception
+* Used like
+* close_if_not_eq(std.in, 0)
+* // close stdin if it's not 0
+*/
+void	close_if_not_eq(int fd, int exception);
 
 #endif
