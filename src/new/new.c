@@ -6,10 +6,11 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 09:44:54 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/04 18:37:21 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/04 18:46:37 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "new_utils.h"
 #include "command.h"
 #include "token.h"
 #include "parser_utils.h"
@@ -23,72 +24,6 @@
 #include <unistd.h>
 #include "error.h"
 #include "libft.h"
-
-int	parse_and_run_command(t_token ***tokens, t_stdio std, bool is_sync)
-{
-	t_command	*command;
-	int			status;
-
-	command = create_command(tokens);
-	if (command == NULL)
-		return (SHELL_ERROR);
-	status = execute_command(command, std, is_sync);
-	free(command);
-	return (status);
-}
-
-int	run_expr(t_token ***tokens, t_stdio std, bool is_sync);
-
-t_token	**jump_paren(t_token **tokens)
-{
-	int	depth;
-
-	assert(*tokens != NULL && (*tokens)->type == PAREN_OPEN);
-	depth = 0;
-	while (*tokens != NULL)
-	{
-		if ((*tokens)->type == PAREN_OPEN)
-			depth++;
-		if ((*tokens)->type == PAREN_CLOSE)
-			depth--;
-		if (depth == 0)
-			return (tokens);
-		tokens++;
-	}
-	return (tokens);
-}
-
-t_token	**jump_primary(t_token **tokens)
-{
-	if ((*tokens)->type == PAREN_OPEN)
-		return (jump_paren(tokens));
-	while (*tokens != NULL && (is_command_token(*tokens)
-			|| (*tokens)->type == SPACE_TOKEN))
-		tokens++;
-	return (tokens);
-}
-
-t_token	**jump_pipeline(t_token **tokens)
-{
-	tokens = jump_primary(tokens);
-	while ((*tokens) != NULL && (*tokens)->type == PIPE_TOKEN)
-	{
-		tokens++;
-		tokens = jump_pipeline(tokens);
-	}
-	return (tokens);
-}
-
-bool	is_next_pipeline(t_token **tokens)
-{
-	t_token	**jumped;
-
-	jumped = jump_primary(tokens);
-	skip_spaces(&jumped);
-	if (*jumped == NULL)
-		return (false);
-	return ((*jumped)->type == PIPE_TOKEN);
-}
 
 int	run_paren(t_token ***tokens, t_stdio std, bool is_sync)
 {
@@ -128,12 +63,6 @@ int	run_primary(t_token ***tokens, t_stdio std, bool is_sync)
 		return (error_unexpected(**tokens, EMPTY), SHELL_ERROR);
 }
 
-static void	ft_close(int fd)
-{
-	if (close(fd) == -1)
-		perror("ft_close error");
-}
-
 int	run_pipeline(t_token ***tokens, t_stdio std, bool is_sync)
 {
 	int	fds[2];
@@ -151,17 +80,17 @@ int	run_pipeline(t_token ***tokens, t_stdio std, bool is_sync)
 			return (SHELL_ERROR);
 		if (**tokens == NULL || (**tokens)->type != PIPE_TOKEN)
 			break ;
-		ft_close(fds[1]);
+		close(fds[1]);
 		std.unwanted_fds->len--;
 		if (std.in != 0)
-			ft_close(std.in);
+			close(std.in);
 		std.in = fds[0];
 		(*tokens)++;
 	}
 	std.out = original_out;
 	status = run_primary(tokens, std, true);
 	if (std.in != 0)
-		ft_close(std.in);
+		close(std.in);
 	while (is_sync && waitpid(-1, 0, 0) != -1)
 		;
 	return (status);
@@ -201,7 +130,6 @@ int	run_expr(t_token ***tokens, t_stdio std, bool is_sync)
 //
 // echo | cat | cat
 // echo | cat | ( asldk adks lajdlskd j)
-
 // AST Syntax
 // expr -> pipeline ( ( "&&" | "||" ) pipeline )*
 // pipeline -> primary ( "|" primary )*
