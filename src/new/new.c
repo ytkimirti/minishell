@@ -95,19 +95,24 @@ int	run_paren(t_token ***tokens, t_stdio std, bool is_sync)
 	int	pid;
 	int	status;
 
+	if (*jump_paren(*tokens) == NULL)
+		return (error_unexpected(NULL, PAREN_CLOSE), SHELL_ERROR);
 	pid = fork();
 	if (pid == -1)
 		return (perror("fork error"), SHELL_ERROR);
 	if (pid == 0)
 	{
+		(*tokens)++;
 		exit(run_expr(tokens, std, is_sync));
 	}
+	status = 0;
 	if (is_sync)
 	{
 		waitpid(pid, &status, 0);
-		return (WEXITSTATUS(status));
+		status = WEXITSTATUS(status);
 	}
-	return (0);
+	*tokens = jump_paren(*tokens) + 1;
+	return (status);
 }
 
 int	run_primary(t_token ***tokens, t_stdio std, bool is_sync)
