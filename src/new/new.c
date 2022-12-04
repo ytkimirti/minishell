@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 09:44:54 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/04 18:36:19 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/04 18:37:21 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,45 +167,6 @@ int	run_pipeline(t_token ***tokens, t_stdio std, bool is_sync)
 	return (status);
 }
 
-// int	run_pipeline(t_token ***tokens, t_stdio std, bool is_sync)
-// {
-// 	int	fds[2];
-// 	int	tmp;
-// 	int	status;
-//
-// 	tmp = 0;
-// 	while (is_next_pipeline(*tokens))
-// 	{
-// 		if (pipe(fds) == -1)
-// 			return (perror("pipe error"), SHELL_ERROR);
-// 		dprintf(2, "pipe %d %d\n", fds[1], fds[0]);
-// 		std.in = tmp;
-// 		std.out = fds[1];
-// 		if (run_primary(tokens, std, false) == SHELL_ERROR)
-// 			return (SHELL_ERROR);
-// 		if (tmp != 0)
-// 		{
-// 			close(tmp);
-// 			dprintf(2, "close orta temp(%d)\n", tmp);
-// 		}
-// 		close(fds[1]);
-// 		dprintf(2, "close fds[1](%d)\n", fds[1]);
-// 		tmp = fds[0];
-// 		(*tokens)++;
-// 	}
-// 	std.out = 1;
-// 	std.in = tmp;
-// 	status = run_primary(tokens, std, true);
-// 	if (tmp != 0)
-// 	{
-// 		close(tmp);
-// 		dprintf(2, "close tmp(%d)\n", tmp);
-// 	}
-// 	while (is_sync && waitpid(-1, 0, 0) != -1)
-// 		;
-// 	return (status);
-// }
-//
 int	run_expr(t_token ***tokens, t_stdio std, bool is_sync)
 {
 	int	last_status;
