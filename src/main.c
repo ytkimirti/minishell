@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:18:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/26 22:18:34 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/04 19:02:20 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,12 @@
 #include "utils.h"
 #include "ast_utils.h"
 #include "readline/readline.h"
-
-static void	execute_and_set_status(t_node *tree)
-{
-	int			status;
-	static int	last_status = -1;
-	char		*tmp_str;
-
-	status = execute_tree(tree);
-	if (status == last_status)
-		return ;
-	last_status = status;
-	tmp_str = ft_itoa(status);
-	set_env("?", tmp_str);
-	free(tmp_str);
-}
+#include "new.h"
 
 static void	shell_loop(void)
 {
 	char	*line;
 	t_token	**tokens;
-	t_node	*tree;
 
 	while (true)
 	{
@@ -63,12 +48,11 @@ static void	shell_loop(void)
 			continue ;
 		}
 		begin_trace(tokens, line);
-		tree = build_tree(tokens);
+		execute_tokens(tokens);
 		end_trace();
-		execute_and_set_status(tree);
 		while (waitpid(-1, 0, 0) != -1)
 			;
-		(free_tokens(tokens), free_tree(tree));
+		free_tokens(tokens);
 	}
 }
 

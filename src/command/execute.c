@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:58:12 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/26 19:30:42 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/04 19:04:06 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ static void	dup_fds(t_command *command, t_stdio std)
 		ft_dup2(fd, 1);
 		close(fd);
 	}
-	else
-		ft_dup2(std.out, 1);
+	else if (std.out != 1)
+		close((ft_dup2(std.out, 1), std.out));
 	if (command->in_file != NULL)
 	{
 		fd = open_input_file(command->in_file, command->is_heredoc);
@@ -56,9 +56,8 @@ static void	dup_fds(t_command *command, t_stdio std)
 		ft_dup2(fd, 0);
 		close(fd);
 	}
-	else
-		ft_dup2(std.in, 0);
-	ft_dup2(std.err, 2);
+	else if (std.in != 0)
+		close((ft_dup2(std.in, 0), std.in));
 }
 
 static void	exec_child(t_command *command, t_stdio std)

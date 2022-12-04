@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 13:45:27 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/26 20:05:54 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/04 19:11:35 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "libft.h"
+#include "signal.h"
 
 int	open_output_file(const char *file, bool is_append)
 {
@@ -65,6 +66,7 @@ static int	open_heredoc_file(const char *file)
 		ft_putendl_fd(line, fds[1]);
 		free(line);
 	}
+	signal(SIGINT, mem_handler);
 	return (dup2(readline_dup, 0), close(readline_dup), close(fds[1]), fds[0]);
 }
 
