@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 09:44:54 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/04 19:02:04 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/04 19:13:13 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #include "error.h"
 #include "libft.h"
 #include "utils.h"
+#include <sys/wait.h>
 
 int	run_paren(t_token ***tokens, t_stdio std, bool is_sync)
 {
