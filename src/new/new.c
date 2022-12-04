@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 09:44:54 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/04 18:46:37 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/04 18:56:53 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	run_paren(t_token ***tokens, t_stdio std, bool is_sync)
 	if (pid == 0)
 	{
 		(*tokens)++;
-		exit(run_expr(tokens, std, is_sync));
+		exit(run_expr(tokens, std));
 	}
 	status = 0;
 	if (is_sync)
@@ -63,6 +63,8 @@ int	run_primary(t_token ***tokens, t_stdio std, bool is_sync)
 		return (error_unexpected(**tokens, EMPTY), SHELL_ERROR);
 }
 
+// TODO: Protect the pipe syscall against error
+// But no more lines, so pfff
 int	run_pipeline(t_token ***tokens, t_stdio std, bool is_sync)
 {
 	int	fds[2];
@@ -72,35 +74,28 @@ int	run_pipeline(t_token ***tokens, t_stdio std, bool is_sync)
 	original_out = std.out;
 	while (is_next_pipeline(*tokens))
 	{
-		if (pipe(fds) == -1)
-			return (perror("pipe error"), SHELL_ERROR);
+		pipe(fds);
 		std.out = fds[1];
 		ivec_append(std.unwanted_fds, fds[0]);
 		if (run_primary(tokens, std, false) == SHELL_ERROR)
 			return (SHELL_ERROR);
-		if (**tokens == NULL || (**tokens)->type != PIPE_TOKEN)
-			break ;
 		close(fds[1]);
 		std.unwanted_fds->len--;
-		if (std.in != 0)
-			close(std.in);
+		close_if_not_eq(std.in, 0);
 		std.in = fds[0];
 		(*tokens)++;
 	}
-	std.out = original_out;
 	status = run_primary(tokens, std, true);
-	if (std.in != 0)
-		close(std.in);
+	close_if_not_eq(std.in, 0);
 	while (is_sync && waitpid(-1, 0, 0) != -1)
 		;
 	return (status);
 }
 
-int	run_expr(t_token ***tokens, t_stdio std, bool is_sync)
+int	run_expr(t_token ***tokens, t_stdio std)
 {
 	int	last_status;
 
-	(void)is_sync;
 	last_status = run_pipeline(tokens, std, true);
 	if (last_status == SHELL_ERROR)
 		return (SHELL_ERROR);
@@ -140,7 +135,7 @@ int	execute_tokens(t_token **tokens)
 	t_ivec	*unwanted;
 
 	unwanted = ivec_new(10);
-	status = run_expr(&tokens, (t_stdio){0, 1, 2, unwanted}, true);
+	status = run_expr(&tokens, (t_stdio){0, 1, 2, unwanted});
 	if (*tokens != NULL)
 	{
 		error_unexpected(*tokens, EMPTY);
