@@ -71,5 +71,17 @@ TEST_P(WildcardDirectoryChecker, DirectoryChecking)
 INSTANTIATE_TEST_SUITE_P(DirectoryChecking, WildcardDirectoryChecker, testing::Values(
 	WildcardData { "tests/dirs/code/Make*", std::vector<std::string>{
 		"tests/dirs/code/Makefile"
-	} }
+	}},
+	WildcardData { "tests/dirs/code/*.c", std::vector<std::string>{
+		"tests/dirs/code/main.c",
+		"tests/dirs/code/other.c",
+	}},
+	WildcardData { "tests/dirs/code/*.*.js", std::vector<std::string>{
+		"tests/dirs/code/other.config.js",
+		"tests/dirs/code/thing.config.js",
+	}},
+	WildcardData { "tests/dirs/*/ensar", std::vector<std::string>{
+		"tests/dirs/code/ensar",
+		"tests/dirs/names/ensar",
+	}}
 ));
