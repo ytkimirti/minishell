@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:46:49 by emakas            #+#    #+#             */
-/*   Updated: 2022/11/26 18:12:14 by emakas           ###   ########.fr       */
+/*   Updated: 2022/12/05 08:30:59 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ static char	*search_backward(char *str, char *position, char *regex);
 // En sonda bir imleç işaretçisi dönecek. Onun pozisyonuna göre 1 veya 0 dönecek
 int	match_string(char *str, char *regex)
 {
-	char    *cursor;
+	char	*cursor;
 
 	cursor = search_str(str, regex);
-	return (ft_strlen(str) == (size_t) ((cursor - str) + 1));
+	return (ft_strlen(str) == (size_t)((cursor - str) + 1));
 }
 
 /**
@@ -35,7 +35,7 @@ int	match_string(char *str, char *regex)
 static char	*search_str(char *str, char *regex)
 {
 	char	*cursor;
-	int     search_direction;
+	int		search_direction;
 
 	search_direction = 1;
 	cursor = str;
