@@ -107,7 +107,7 @@ char	**expand_wildcard(t_token *token)
 	if (token->str[0] == '/')
 		source = "/";
 	else
-		source = "./";
+		source = ".";
 	pattern = dup_token_str(token);
 	if (pattern == NULL)
 		malloc_error();
