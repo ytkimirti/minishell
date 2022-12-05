@@ -51,9 +51,6 @@ TEST_P(WildcardMatcherTest, PatternMatching)
 	ASSERT_EQ(check_match((char *)data.str.c_str(), (char *)data.pattern.c_str()),data.expected);
 }
 
-
-
-
 INSTANTIATE_TEST_SUITE_P(PatternsMatching, WildcardMatcherTest, testing::Values(
 	WildcardMatchData { "Desktop", "*", true },
 	WildcardMatchData { "Desktop", "*e*", true },
@@ -76,55 +73,4 @@ INSTANTIATE_TEST_SUITE_P(PatternsNotMatching, WildcardMatcherTest, testing::Valu
 	WildcardMatchData { "..", "*.c", false },
 	WildcardMatchData { ".", "*.c", false },
 	WildcardMatchData { "Desktop", "test", false }
-));
-
-
-
-struct WildcardData
-{
-	std::string source;
-	std::string pattern;
-	std::vector<std::string> list;
-};
-
-
-class WildcardDirectoryChecker: public testing::TestWithParam<WildcardData> {};
-
-std::ostream& operator<<(std::ostream& stream, const WildcardData& data)
-{
-	
-	stream << YEL;
-	stream << "source: " << data.source << ", ";
-	stream << "pattern: " << data.pattern << std::endl;
-	stream << "dirs: " << std::endl;
-	for (int i = 0; i < data.list.size(); i++){
-		stream << "\t" << data.list.at(i);
-	}
-	stream << std::endl << "end of dirs ";
-	stream << RST;
-	
-	return stream;
-}
-
-
-TEST_P(WildcardDirectoryChecker, DirectoryChecking)
-{
-	WildcardData data = GetParam();
-	char **patterns = ft_split((char *) data.pattern.c_str(),'/');
-	t_pvec *vect = search_nodes((char *) data.source.c_str(), patterns);
-	void **arr = vect->arr;
-	char **list = (char **)arr;
-	int i = 0;
-	std::cout << YEL << std::endl << data.source << "\t" << data.pattern << RST << std::endl;
-	while (list[i]){
-		printf("%d [%p] -> %s\n", i, list[i], list[i]);
-		i++;
-	}
-}
-
-
-INSTANTIATE_TEST_SUITE_P(DirectoryChecking, WildcardDirectoryChecker, testing::Values(
-	WildcardData { "/Users/emakas/Documents/42Cursus/minishell", "tests/*.cpp" },
-	WildcardData { "/Users/emakas/Documents/42Cursus/minishell", "*/*.c" },
-	WildcardData { "/Users/emakas/Documents/42Cursus/minishell", "src/built*/*.c" }
 ));
