@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 18:21:55 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/10 19:15:41 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/26 22:13:44 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static char	*token_type_tostr2(enum e_token_type type)
 		return ("PIPE_TOKEN");
 	if (type == REDIR_IN)
 		return ("REDIR_IN");
+	if (type == REDIR_HEREDOC)
+		return ("REDIR_HEREDOC");
 	if (type == REDIR_OUT)
 		return ("REDIR_OUT");
 	if (type == REDIR_APPEND)
@@ -38,8 +40,8 @@ char	*token_type_tostr(enum e_token_type type)
 {
 	if (type == WORD)
 		return ("WORD");
-	if (type == SPACE)
-		return ("SPACE");
+	if (type == SPACE_TOKEN)
+		return ("SPACE_TOKEN");
 	if (type == DOUBLE_QUOTE)
 		return ("DOUBLE_QUOTE");
 	if (type == SINGLE_QUOTE)
@@ -67,6 +69,8 @@ char	*token_type_repr(t_token_type type)
 		return (")");
 	if (type == REDIR_IN)
 		return ("<");
+	if (type == REDIR_HEREDOC)
+		return ("<<");
 	if (type == REDIR_OUT)
 		return (">");
 	if (type == REDIR_APPEND)

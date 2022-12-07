@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 19:11:23 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/23 09:08:02 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/26 10:21:52 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,11 @@ void		init_env(char **envp);
  * "/bin/ls"
  */
 const char	*get_joined_path(const char *executable_name, int index);
+
+/*
+ * Tries to find executable in path. If found, returns
+ * the path of the executable. Else returns NULL
+ */
+const char	*find_executable(const char *name);
 
 #endif

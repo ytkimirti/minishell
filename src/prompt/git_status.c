@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 09:51:47 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/10/28 12:08:54 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/26 10:25:04 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,7 @@
 #include "git_status_utils.h"
 #include "stdio.h"
 #include <stdbool.h>
-
-#define NO_GIT
-
-#ifndef GIT_PATH
-
-# define GIT_PATH "/us r/bin/git"
-
-#endif
+#include "env.h"
 
 #ifndef NO_GIT
 
@@ -41,7 +34,7 @@ static bool	get_did_git_fail_last_time(bool did_fail)
 	return (s_did_fail);
 }
 
-static void	handle_child(int gitpipe[2])
+static void	handle_child(int gitpipe[2], const char *path)
 {
 	int	dev_null;
 
@@ -51,7 +44,7 @@ static void	handle_child(int gitpipe[2])
 	dev_null = open("/dev/null", O_WRONLY);
 	dup2(dev_null, 2);
 	close(dev_null);
-	execve(GIT_PATH,
+	execve(path,
 		(char *[]){"git", "symbolic-ref", "--quiet", "HEAD", NULL},
 		NULL);
 	exit(127);
@@ -65,11 +58,7 @@ static void	handle_git_fail(int status)
 	if (get_did_git_fail_last_time(false))
 		return ;
 	if (status_code == 127)
-	{
 		get_did_git_fail_last_time(true);
-		ft_printf(BYEL "WARN:" RST " git is not found in variable "
-			"GIT_PATH which is %s\n", GIT_PATH);
-	}
 }
 
 // Uses command 
@@ -80,14 +69,18 @@ char	*get_git_branch(void)
 	pid_t		pid;
 	int			status;
 	char		*res;
+	const char	*path;
 
 	if (get_did_git_fail_last_time(false))
+		return (NULL);
+	path = find_executable("git");
+	if (path == NULL)
 		return (NULL);
 	if (pipe(gitpipe) == -1)
 		return (NULL);
 	pid = fork();
 	if (pid == 0)
-		handle_child(gitpipe);
+		handle_child(gitpipe, path);
 	close(gitpipe[1]);
 	res = handle_git_output(gitpipe[0]);
 	waitpid(pid, &status, 0);

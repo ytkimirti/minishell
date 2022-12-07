@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 14:57:19 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/21 07:34:55 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/26 10:23:56 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ typedef struct s_node
 	t_command			*command;
 }	t_node;
 
-t_node	*build_example_tree(void);
-
+/*
+ * Builds the tree by parsing it from tokens using AST
+ */
 t_node	*build_tree(t_token **tokens);
 
 /*

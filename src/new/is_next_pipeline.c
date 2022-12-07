@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   path.c                                             :+:      :+:    :+:   */
+/*   is_next_pipeline.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 23:32:46 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/21 12:21:58 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/12/04 18:45:52 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/12/04 18:46:34 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
-#include "command_utils.h"
-#include "libft.h"
-#include "env.h"
-#include "colors.h"
+#include "new_utils.h"
+#include "parser_utils.h"
+#include <unistd.h>
 
-const char	*find_executable(const char *name)
+bool	is_next_pipeline(t_token **tokens)
 {
-	const char	*str;
-	int			i;
+	t_token	**jumped;
 
-	i = 0;
-	while (true)
-	{
-		str = get_joined_path(name, i);
-		if (str == NULL)
-			break ;
-		if (access(str, X_OK) == 0)
-			return (str);
-		i++;
-	}
-	if (name != NULL && (name[0] == '.' || name[0] == '/'))
-		return (name);
-	return (NULL);
+	jumped = jump_primary(tokens);
+	skip_spaces(&jumped);
+	if (*jumped == NULL)
+		return (false);
+	return ((*jumped)->type == PIPE_TOKEN);
 }

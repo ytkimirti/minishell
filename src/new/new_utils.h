@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_redir_token.c                                   :+:      :+:    :+:   */
+/*   new_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 16:07:04 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/26 11:38:43 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/12/04 18:38:46 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/12/04 18:59:32 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "token.h"
-#include <stdlib.h>
+#ifndef NEW_UTILS_H
 
-bool	is_redir_token(t_token *token)
-{
-	return (token != NULL
-		&& (token->type == REDIR_OUT
-			|| token->type == REDIR_IN
-			|| token->type == REDIR_APPEND
-			|| token->type == REDIR_HEREDOC));
-}
+# define NEW_UTILS_H
+
+# include "token.h"
+# include "tstdio.h"
+
+bool	is_next_pipeline(t_token **tokens);
+
+int		run_expr(t_token ***tokens, t_stdio std);
+
+int		parse_and_run_command(t_token ***tokens, t_stdio std, bool is_sync);
+
+t_token	**jump_paren(t_token **tokens);
+
+t_token	**jump_primary(t_token **tokens);
+
+t_token	**jump_pipeline(t_token **tokens);
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 23:42:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/10 19:52:15 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/26 22:14:37 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	length_tokens(t_token **tokens)
 
 	len = 0;
 	i = 0;
-	while (is_command_token(tokens[i]) && (tokens[i])->type != SPACE
+	while (is_command_token(tokens[i]) && (tokens[i])->type != SPACE_TOKEN
 		&& !is_redir_token(tokens[i]))
 	{
 		len += length_token(tokens[i]);

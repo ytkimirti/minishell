@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 06:59:44 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/23 09:26:40 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/26 21:51:34 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	ft_echo(t_command *command, t_stdio std)
 	{
 		ft_putstr_fd(*str, std.out);
 		str++;
+		if (*str != NULL)
+			ft_putstr_fd(" ", std.out);
 	}
 	if (send_newline)
 		write(std.out, "\n", 1);

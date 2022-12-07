@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:23:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/10 19:09:50 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/26 22:14:12 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef enum e_token_type
 {
 	EMPTY,
 	WORD,
-	SPACE,
+	SPACE_TOKEN,
 	VAR,
 	PAREN_OPEN,
 	PAREN_CLOSE,
@@ -32,6 +32,7 @@ typedef enum e_token_type
 	REDIR_IN,
 	REDIR_OUT,
 	REDIR_APPEND,
+	REDIR_HEREDOC,
 }	t_token_type;
 
 typedef struct s_token

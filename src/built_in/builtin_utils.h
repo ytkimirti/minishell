@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_funcs.h                                    :+:      :+:    :+:   */
+/*   builtin_utils.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 13:26:15 by emakas            #+#    #+#             */
-/*   Updated: 2022/11/24 12:45:36 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/26 10:35:29 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_FUNCS_H
+#ifndef BUILTIN_UTILS_H
 
-# define BUILTIN_FUNCS_H
+# define BUILTIN_UTILS_H
 
 # include "command.h"
 

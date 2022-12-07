@@ -22,6 +22,7 @@ struct DummyCommandData
 	std::string					in_file;
 	std::string					out_file;
 	bool						is_append;
+	bool						is_heredoc;
 
 	// This prevents gtest from outputting nonsense hexadecimal output
 	friend std::ostream& operator<<(std::ostream& os, const DummyCommandData& bar) {
@@ -61,6 +62,7 @@ void	fill_dummy_command(t_command *cmd, DummyCommandData &data)
 	else
 		cmd->in_file = (char *)data.in_file.c_str();
 	cmd->is_append = data.is_append;
+	cmd->is_heredoc = data.is_heredoc;
 }
 
 void	free_dummy_command(t_command *cmd)
@@ -150,7 +152,22 @@ INSTANTIATE_TEST_SUITE_P(Tokenizer, ParserTest, testing::Values(
 				.out_file = "file",
 				.is_append = true,
 			},
-
+			DummyCommandData{
+				.input = "ahmet <<file",
+				.argv = std::vector<std::string>{
+					"ahmet",
+				},
+				.in_file = "file",
+				.is_heredoc = true,
+			},
+			DummyCommandData{
+				.input = "<<EOF ahmet",
+				.argv = std::vector<std::string>{
+					"ahmet",
+				},
+				.in_file = "EOF",
+				.is_heredoc = true,
+			},
 			DummyCommandData{
 				.input = "ahmet <\"a space\"",
 				.argv = std::vector<std::string>{

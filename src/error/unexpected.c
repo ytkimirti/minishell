@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:54:35 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/10 19:58:26 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/26 22:14:52 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	highlight_token(const t_token *token)
 	while (data->tokens[i] != NULL && data->tokens[i] != token)
 	{
 		len = find_token_len(data->tokens[i]);
-		if (data->tokens[i]->type == SPACE)
+		if (data->tokens[i]->type == SPACE_TOKEN)
 			write(1, data->line + pos, len);
 		else
 			print_char(' ', len);
