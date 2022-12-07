@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_redir_token.c                                   :+:      :+:    :+:   */
+/*   close.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 16:07:04 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/26 11:38:43 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/12/04 18:55:59 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/12/04 18:56:25 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "token.h"
-#include <stdlib.h>
+#include <unistd.h>
 
-bool	is_redir_token(t_token *token)
+void	close_if_not_eq(int fd, int exception)
 {
-	return (token != NULL
-		&& (token->type == REDIR_OUT
-			|| token->type == REDIR_IN
-			|| token->type == REDIR_APPEND
-			|| token->type == REDIR_HEREDOC));
+	if (fd != exception)
+		close(fd);
 }

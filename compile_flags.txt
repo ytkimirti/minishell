@@ -1,5 +1,6 @@
 -Isrc
 -Isrc/wildcard
+-Isrc/new
 -Isrc/command
 -Isrc/parser
 -Isrc/tokenizer

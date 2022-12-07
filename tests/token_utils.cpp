@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:42:12 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/08 16:46:27 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/26 10:54:38 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,9 @@ bool operator==( const t_command& a, const t_command& b )
 		return false;
 	if ((a.out_file != NULL && b.out_file == NULL) || (a.out_file == NULL && b.out_file != NULL))
 		return false;
-	if (a.is_append != b.is_append)
+	if (a.out_file != NULL && a.is_append != b.is_append)
+		return false;
+	if (a.in_file != NULL && a.is_heredoc != b.is_heredoc)
 		return false;
 	for (int i = 0; i < a.argc; i++)
 	{
@@ -106,6 +108,7 @@ std::ostream& operator<<(std::ostream& stream, const t_command& command)
 	if (command.out_file != NULL)
 		stream << "out_file = " << GRN << "\"" << command.out_file << "\"" << RST << ", ";
 	stream << "is_append = " << MAG << (command.is_append ? "false" : "true") << RST << ", ";
+	stream << "is_heredoc = " << MAG << (command.is_heredoc ? "false" : "true") << RST << ", ";
 
 	stream << "argc = " << MAG << command.argc << RST << ", ";
 

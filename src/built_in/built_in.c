@@ -6,13 +6,13 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 18:23:18 by emakas            #+#    #+#             */
-/*   Updated: 2022/11/24 12:45:55 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/26 10:35:36 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "command.h"
 #include "built_in.h"
-#include "builtin_funcs.h"
+#include "builtin_utils.h"
 #include "libft.h"
 #include "tstdio.h"
 

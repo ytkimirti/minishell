@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:40:54 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/08 17:11:07 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/26 11:37:16 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,28 @@
 #include "token.h"
 #include "libft.h"
 #include "error.h"
+
+static void	tokenize_out(t_token *token, char **str)
+{
+	if ((*str)[1] == '>')
+	{
+		token->type = REDIR_APPEND;
+		(*str)++;
+	}
+	else
+		token->type = REDIR_OUT;
+}
+
+static void	tokenize_in(t_token *token, char **str)
+{
+	if ((*str)[1] == '<')
+	{
+		token->type = REDIR_HEREDOC;
+		(*str)++;
+	}
+	else
+		token->type = REDIR_IN;
+}
 
 // TODO: Finish implementing this m8
 t_token	*tokenize_redir(char **str, t_state *state)
@@ -25,17 +47,9 @@ t_token	*tokenize_redir(char **str, t_state *state)
 	if (token == NULL)
 		malloc_error();
 	if (**str == '<')
-		token->type = REDIR_IN;
+		tokenize_in(token, str);
 	else if (**str == '>')
-	{
-		if ((*str)[1] == '>')
-		{
-			token->type = REDIR_APPEND;
-			(*str)++;
-		}
-		else
-			token->type = REDIR_OUT;
-	}
+		tokenize_out(token, str);
 	(*str)++;
 	return (token);
 }

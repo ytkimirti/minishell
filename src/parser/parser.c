@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:00:53 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/11 08:28:24 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/26 11:40:33 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,11 @@ static bool	parse_redir(t_command *cmd, t_token ***tokens)
 		return (false);
 	}
 	file = expand_tokens(tokens);
-	if (type == REDIR_IN)
+	if (type == REDIR_IN || type == REDIR_HEREDOC)
+	{
 		cmd->in_file = file;
+		cmd->is_heredoc = type == REDIR_HEREDOC;
+	}
 	else
 	{
 		cmd->out_file = file;
@@ -84,6 +87,7 @@ t_command	*create_command(t_token ***tokens)
 	cmd->out_file = NULL;
 	cmd->in_file = NULL;
 	cmd->is_append = false;
+	cmd->is_heredoc = false;
 	args_vec = pvec_new(16);
 	while (is_command_token(**tokens))
 	{
