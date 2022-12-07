@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:08:45 by emakas            #+#    #+#             */
-/*   Updated: 2022/12/05 13:39:28 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/07 14:56:02 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,8 @@ static char	*concat_dir(char *dir1, char *dir2)
 	size_t	len;
 	size_t	index;
 
+	if (ft_strncmp(dir1,".",ft_strlen(dir1)) == 0)
+		return (ft_strdup(dir2));
 	index = 0;
 	len = ft_strlen(dir1) + ft_strlen(dir2) + 2;
 	result = malloc(sizeof(char) * len);
