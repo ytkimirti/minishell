@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 08:25:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/26 22:14:31 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/08 15:32:58 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,30 @@ char	*expand_tokens(t_token ***tokens)
 		error_unexpected(**tokens, DOUBLE_QUOTE);
 	free(str);
 	return (NULL);
+}
+
+/*
+ * TODO: Add the actual wildcard expansion to here
+ */
+char	*expand_wildcard(t_token ***tokens)
+{
+	t_pvec	*list;
+
+	list = pvec_new(5);
+	while (true)
+	{
+		while (**tokens != NULL && (**tokens)->type == WILDCARD_TOKEN)
+			(*tokens)++;
+		if (!is_command_token(**tokens) || (**tokens)->type == SPACE_TOKEN)
+			break ;
+		pvec_append(list, expand_tokens(tokens));
+		printf(">%s<\n", (char *)list->arr[list->len - 1]);
+		while (**tokens != NULL && (**tokens)->type == WILDCARD_TOKEN)
+			(*tokens)++;
+		if (!is_command_token(**tokens) || (**tokens)->type == SPACE_TOKEN)
+			break ;
+	}
+	free(list->arr);
+	free(list);
+	return (ft_strdup("<EXPANDED_WILDCARD>"));
 }
