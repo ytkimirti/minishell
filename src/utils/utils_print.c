@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 18:21:55 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/26 22:13:44 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/08 15:04:17 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static char	*token_type_tostr2(enum e_token_type type)
 		return ("REDIR_OUT");
 	if (type == REDIR_APPEND)
 		return ("REDIR_APPEND");
+	if (type == WILDCARD_TOKEN)
+		return ("WILDCARD_TOKEN");
 	return ("UNKNOWN");
 }
 
