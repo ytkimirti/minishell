@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:23:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/26 22:14:12 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/08 14:41:16 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef enum e_token_type
 {
 	EMPTY,
 	WORD,
+	WILDCARD_TOKEN,
 	SPACE_TOKEN,
 	VAR,
 	PAREN_OPEN,
