@@ -231,5 +231,54 @@ INSTANTIATE_TEST_SUITE_P(Tokenizer, TokenizeAllTest, testing::Values(
 					DummyToken{"", AND_TOKEN},
 					DummyToken{"", PIPE_TOKEN},
 				}
+			},
+			TokenizeAllData{
+				.input = "aaa*bbb",
+				.correct_tokens = std::vector<DummyToken>{
+					DummyToken{"aaa", WORD},
+					DummyToken{"", WILDCARD_TOKEN},
+					DummyToken{"bbb", WORD},
+				}
+			},
+			TokenizeAllData{
+				.input = "aaa**bbb",
+				.correct_tokens = std::vector<DummyToken>{
+					DummyToken{"aaa", WORD},
+					DummyToken{"", WILDCARD_TOKEN},
+					DummyToken{"", WILDCARD_TOKEN},
+					DummyToken{"bbb", WORD},
+				}
+			},
+			TokenizeAllData{
+				.input = "aaa\"**\"bbb",
+				.correct_tokens = std::vector<DummyToken>{
+					DummyToken{"aaa", WORD},
+					DummyToken{"", DOUBLE_QUOTE},
+					DummyToken{"**", WORD},
+					DummyToken{"", DOUBLE_QUOTE},
+					DummyToken{"bbb", WORD},
+				}
+			},
+			TokenizeAllData{
+				.input = "aaa\'**\'bbb",
+				.correct_tokens = std::vector<DummyToken>{
+					DummyToken{"aaa", WORD},
+					DummyToken{"", SINGLE_QUOTE},
+					DummyToken{"**", WORD},
+					DummyToken{"", SINGLE_QUOTE},
+					DummyToken{"bbb", WORD},
+				}
+			},
+			TokenizeAllData{
+				.input = "*aaa\"**\"bbb*",
+				.correct_tokens = std::vector<DummyToken>{
+					DummyToken{"", WILDCARD_TOKEN},
+					DummyToken{"aaa", WORD},
+					DummyToken{"", DOUBLE_QUOTE},
+					DummyToken{"**", WORD},
+					DummyToken{"", DOUBLE_QUOTE},
+					DummyToken{"bbb", WORD},
+					DummyToken{"", WILDCARD_TOKEN},
+				}
 			}
 			));
