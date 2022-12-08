@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   metacharacter.c                                    :+:      :+:    :+:   */
+/*   is_wildcard_argument.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/31 13:45:36 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/08 14:56:02 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/12/08 15:07:24 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/12/08 15:08:30 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tokenize_utils.h"
+#include "token.h"
+#include <stdlib.h>
 
-bool	is_metacharacter(char c)
+bool	is_wildcard_argument(t_token **token)
 {
-	return (c == ' '
-		|| c == '\t'
-		|| c == '<'
-		|| c == '\''
-		|| c == '\"'
-		|| c == '$'
-		|| c == '>'
-		|| c == '('
-		|| c == ')'
-		|| c == '&'
-		|| c == '*'
-		|| c == '|');
+	while (*token != NULL && (*token)->type != SPACE_TOKEN)
+	{
+		if ((*token)->type == WILDCARD_TOKEN)
+			return (true);
+		token++;
+	}
+	return (false);
 }

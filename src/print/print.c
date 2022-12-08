@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 09:42:42 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/26 22:15:25 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/08 15:01:21 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "error.h"
 #include "utils.h"
 #include "parser_utils.h"
+#include <assert.h>
 
 typedef struct s_cstate
 {
@@ -25,6 +26,9 @@ typedef struct s_cstate
 	bool	is_redir;
 }	t_cstate;
 
+/*
+ * This is only for printing in debug mode
+ */
 int	find_token_len(t_token *token)
 {
 	if (token->type == WORD
@@ -44,6 +48,8 @@ const char	*find_token_color(const t_token	*token, const t_cstate *state)
 {
 	if (token->type == SPACE_TOKEN)
 		return (RST);
+	if (token->type == WILDCARD_TOKEN)
+		return (BCYN);
 	else if (token->type == WORD)
 	{
 		if (state->in_quotes)

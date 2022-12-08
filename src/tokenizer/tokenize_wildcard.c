@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   metacharacter.c                                    :+:      :+:    :+:   */
+/*   tokenize_wildcard.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/31 13:45:36 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/08 14:56:02 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/08/27 16:40:54 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/12/08 14:54:38 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tokenize_utils.h"
+#include "tokenize_state.h"
+#include "token.h"
+#include "libft.h"
+#include "error.h"
 
-bool	is_metacharacter(char c)
+t_token	*tokenize_wildcard(char **str, t_state *state)
 {
-	return (c == ' '
-		|| c == '\t'
-		|| c == '<'
-		|| c == '\''
-		|| c == '\"'
-		|| c == '$'
-		|| c == '>'
-		|| c == '('
-		|| c == ')'
-		|| c == '&'
-		|| c == '*'
-		|| c == '|');
+	t_token	*token;
+
+	(void)state;
+	token = (t_token *)malloc(sizeof(t_token));
+	if (token == NULL)
+		malloc_error();
+	token->type = WILDCARD_TOKEN;
+	(*str)++;
+	return (token);
 }
