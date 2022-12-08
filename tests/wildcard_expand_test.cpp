@@ -1,4 +1,5 @@
 #include <cstring>
+#include <functional>
 #include <stdlib.h>
 #include <string.h>
 #include <string>
@@ -48,19 +49,19 @@ TEST_P(WildcardDirectoryChecker, DirectoryChecking)
 	mock_token.len = data.pattern.length();
 	mock_token.str = data.pattern.c_str();
 
-	char	**result = expand_wildcard(&mock_token);
-	int len = 0;
-	while (result[len] != NULL)
-		len++;
+	char	**result_pointer = expand_wildcard(&mock_token);
+	std::vector<std::string> result = std::vector<std::string>();
 
-	EXPECT_EQ(len, data.expected.size());
-
-	int	i = 0;
-	while (result[i] != NULL && i < data.expected.size())
+	for (int i = 0; result_pointer[i] != NULL; i++)
 	{
-		EXPECT_EQ(std::string(result[i]), data.expected.at(i));
-		i++;
+		result.push_back(std::string(result_pointer[i]));
+		free(result_pointer[i]);
 	}
+	free(result_pointer);
+
+    std::sort(result.begin(), result.end());
+    std::sort(data.expected.begin(), data.expected.end());
+	EXPECT_EQ(data.expected, result);
 }
 
 
