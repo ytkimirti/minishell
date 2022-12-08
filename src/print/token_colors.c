@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.h                                            :+:      :+:    :+:   */
+/*   token_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 18:40:16 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/08 18:31:14 by emakas           ###   ########.fr       */
+/*   Created: 2022/12/08 17:51:51 by emakas            #+#    #+#             */
+/*   Updated: 2022/12/08 18:31:31 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINT_H
+#include "token_colors.h"
+#include "colors.h"
 
-# define PRINT_H
-
-# include "token.h"
-
-typedef struct s_cstate
+const char	*get_wordtokens(const t_token	*token, const t_cstate *state)
 {
-	bool	in_squotes;
-	bool	in_quotes;
-	bool	is_first;
-	bool	is_redir;
-}	t_cstate;
-
-/*
- * Prints the string str and color it using the tokens.
- */
-void	print_colored_tokens(const char *str, t_token **tokens);
-
-int		find_token_len(t_token *token);
-
-#endif
+	if (state->in_quotes)
+		return (GRN);
+	else if (state->in_squotes)
+		return (YEL);
+	else if (state->is_first)
+		return (BBLU);
+	else if (state->is_redir)
+		return (BCYN);
+	else
+		return (RST);
+}

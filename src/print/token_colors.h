@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.h                                            :+:      :+:    :+:   */
+/*   token_colors.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 18:40:16 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/08 18:31:14 by emakas           ###   ########.fr       */
+/*   Created: 2022/12/08 17:51:56 by emakas            #+#    #+#             */
+/*   Updated: 2022/12/08 17:53:56 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINT_H
-
-# define PRINT_H
-
+#ifndef TOKEN_COLORS_H
+# define TOKEN_COLORS_H
 # include "token.h"
+# include "print.h"
 
-typedef struct s_cstate
-{
-	bool	in_squotes;
-	bool	in_quotes;
-	bool	is_first;
-	bool	is_redir;
-}	t_cstate;
-
-/*
- * Prints the string str and color it using the tokens.
- */
-void	print_colored_tokens(const char *str, t_token **tokens);
-
-int		find_token_len(t_token *token);
+const char	*get_wordtokens(const t_token	*token, const t_cstate *state);
 
 #endif

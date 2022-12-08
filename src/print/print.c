@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
+/*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 09:42:42 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/08 15:01:21 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/08 18:31:01 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,8 @@
 #include "error.h"
 #include "utils.h"
 #include "parser_utils.h"
+#include "token_colors.h"
 #include <assert.h>
-
-typedef struct s_cstate
-{
-	bool	in_squotes;
-	bool	in_quotes;
-	bool	is_first;
-	bool	is_redir;
-}	t_cstate;
 
 /*
  * This is only for printing in debug mode
@@ -51,18 +44,7 @@ const char	*find_token_color(const t_token	*token, const t_cstate *state)
 	if (token->type == WILDCARD_TOKEN)
 		return (BCYN);
 	else if (token->type == WORD)
-	{
-		if (state->in_quotes)
-			return (GRN);
-		else if (state->in_squotes)
-			return (YEL);
-		else if (state->is_first)
-			return (BBLU);
-		else if (state->is_redir)
-			return (BCYN);
-		else
-			return (RST);
-	}
+		return (get_wordtokens(token, state));
 	else if (token->type == PIPE_TOKEN)
 		return (CYN);
 	else if (token->type == AND_TOKEN || token->type == OR_TOKEN)
