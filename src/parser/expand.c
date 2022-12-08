@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 08:25:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/08 15:32:58 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/08 15:49:50 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	*expand_tokens(t_token ***tokens)
 /*
  * TODO: Add the actual wildcard expansion to here
  */
-char	*expand_wildcard(t_token ***tokens)
+char	*expand_wildcard_argument(t_token ***tokens)
 {
 	t_pvec	*list;
 

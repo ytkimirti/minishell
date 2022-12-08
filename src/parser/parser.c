@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:00:53 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/08 15:18:01 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/08 15:49:39 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ bool	parse_step(t_command *cmd, t_token ***tokens, t_pvec *args_vec)
 	if (is_redir_token(**tokens))
 		return (parse_redir(cmd, tokens));
 	if (is_wildcard_argument(*tokens))
-		str = expand_wildcard(tokens);
+		str = expand_wildcard_argument(tokens);
 	else
 		str = expand_tokens(tokens);
 	if (str == NULL)
