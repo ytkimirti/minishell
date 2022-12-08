@@ -61,7 +61,7 @@ char	*expand_tokens(t_token ***tokens)
 	pos = 0;
 	state = (t_expand_state){false, false};
 	while (is_command_token(**tokens) && (**tokens)->type != SPACE_TOKEN
-		&& !is_redir_token(**tokens))
+		&& !is_redir_token(**tokens) && (**tokens)->type != WILDCARD_TOKEN)
 	{
 		update_expand_state(&state, (**tokens)->type);
 		pos += expand_token(**tokens, str + pos);

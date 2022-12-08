@@ -36,7 +36,7 @@ void	skip_spaces(t_token ***tokens);
 
 /*
  * Expands and joins tokens until it sees a space or
- * a non command token. If no stringable
+ * a non command token or a wildcard token.
  */
 char	*expand_tokens(t_token ***tokens);
 
