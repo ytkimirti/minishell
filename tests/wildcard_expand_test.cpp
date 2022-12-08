@@ -35,10 +35,6 @@ std::ostream& operator<<(std::ostream& stream, const WildcardData& data)
 	
 	stream << YEL;
 	stream << "pattern: " << data.pattern << std::endl;
-	stream << "expected:" << std::endl;
-	for (int i = 0; i < data.expected.size(); i++){
-		stream << "\t" << data.expected.at(i);
-	}
 	stream << RST;
 	
 	return stream;
