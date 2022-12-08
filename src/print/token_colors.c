@@ -6,14 +6,14 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:51:51 by emakas            #+#    #+#             */
-/*   Updated: 2022/12/08 18:31:31 by emakas           ###   ########.fr       */
+/*   Updated: 2022/12/08 18:44:54 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token_colors.h"
 #include "colors.h"
 
-const char	*get_wordtokens(const t_token	*token, const t_cstate *state)
+const char	*get_wordtokens(const t_cstate *state)
 {
 	if (state->in_quotes)
 		return (GRN);

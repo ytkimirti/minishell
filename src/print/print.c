@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 09:42:42 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/08 18:31:01 by emakas           ###   ########.fr       */
+/*   Updated: 2022/12/08 18:45:07 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ const char	*find_token_color(const t_token	*token, const t_cstate *state)
 	if (token->type == WILDCARD_TOKEN)
 		return (BCYN);
 	else if (token->type == WORD)
-		return (get_wordtokens(token, state));
+		return (get_wordtokens(state));
 	else if (token->type == PIPE_TOKEN)
 		return (CYN);
 	else if (token->type == AND_TOKEN || token->type == OR_TOKEN)
