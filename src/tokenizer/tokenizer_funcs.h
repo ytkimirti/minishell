@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 17:26:35 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/02 16:10:14 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/08 14:55:22 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,7 @@ t_token	*tokenize_paren(const char **str, t_state *state);
 t_token	*tokenize_redir(const char **str, t_state *state);
 
 t_token	*tokenize_pipe(const char **str, t_state *state);
+
+t_token	*tokenize_wildcard(const char **str, t_state *state);
 
 #endif
