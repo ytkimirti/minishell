@@ -49,7 +49,7 @@ TEST_P(WildcardDirectoryChecker, DirectoryChecking)
 	mock_token.len = data.pattern.length();
 	mock_token.str = data.pattern.c_str();
 
-	char	**result_pointer = expand_wildcard(&mock_token);
+	char **result_pointer = expand_wildcard((char *) data.pattern.c_str());
 	std::vector<std::string> result = std::vector<std::string>();
 
 	for (int i = 0; result_pointer[i] != NULL; i++)

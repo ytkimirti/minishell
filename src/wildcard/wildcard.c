@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:08:45 by emakas            #+#    #+#             */
-/*   Updated: 2022/12/09 20:31:54 by emakas           ###   ########.fr       */
+/*   Updated: 2022/12/09 21:35:46 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ char	**expand_wildcard(char *pattern)
 	match_vector = search_nodes(source, patterns);
 	matches = (char **) match_vector->arr;
 	free(match_vector);
-	free(pattern);
 	free_array(patterns);
 	return (matches);
 }
