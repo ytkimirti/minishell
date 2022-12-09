@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wildcard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:08:45 by emakas            #+#    #+#             */
-/*   Updated: 2022/12/08 16:33:35 by emakas           ###   ########.fr       */
+/*   Updated: 2022/12/09 20:31:54 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,21 +94,19 @@ t_pvec	*search_nodes(char *source, char **patterns)
  * @param token
  * @return char** List of all occurences
  */
-char	**expand_wildcard(t_token *token)
+char	**expand_wildcard(char *pattern)
 {
 	t_pvec	*match_vector;
 	char	**matches;
 	char	**patterns;
 	char	*source;
-	char	*pattern;
 
-	if (token == NULL)
+	if (pattern == NULL)
 		return (NULL);
-	if (token->str[0] == '/')
+	if (pattern[0] == '/')
 		source = "/";
 	else
 		source = ".";
-	pattern = dup_token_str(token);
 	if (pattern == NULL)
 		malloc_error();
 	patterns = ft_split(pattern, '/');

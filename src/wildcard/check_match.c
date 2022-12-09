@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_match.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:46:42 by emakas            #+#    #+#             */
-/*   Updated: 2022/12/05 13:25:49 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/09 21:15:36 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,38 @@
 #include "wildcard.h"
 #include "libft.h"
 #include "error.h"
+
+static int strncmp2(const char *str1, const char *str2, size_t n)
+{
+	size_t index;
+
+	index = 0;
+	while (index < n && str1[index] != '\0' && str1[index] != '\0')
+	{
+		if (str2[index] != '?') // ADD RECORRECTIONS AFTER PULL
+		{
+			if (str1[index] != str2[index])
+				return (str1[index] != str2[index]);
+		}
+		index++;
+	}
+	return (0);
+}
+
+static char *strnstr2(const char *str1, const char *str2, size_t n)
+{
+	size_t	index;
+
+	index = 0;
+	while (index < n)
+	{
+		if (str1[index] == str2[index])
+			if (strncmp2((str1 + index),(str2),(n - index)))
+				return (str1 + index);
+		index++;
+	}
+	return (NULL);
+}
 
 /*
  * Checks is str contains all the strings `contains`
