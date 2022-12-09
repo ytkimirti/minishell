@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 08:25:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/08 15:49:50 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/09 20:28:20 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "env.h"
 #include <limits.h>
 #include "error.h"
+#include "wildcard.h"
 
 /*
  * Expands token into string str.
@@ -80,25 +81,31 @@ char	*expand_tokens(t_token ***tokens)
 /*
  * TODO: Add the actual wildcard expansion to here
  */
-char	*expand_wildcard_argument(t_token ***tokens)
+bool	expand_wildcard_argument(t_token ***tokens, t_pvec *args_vec)
 {
-	t_pvec	*list;
+	t_cvec	*str;
 
-	list = pvec_new(5);
+	(void)args_vec;
+	str = cvec_new(64);
 	while (true)
 	{
+		if (**tokens != NULL && (**tokens)->type == WILDCARD_TOKEN)
+			cvec_append(str, ESC_WILDCARD_CHAR);
 		while (**tokens != NULL && (**tokens)->type == WILDCARD_TOKEN)
 			(*tokens)++;
 		if (!is_command_token(**tokens) || (**tokens)->type == SPACE_TOKEN)
 			break ;
-		pvec_append(list, expand_tokens(tokens));
-		printf(">%s<\n", (char *)list->arr[list->len - 1]);
+		cvec_appendstr(str, expand_tokens(tokens), false);
+		if (**tokens != NULL && (**tokens)->type == WILDCARD_TOKEN)
+			cvec_append(str, ESC_WILDCARD_CHAR);
 		while (**tokens != NULL && (**tokens)->type == WILDCARD_TOKEN)
 			(*tokens)++;
 		if (!is_command_token(**tokens) || (**tokens)->type == SPACE_TOKEN)
 			break ;
 	}
-	free(list->arr);
-	free(list);
+	cvec_append(str, '\0');
+	printf(">%s<\n", str->arr);
+	free(str->arr);
+	free(str);
 	return (ft_strdup("<EXPANDED_WILDCARD>"));
 }

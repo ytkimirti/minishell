@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 14:19:17 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/08 15:49:59 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/09 20:05:54 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ char	*expand_tokens(t_token ***tokens);
  * background since expand tokens stops when it sees a WILDCARD_TOKEN
  * or a non command token
  */
-char	*expand_wildcard_argument(t_token ***tokens);
+bool	expand_wildcard_argument(t_token ***tokens, t_pvec *args_vec);
 
 #endif
