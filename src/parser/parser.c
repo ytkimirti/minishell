@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:00:53 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/08 15:49:39 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/09 20:00:18 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ bool	parse_step(t_command *cmd, t_token ***tokens, t_pvec *args_vec)
 	if (is_redir_token(**tokens))
 		return (parse_redir(cmd, tokens));
 	if (is_wildcard_argument(*tokens))
-		str = expand_wildcard_argument(tokens);
+		return (expand_wildcard_argument(tokens, args_vec));
 	else
 		str = expand_tokens(tokens);
 	if (str == NULL)
@@ -68,7 +68,7 @@ bool	parse_step(t_command *cmd, t_token ***tokens, t_pvec *args_vec)
 	return (true);
 }
 
-void	*panic_free(t_command *cmd, t_pvec *args_vec)
+void	panic_free(t_command *cmd, t_pvec *args_vec)
 {
 	if (cmd->in_file != NULL)
 		free(cmd->in_file);
@@ -76,9 +76,9 @@ void	*panic_free(t_command *cmd, t_pvec *args_vec)
 		free(cmd->out_file);
 	free(cmd);
 	pvec_del(args_vec, free);
-	return (NULL);
 }
 
+// ls "$USER" 
 t_command	*create_command(t_token ***tokens)
 {
 	t_command	*cmd;
@@ -98,7 +98,7 @@ t_command	*create_command(t_token ***tokens)
 		if (!is_command_token(**tokens))
 			break ;
 		if (!parse_step(cmd, tokens, args_vec))
-			return (panic_free(cmd, args_vec));
+			return (panic_free(cmd, args_vec), NULL);
 	}
 	pvec_append(args_vec, NULL);
 	cmd->argv = (char **)args_vec->arr;
