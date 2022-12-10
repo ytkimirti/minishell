@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:46:42 by emakas            #+#    #+#             */
-/*   Updated: 2022/12/10 16:41:36 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/10 17:39:33 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,9 @@
 #include "libft.h"
 #include "error.h"
 
-int	compare_char(char special, char str)
+static int	strncmp2(const char *str, const char *search)
 {
-	return (special != '?'
-			&& ((str != special && special != ESC_WILDCARD_CHAR && special != ESC_QUESTION_CHAR)
-			|| (str != '*'  && special == ESC_WILDCARD_CHAR)
-			|| (str != '?'  && special == ESC_QUESTION_CHAR)));
-}
-
-static int strncmp2(const char *str, const char *search)
-{
-	size_t index;
+	size_t	index;
 
 	index = 0;
 	while (str[index] != '\0' && search[index] != '\0')
@@ -39,7 +31,7 @@ static int strncmp2(const char *str, const char *search)
 	return (str[index] - search[index]);
 }
 
-static char *strnstr2(const char *str, const char *search)
+static char	*strnstr2(const char *str, const char *search)
 {
 	size_t	index;
 
