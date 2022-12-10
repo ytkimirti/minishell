@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 08:25:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/10 13:32:25 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/10 13:39:37 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,18 @@ static void	insert_special_chars(char *str)
 	}
 }
 
+void	append_to_pvec(char **arr, t_pvec *vec)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i] != NULL)
+	{
+		pvec_append(vec, arr[i]);
+		i++;
+	}
+}
+
 /*
  * TODO: Add the actual wildcard expansion to here
  */
@@ -109,6 +121,7 @@ bool	expand_wildcard_argument(t_token ***tokens, t_pvec *args_vec)
 {
 	t_cvec	*str;
 	char	*tmp;
+	char	**result;
 
 	(void)args_vec;
 	str = cvec_new(64);
@@ -125,8 +138,10 @@ bool	expand_wildcard_argument(t_token ***tokens, t_pvec *args_vec)
 			break ;
 	}
 	cvec_append(str, '\0');
-	printf(">%s<\n", str->arr);
-	free(str->arr);
-	free(str);
-	return (ft_strdup("<EXPANDED_WILDCARD>"));
+	result = expand_wildcard(str->arr);
+	free((free(str->arr), str));
+	if (result == NULL)
+		return (false);
+	(free(result), append_to_pvec(result, args_vec));
+	return (true);
 }
