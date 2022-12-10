@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 08:25:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/10 08:56:27 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/10 13:32:25 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,23 @@ static void	parse_wildcard_part(t_token ***tokens, t_cvec *str)
 	if (**tokens == NULL)
 		return ;
 	if ((**tokens)->type == WILDCARD_TOKEN)
-		cvec_append(str, ESC_WILDCARD_CHAR);
+		cvec_append(str, '*');
 	if ((**tokens)->type == QUESTION_TOKEN)
-		cvec_append(str, ESC_QUESTION_CHAR);
+		cvec_append(str, '?');
 	while (is_wildcard_token(**tokens))
 		(*tokens)++;
+}
+
+static void	insert_special_chars(char *str)
+{
+	while (*str != '\0')
+	{
+		if (*str == '?')
+			*str = ESC_QUESTION_CHAR;
+		else if (*str == '*')
+			*str = ESC_WILDCARD_CHAR;
+		str++;
+	}
 }
 
 /*
@@ -96,6 +108,7 @@ static void	parse_wildcard_part(t_token ***tokens, t_cvec *str)
 bool	expand_wildcard_argument(t_token ***tokens, t_pvec *args_vec)
 {
 	t_cvec	*str;
+	char	*tmp;
 
 	(void)args_vec;
 	str = cvec_new(64);
@@ -104,7 +117,9 @@ bool	expand_wildcard_argument(t_token ***tokens, t_pvec *args_vec)
 		parse_wildcard_part(tokens, str);
 		if (!is_command_token(**tokens) || is_wildcard_token(**tokens))
 			break ;
-		cvec_appendstr(str, expand_tokens(tokens), false);
+		tmp = expand_tokens(tokens);
+		insert_special_chars(tmp);
+		cvec_appendstr(str, tmp, false);
 		parse_wildcard_part(tokens, str);
 		if (!is_command_token(**tokens) || (**tokens)->type == SPACE_TOKEN)
 			break ;
