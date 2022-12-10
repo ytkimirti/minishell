@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 08:25:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/10 13:39:37 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/10 17:08:50 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,13 @@ char	*expand_tokens(t_token ***tokens)
 
 static void	parse_wildcard_part(t_token ***tokens, t_cvec *str)
 {
-	if (**tokens == NULL)
-		return ;
-	if ((**tokens)->type == WILDCARD_TOKEN)
-		cvec_append(str, '*');
-	if ((**tokens)->type == QUESTION_TOKEN)
-		cvec_append(str, '?');
-	while (is_wildcard_token(**tokens))
+	while (is_wildcard_token(**tokens)) {
+		if ((**tokens)->type == WILDCARD_TOKEN)
+			cvec_append(str, '*');
+		if ((**tokens)->type == QUESTION_TOKEN)
+			cvec_append(str, '?');
 		(*tokens)++;
+	}
 }
 
 static void	insert_special_chars(char *str)
@@ -128,14 +127,12 @@ bool	expand_wildcard_argument(t_token ***tokens, t_pvec *args_vec)
 	while (true)
 	{
 		parse_wildcard_part(tokens, str);
-		if (!is_command_token(**tokens) || is_wildcard_token(**tokens))
+		if (!is_command_token(**tokens) || (**tokens)->type == SPACE_TOKEN)
 			break ;
 		tmp = expand_tokens(tokens);
 		insert_special_chars(tmp);
 		cvec_appendstr(str, tmp, false);
-		parse_wildcard_part(tokens, str);
-		if (!is_command_token(**tokens) || (**tokens)->type == SPACE_TOKEN)
-			break ;
+		free(tmp);
 	}
 	cvec_append(str, '\0');
 	result = expand_wildcard(str->arr);
