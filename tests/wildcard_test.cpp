@@ -73,5 +73,11 @@ INSTANTIATE_TEST_SUITE_P(PatternsNotMatching, WildcardMatcherTest, testing::Valu
 	WildcardMatchData { "..", "*.c", false },
 	WildcardMatchData { ".", "*.c", false },
 	WildcardMatchData { "Desktop", "test", false },
-	WildcardMatchData { "README.md", "*Raskdhflkjasdhflk*", false }
+	WildcardMatchData { "README.md", "*Raskdhflkjasdhflk*", false },
+	WildcardMatchData { "aaxxbbxxccxxxx", "aa*bb*cc", false },
+	WildcardMatchData { "ahmet", "??", false },
+	WildcardMatchData { "ahmet", "ahmet??", false },
+	WildcardMatchData { "ahmet", "?ahmet", false },
+	WildcardMatchData { "ahmet", "*?ahmet", false },
+	WildcardMatchData { "ahmet", "?", false }
 ));
