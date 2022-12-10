@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 14:19:17 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/10 09:02:16 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/10 17:50:51 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,7 @@ char	*expand_tokens(t_token ***tokens);
  * or a non command token
  */
 bool	expand_wildcard_argument(t_token ***tokens, t_pvec *args_vec);
+
+void	append_to_pvec(char **arr, t_pvec *vec);
 
 #endif
