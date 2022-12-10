@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:46:42 by emakas            #+#    #+#             */
-/*   Updated: 2022/12/10 14:46:29 by emakas           ###   ########.fr       */
+/*   Updated: 2022/12/10 15:02:05 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 #include "error.h"
 
 
-static int strncmp2(const char *str, const char *search, size_t n)
+static int strncmp2(const char *str, const char *search)
 {
 	size_t index;
 
 	index = 0;
-	while (index < n)
-	{ // m, a
-		if (search[index] != '?') // ADD RECORRECTIONS AFTER PULL
+	while (str[index] != '\0' && search[index] != '\0')
+	{
+		if (search[index] != '?')
 		{
 			if ((str[index] != search[index] && search[index] != ESC_WILDCARD_CHAR && search[index] != ESC_QUESTION_CHAR)
 					|| (str[index] != '*'  && search[index] == ESC_WILDCARD_CHAR)
@@ -32,20 +32,18 @@ static int strncmp2(const char *str, const char *search, size_t n)
 		}
 		index++;
 	}
-	return (0);
+	return (str[index] - search[index]);
 }
 
-static char *strnstr2(const char *str, const char *search, size_t n)
+static char *strnstr2(const char *str, const char *search)
 {
 	size_t	index;
-	size_t	len;
 
 	index = 0;
-	len = ft_strlen(search);
-	while (index < n)
+	while (str[index] != '\0')
 	{
 		if (str[index] == search[0])
-			if (strncmp2(&str[index], search, len) == 0)
+			if (strncmp2(&str[index], search) == 0)
 				return ((char *) &str[index]);
 		index++;
 	}
@@ -65,7 +63,7 @@ static bool	check_inside(char *str, char **contains)
 	index = 0;
 	while (contains[index] != NULL && *candidate)
 	{
-		candidate = strnstr2(candidate, contains[index], ft_strlen(candidate));
+		candidate = strnstr2(candidate, contains[index]);
 		if (candidate == NULL)
 			return (false);
 		candidate += ft_strlen(contains[index]);
