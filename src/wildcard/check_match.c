@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:46:42 by emakas            #+#    #+#             */
-/*   Updated: 2022/12/10 15:02:05 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/10 16:28:08 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static int strncmp2(const char *str, const char *search)
 		}
 		index++;
 	}
+	if (search[index] == '\0')
+		return (0);
 	return (str[index] - search[index]);
 }
 
@@ -42,9 +44,8 @@ static char *strnstr2(const char *str, const char *search)
 	index = 0;
 	while (str[index] != '\0')
 	{
-		if (str[index] == search[0])
-			if (strncmp2(&str[index], search) == 0)
-				return ((char *) &str[index]);
+		if (strncmp2(&str[index], search) == 0)
+			return ((char *) &str[index]);
 		index++;
 	}
 	return (NULL);
