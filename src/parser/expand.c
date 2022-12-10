@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 08:25:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/09 20:28:20 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/10 08:56:27 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	*expand_tokens(t_token ***tokens)
 	pos = 0;
 	state = (t_expand_state){false, false};
 	while (is_command_token(**tokens) && (**tokens)->type != SPACE_TOKEN
-		&& !is_redir_token(**tokens) && (**tokens)->type != WILDCARD_TOKEN)
+		&& !is_redir_token(**tokens) && !is_wildcard_token(**tokens))
 	{
 		update_expand_state(&state, (**tokens)->type);
 		pos += expand_token(**tokens, str + pos);
@@ -78,6 +78,18 @@ char	*expand_tokens(t_token ***tokens)
 	return (NULL);
 }
 
+static void	parse_wildcard_part(t_token ***tokens, t_cvec *str)
+{
+	if (**tokens == NULL)
+		return ;
+	if ((**tokens)->type == WILDCARD_TOKEN)
+		cvec_append(str, ESC_WILDCARD_CHAR);
+	if ((**tokens)->type == QUESTION_TOKEN)
+		cvec_append(str, ESC_QUESTION_CHAR);
+	while (is_wildcard_token(**tokens))
+		(*tokens)++;
+}
+
 /*
  * TODO: Add the actual wildcard expansion to here
  */
@@ -89,17 +101,11 @@ bool	expand_wildcard_argument(t_token ***tokens, t_pvec *args_vec)
 	str = cvec_new(64);
 	while (true)
 	{
-		if (**tokens != NULL && (**tokens)->type == WILDCARD_TOKEN)
-			cvec_append(str, ESC_WILDCARD_CHAR);
-		while (**tokens != NULL && (**tokens)->type == WILDCARD_TOKEN)
-			(*tokens)++;
-		if (!is_command_token(**tokens) || (**tokens)->type == SPACE_TOKEN)
+		parse_wildcard_part(tokens, str);
+		if (!is_command_token(**tokens) || is_wildcard_token(**tokens))
 			break ;
 		cvec_appendstr(str, expand_tokens(tokens), false);
-		if (**tokens != NULL && (**tokens)->type == WILDCARD_TOKEN)
-			cvec_append(str, ESC_WILDCARD_CHAR);
-		while (**tokens != NULL && (**tokens)->type == WILDCARD_TOKEN)
-			(*tokens)++;
+		parse_wildcard_part(tokens, str);
 		if (!is_command_token(**tokens) || (**tokens)->type == SPACE_TOKEN)
 			break ;
 	}
