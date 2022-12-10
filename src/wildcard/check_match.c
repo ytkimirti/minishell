@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:46:42 by emakas            #+#    #+#             */
-/*   Updated: 2022/12/10 16:28:08 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/10 16:41:36 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 #include "libft.h"
 #include "error.h"
 
+int	compare_char(char special, char str)
+{
+	return (special != '?'
+			&& ((str != special && special != ESC_WILDCARD_CHAR && special != ESC_QUESTION_CHAR)
+			|| (str != '*'  && special == ESC_WILDCARD_CHAR)
+			|| (str != '?'  && special == ESC_QUESTION_CHAR)));
+}
 
 static int strncmp2(const char *str, const char *search)
 {
@@ -23,13 +30,8 @@ static int strncmp2(const char *str, const char *search)
 	index = 0;
 	while (str[index] != '\0' && search[index] != '\0')
 	{
-		if (search[index] != '?')
-		{
-			if ((str[index] != search[index] && search[index] != ESC_WILDCARD_CHAR && search[index] != ESC_QUESTION_CHAR)
-					|| (str[index] != '*'  && search[index] == ESC_WILDCARD_CHAR)
-					|| (str[index] != '?'  && search[index] == ESC_QUESTION_CHAR))
-				return (str[index] - search[index]);
-		}
+		if (compare_char(search[index], str[index]) != 0)
+			return (str[index] - search[index]);
 		index++;
 	}
 	if (search[index] == '\0')
