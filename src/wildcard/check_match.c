@@ -22,11 +22,11 @@ static int strncmp2(const char *str, const char *search, size_t n)
 
 	index = 0;
 	while (index < n)
-	{
+	{ // m, a
 		if (search[index] != '?') // ADD RECORRECTIONS AFTER PULL
 		{
 			if ((str[index] != search[index])
-					&& ((search[index] == ESC_WILDCARD_CHAR && str[index] != '*')
+					|| ((search[index] == ESC_WILDCARD_CHAR && str[index] != '*')
 					|| (search[index] == ESC_QUESTION_CHAR && str[index] != '?')))
 				return (str[index] - search[index]);
 		}
