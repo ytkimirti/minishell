@@ -72,5 +72,6 @@ INSTANTIATE_TEST_SUITE_P(PatternsNotMatching, WildcardMatcherTest, testing::Valu
 	WildcardMatchData { "Desktop", "*o*e*p", false },
 	WildcardMatchData { "..", "*.c", false },
 	WildcardMatchData { ".", "*.c", false },
-	WildcardMatchData { "Desktop", "test", false }
+	WildcardMatchData { "Desktop", "test", false },
+	WildcardMatchData { "README.md", "*Raskdhflkjasdhflk*", false }
 ));
