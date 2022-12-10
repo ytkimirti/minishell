@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 08:25:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/10 17:08:50 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/10 17:44:48 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ char	*expand_tokens(t_token ***tokens)
 
 static void	parse_wildcard_part(t_token ***tokens, t_cvec *str)
 {
-	while (is_wildcard_token(**tokens)) {
+	while (is_wildcard_token(**tokens))
+	{
 		if ((**tokens)->type == WILDCARD_TOKEN)
 			cvec_append(str, '*');
 		if ((**tokens)->type == QUESTION_TOKEN)
