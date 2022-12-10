@@ -280,5 +280,21 @@ INSTANTIATE_TEST_SUITE_P(Tokenizer, TokenizeAllTest, testing::Values(
 					DummyToken{"bbb", WORD},
 					DummyToken{"", WILDCARD_TOKEN},
 				}
+			},
+			TokenizeAllData{
+				.input = "?",
+				.correct_tokens = std::vector<DummyToken>{
+					DummyToken{"", QUESTION_TOKEN},
+				}
+			},
+			TokenizeAllData{
+				.input = "aaa\'??\'bbb",
+				.correct_tokens = std::vector<DummyToken>{
+					DummyToken{"aaa", WORD},
+					DummyToken{"", SINGLE_QUOTE},
+					DummyToken{"??", WORD},
+					DummyToken{"", SINGLE_QUOTE},
+					DummyToken{"bbb", WORD},
+				}
 			}
 			));
