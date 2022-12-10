@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:46:42 by emakas            #+#    #+#             */
-/*   Updated: 2022/12/10 13:04:51 by emakas           ###   ########.fr       */
+/*   Updated: 2022/12/10 14:41:51 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static int strncmp2(const char *str1, const char *str2, size_t n)
 	{
 		if (str2[index] != '?') // ADD RECORRECTIONS AFTER PULL
 		{
-			if ((str1[index] != str2[index])
-					&& ((str2[index] == ESC_WILDCARD_CHAR && str1[index] != '*')
-					|| (str2[index] == ESC_QUESTION_CHAR && str1[index] != '?')))
+			if ((str1[index] != str2[index] && str2[index] != ESC_WILDCARD_CHAR && str2[index] != ESC_QUESTION_CHAR)
+					|| (str1[index] != '*'  && str2[index] == ESC_WILDCARD_CHAR)
+					|| (str1[index] != '?'  && str2[index] == ESC_QUESTION_CHAR))
 				return (str1[index] - str2[index]);
 		}
 		index++;
