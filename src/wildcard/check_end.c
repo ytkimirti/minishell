@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:59:18 by emakas            #+#    #+#             */
-/*   Updated: 2022/12/05 13:26:07 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/10 16:48:01 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check_end(char *str, char *pattern)
 		return (1);
 	while (pattern[index_pattern] != '*' && index >= 0 && index_pattern >= 0)
 	{
-		if (str[index] != pattern[index_pattern])
+		if (compare_char(pattern[index_pattern], str[index]) != 0)
 			return (0);
 		index--;
 		index_pattern--;
