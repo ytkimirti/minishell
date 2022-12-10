@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:26:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/08 14:55:14 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/09 20:39:47 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_token	*tokenize_outside(const char **str, t_state *state)
 		return (tokenize_paren(str, state));
 	else if (**str == '>' || **str == '<')
 		return (tokenize_redir(str, state));
-	else if (**str == '*')
+	else if (**str == '*' || **str == '?')
 		return (tokenize_wildcard(str, state));
 	else
 		return (tokenize_word(str, state));

@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 14:19:17 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/09 20:05:54 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/10 09:02:16 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int		length_token(t_token *token);
 int		length_tokens(t_token **tokens);
 
 bool	is_command_token(t_token *token);
+
+bool	is_wildcard_token(const t_token *token);
 
 bool	is_redir_token(t_token *token);
 
@@ -49,7 +51,7 @@ char	*expand_tokens(t_token ***tokens);
 
 /*
  * Expands the wildcard token. It uses expand tokens in the
- * background since expand tokens stops when it sees a WILDCARD_TOKEN
+ * background since expand tokens stops when it sees a wildcard_token
  * or a non command token
  */
 bool	expand_wildcard_argument(t_token ***tokens, t_pvec *args_vec);

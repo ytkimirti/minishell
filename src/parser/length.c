@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 23:42:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/08 15:29:28 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/10 09:01:00 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  */
 int	length_token(t_token *token)
 {
-	assert(token->type != WILDCARD_TOKEN);
+	assert(!is_wildcard_token(token));
 	if (token->type == WORD)
 		return (token->len);
 	if (token->type == VAR)
@@ -38,7 +38,7 @@ int	length_tokens(t_token **tokens)
 	len = 0;
 	i = 0;
 	while (is_command_token(tokens[i]) && (tokens[i])->type != SPACE_TOKEN
-		&& !is_redir_token(tokens[i]) && (tokens[i])->type != WILDCARD_TOKEN)
+		&& !is_redir_token(tokens[i]) && !is_wildcard_token(tokens[i]))
 	{
 		len += length_token(tokens[i]);
 		i++;
