@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 17:52:21 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/13 16:22:52 by emakas           ###   ########.fr       */
+/*   Updated: 2022/12/13 17:22:42 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
  */
 static int	expand_token(t_token *token, char *str)
 {
-	if (token->type == WORD || ft_strrchr(token->str, '='))
+	if (token->type == WORD)
 		return (strlencpy(str, token->str, token->len));
 	if (token->type == VAR)
 		return (strlencpy(str, get_env(token->str, token->len), INT_MAX));
