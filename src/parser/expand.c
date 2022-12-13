@@ -72,6 +72,6 @@ bool	expand_wildcard_argument(t_token ***tokens, t_pvec *args_vec)
 	free((free(str->arr), str));
 	if (result == NULL)
 		return (false);
-	(free(result), append_to_pvec(result, args_vec));
+	(append_to_pvec(result, args_vec),free(result));
 	return (true);
 }
