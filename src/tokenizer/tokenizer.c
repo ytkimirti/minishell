@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:26:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/09 20:39:47 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/15 16:57:29 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,9 @@ t_token	**tokenize(const char *str)
 	while (*str != '\0')
 	{
 		token = tokenize_single(&str, &state);
-		if (token == NULL)
+		if (token == NULL
+			|| (token->len == 0 && (token->type == WORD
+					|| token->type == VAR)))
 			break ;
 		pvec_append(tokens, token);
 	}
