@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 14:30:47 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/23 09:11:46 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/15 15:05:18 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,6 @@ void	set_env(const char *key, const char *value)
 	{
 		set_envdata_value(entry, value);
 	}
+	if (ft_strncmp(key, "PATH", sizeof("PATH")) == 0)
+		update_path();
 }
