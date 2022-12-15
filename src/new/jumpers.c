@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 18:40:04 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/04 18:40:49 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/15 16:26:56 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,12 @@ t_token	**jump_pipeline(t_token **tokens)
 		tokens++;
 		tokens = jump_pipeline(tokens);
 	}
+	return (tokens);
+}
+
+t_token	**jump_to_end(t_token **tokens)
+{
+	while ((*tokens) != NULL)
+		tokens++;
 	return (tokens);
 }
