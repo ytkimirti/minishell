@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 19:11:23 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/26 10:21:52 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/15 15:04:25 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,12 @@ void		init_env(char **envp);
  * "/bin/ls"
  */
 const char	*get_joined_path(const char *executable_name, int index);
+
+/*
+ * This must be executed whenever the PATH environment
+ * variable changes.
+ */
+void		update_path(void);
 
 /*
  * Tries to find executable in path. If found, returns

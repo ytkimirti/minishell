@@ -6,10 +6,11 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 23:42:58 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/08 17:19:19 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/15 15:16:39 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <stdlib.h>
 #include "env.h"
 #include "error.h"
@@ -63,7 +64,7 @@ static void	clear_cache(t_path_cache *cache)
 	cache->is_empty = true;
 }
 
-static void	update_path(void)
+void	update_path(void)
 {
 	t_path_cache	*data;
 	const char		*str;
