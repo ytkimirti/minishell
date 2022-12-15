@@ -93,7 +93,7 @@ test: $(TEST_BIN)
 testerr: $(TEST_BIN)
 	./$(TEST_BIN) --gtest_brief=1
 
-$(TEST_BIN): $(TEST_OBJS) $(OBJS) $(LIB_GTEST)
+$(TEST_BIN): $(TEST_OBJS) $(OBJS) $(LIB_GTEST) $(LIB_READLINE)
 	@echo "==== LINKING TEST FILES ===="
 	g++ $(TEST_CFLAGS) $(OBJS) $(TEST_OBJS) $(LIB_GTEST) $(LIB_FT) $(LIB_READLINE) $(TEST_LDFLAGS) -o $@
 
