@@ -72,7 +72,7 @@ void	set_envdata_value(t_envdata *data, const char *new_value)
 		data->is_allocated = true;
 	}
 	else
-		ft_strlcpy(data->value, new_value, data->capacity - data->len_key - 1);
+		ft_strlcpy(data->value, new_value, len_new + 1);
 }
 
 // TODO: Add error handling here
