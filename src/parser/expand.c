@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 08:25:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/10 17:52:26 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/15 14:54:43 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,6 @@ static void	insert_special_chars(char *str)
 	}
 }
 
-/*
- * TODO: Add the actual wildcard expansion to here
- */
 bool	expand_wildcard_argument(t_token ***tokens, t_pvec *args_vec)
 {
 	t_cvec	*str;
@@ -69,9 +66,9 @@ bool	expand_wildcard_argument(t_token ***tokens, t_pvec *args_vec)
 	}
 	cvec_append(str, '\0');
 	result = expand_wildcard(str->arr);
-	free((free(str->arr), str));
+	cvec_del(str);
 	if (result == NULL)
 		return (false);
-	(append_to_pvec(result, args_vec),free(result));
+	(append_to_pvec(result, args_vec), free(result));
 	return (true);
 }
