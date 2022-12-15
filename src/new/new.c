@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 09:44:54 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/04 19:13:13 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/15 16:27:42 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 #include "libft.h"
 #include "utils.h"
 #include <sys/wait.h>
+#include "env.h"
 
 int	run_paren(t_token ***tokens, t_stdio std, bool is_sync)
 {
@@ -52,17 +53,31 @@ int	run_paren(t_token ***tokens, t_stdio std, bool is_sync)
 	return (status);
 }
 
+// This is the end, this is where everything gets set. So we can
+// just set the last status here!
 int	run_primary(t_token ***tokens, t_stdio std, bool is_sync)
 {
+	int			status;
+	static int	last_status = -1;
+	char		*str;
+
 	skip_spaces(tokens);
 	if (**tokens == NULL)
-		return (error_unexpected(**tokens, EMPTY), SHELL_ERROR);
+		status = (error_unexpected(**tokens, EMPTY), SHELL_ERROR);
 	if ((**tokens)->type == PAREN_OPEN)
-		return (run_paren(tokens, std, is_sync));
+		status = (run_paren(tokens, std, is_sync));
 	else if (is_command_token(**tokens))
-		return (parse_and_run_command(tokens, std, is_sync));
+		status = (parse_and_run_command(tokens, std, is_sync));
 	else
-		return (error_unexpected(**tokens, EMPTY), SHELL_ERROR);
+		status = (error_unexpected(**tokens, EMPTY), SHELL_ERROR);
+	if (status != last_status)
+	{
+		str = ft_itoa(status);
+		set_env("?", str);
+		free(str);
+		last_status = status;
+	}
+	return (status);
 }
 
 // TODO: Protect the pipe syscall against error
@@ -108,12 +123,12 @@ int	run_expr(t_token ***tokens, t_stdio std)
 	{
 		if ((**tokens)->type == OR_TOKEN && last_status == 0)
 		{
-			*tokens = jump_pipeline(++(*tokens));
+			*tokens = jump_to_end(*tokens);
 			return (0);
 		}
-		else if (last_status != 0)
+		else if ((**tokens)->type == AND_TOKEN && last_status != 0)
 		{
-			*tokens = jump_pipeline(++(*tokens));
+			*tokens = jump_to_end(*tokens);
 			return (last_status);
 		}
 		(*tokens)++;
