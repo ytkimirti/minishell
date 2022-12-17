@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize_space.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
+/*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:40:54 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/26 22:14:02 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/17 19:00:25 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_token	*tokenize_space(char **str, t_state *state)
 		malloc_error();
 	token->type = SPACE_TOKEN;
 	i = 0;
-	while ((*str)[i] == ' ' || **str == '\t')
+	while ((*str)[i] != '\0' && ft_isspace((*str)[i]))
 		i++;
 	(*str) += i;
 	token->len = i;
