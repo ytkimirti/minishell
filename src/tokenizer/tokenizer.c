@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
+/*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:26:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/15 16:57:29 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/17 20:20:47 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_token	*tokenize_outside(const char **str, t_state *state)
 {
 	if (**str == ' ' || **str == '\t')
 		return (tokenize_space(str, state));
-	else if (**str == '$')
+	else if (is_valid_var(*str))
 		return (tokenize_var(str, state));
 	else if (**str == '"' || **str == '\'')
 		return (tokenize_quote(str, state));
@@ -55,7 +55,7 @@ t_token	*tokenize_in_quotes(const char **str, t_state *state)
 {
 	if (**str == '"')
 		return (tokenize_quote(str, state));
-	else if (**str == '$')
+	else if (is_valid_var(*str))
 		return (tokenize_var(str, state));
 	else
 		return (tokenize_word(str, state));

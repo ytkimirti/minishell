@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize_word.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
+/*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:27:23 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/08 17:11:28 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/17 20:26:15 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ t_token	*tokenize_word(const char **str, t_state *state)
 	i = 0;
 	while ((*str)[i] != '\0'
 		&& ((state->in_squotes && (*str)[i] != '\'')
-			|| (state->in_quotes && (*str)[i] != '"' && (*str)[i] != '$')
-			|| (!is_metacharacter((*str)[i]))
+			|| (state->in_quotes && (*str)[i] != '"' && !is_valid_var(*str))
+			|| (!is_metacharacter((*str)[i])
+				|| (**str == '$' && !is_valid_var(*str)))
 			)
 		)
 	{
