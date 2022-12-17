@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
+/*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 06:59:44 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/26 21:51:34 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/17 19:47:29 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,17 @@ int	ft_echo(t_command *command, t_stdio std)
 		return (ft_putendl_fd("", std.out), 0);
 	str = command->argv + 1;
 	send_newline = true;
-	if (*str != NULL && ft_strncmp(*str, "-n", 3) == 0)
-	{
-		send_newline = false;
-		str++;
-	}
+	
 	while (*str != NULL)
 	{
-		ft_putstr_fd(*str, std.out);
+		if (ft_strncmp(*str, "-n", 3) == 0)
+		{
+			send_newline = false;
+			str++;
+			continue ;
+		}
+		else
+			ft_putstr_fd(*str, std.out);
 		str++;
 		if (*str != NULL)
 			ft_putstr_fd(" ", std.out);
