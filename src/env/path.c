@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
+/*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 23:32:46 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/26 10:22:38 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/17 18:51:03 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ const char	*find_executable(const char *name)
 	int			i;
 
 	i = 0;
+	if (name != NULL && (name[0] == '.' || name[0] == '/'))
+		return (name);
 	while (true)
 	{
 		str = get_joined_path(name, i);
@@ -29,7 +31,5 @@ const char	*find_executable(const char *name)
 			return (str);
 		i++;
 	}
-	if (name != NULL && (name[0] == '.' || name[0] == '/'))
-		return (name);
 	return (NULL);
 }
