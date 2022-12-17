@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wildcard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:08:45 by emakas            #+#    #+#             */
-/*   Updated: 2022/12/09 21:35:46 by emakas           ###   ########.fr       */
+/*   Updated: 2022/12/17 21:15:05 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,10 @@ t_pvec	*search_nodes(char *source, char **patterns)
 	DIR				*dir;
 
 	matches = pvec_new(5);
+	printf("opendir: %s\n",source);
 	dir = opendir(source);
 	if (dir == NULL)
-		return (perror("opendir error"), NULL);
+		return (perror("opendir error"), matches);
 	entry = readdir(dir);
 	while (entry != NULL && dir != NULL)
 	{
@@ -141,14 +142,18 @@ static char	*concat_dir(char *dir1, char *dir2)
 	size_t	len;
 	size_t	index;
 
-	if (ft_strncmp(dir1, ".", ft_strlen(dir1)) == 0)
+	if (ft_strncmp(dir1, ".", sizeof(".")) == 0)
 		return (ft_strdup(dir2));
 	index = 0;
 	len = ft_strlen(dir1) + ft_strlen(dir2) + 2;
 	result = malloc(sizeof(char) * len);
-	while (*dir1 != '\0')
-		result[index++] = *(dir1++);
-	result[index++] = '/';
+	while (dir1[index] != '\0')
+	{
+		result[index] = dir1[index];
+		index++;
+	}
+	if (ft_strncmp(dir1, "/", sizeof("/")) != 0)
+		result[index++] = '/';
 	while (*dir2 != '\0')
 		result[index++] = *(dir2++);
 	result[index] = '\0';
