@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
+/*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 09:02:37 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/12 09:56:24 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/17 19:42:29 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ char	*readline_with_prompt(void)
 	char	*str;
 	char	*res;
 
+	if (!isatty(0))
+		return (get_next_line(0));
 	str = create_prompt();
 	res = readline(str);
 	free(str);
