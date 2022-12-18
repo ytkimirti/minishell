@@ -37,6 +37,20 @@ static void	free_array(char **array)
 	free(array);
 }
 
+static DIR *try_opendir(char *dirname)
+{
+	DIR	*dir;
+
+	if (access(dirname, R_OK) == 0)
+	{
+		dir = opendir(dirname);
+		if (dir == NULL)
+			return (perror("opendir error"), dir);
+		return (dir);
+	}
+	return (NULL);
+}
+
 static void	dig_in_dir(char *source, char *d_name,
 				char **patterns, t_pvec *matches);
 
@@ -63,10 +77,9 @@ t_pvec	*search_nodes(char *source, char **patterns)
 	DIR				*dir;
 
 	matches = pvec_new(5);
-	printf("opendir: %s\n",source);
-	dir = opendir(source);
+	dir = try_opendir(source);
 	if (dir == NULL)
-		return (perror("opendir error"), matches);
+		return (matches);
 	entry = readdir(dir);
 	while (entry != NULL && dir != NULL)
 	{
