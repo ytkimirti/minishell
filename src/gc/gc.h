@@ -19,4 +19,4 @@ void	gc();
  */
 void	*new(size_t size);
 
-#endif;
+#endif

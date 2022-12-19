@@ -8,6 +8,7 @@ static t_pvec	*get_garbages()
 
 	if (garbages == NULL)
 		garbages = pvec_new(10);
+	return (garbages);
 }
 
 void	gc()
