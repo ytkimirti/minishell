@@ -22,6 +22,7 @@ void	gc()
 		free(garbages->arr[index]);
 		garbages->arr[index] = NULL;
 		garbages->len -= 1;
+		index--;
 	}
 }
 
