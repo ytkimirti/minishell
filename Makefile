@@ -28,7 +28,7 @@ OBJ_DIR	:=	obj
 SRC_DIR	:=	src
 
 
-MODULES   := parser executer tokenizer utils map prompt command ast built_in env error print wildcard new
+MODULES   := parser executer tokenizer utils map prompt command ast built_in env error print wildcard new gc
 
 SRC_DIRS   := $(addprefix src/,$(MODULES))
 OBJ_DIRS := $(addprefix obj/,$(MODULES))
@@ -64,7 +64,8 @@ src/tokenizer/tokenize_word.c src/tokenizer/tokenizer.c src/utils/close.c  \
 src/utils/node_type_tostr.c src/utils/print_token.c src/utils/utils.c  \
 src/utils/utils_print.c src/wildcard/check_end.c src/wildcard/check_match.c  \
 src/wildcard/check_start.c src/wildcard/compare_char.c  \
-src/wildcard/vector_append_all.c src/wildcard/wildcard.c  
+src/wildcard/vector_append_all.c src/wildcard/wildcard.c \
+src/gc/gc.c
 
 OBJS       := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 
