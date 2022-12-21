@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 09:44:54 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/15 16:27:42 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/21 18:23:14 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,8 @@ int	execute_tokens(t_token **tokens)
 	if (*tokens != NULL)
 	{
 		error_unexpected(*tokens, EMPTY);
-		return (SHELL_ERROR);
+		return (ivec_del(unwanted), SHELL_ERROR);
 	}
+	ivec_del(unwanted);
 	return (status);
 }
