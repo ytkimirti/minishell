@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 18:44:07 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/04 18:44:07 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/21 18:18:39 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ int	parse_and_run_command(t_token ***tokens, t_stdio std, bool is_sync)
 	if (command == NULL)
 		return (SHELL_ERROR);
 	status = execute_command(command, std, is_sync);
-	free(command);
+	free_command(command);
 	return (status);
 }
