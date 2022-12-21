@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:46:42 by emakas            #+#    #+#             */
-/*   Updated: 2022/12/10 17:39:33 by emakas           ###   ########.fr       */
+/*   Updated: 2022/12/21 18:27:09 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,23 @@ static int	check_edges(char *str, char *pattern)
 int	check_match(char *str, char *pattern)
 {
 	char	**patterns_split;
+	bool	found;
+	int		i;
 
 	patterns_split = ft_split(pattern, '*');
 	if (patterns_split == NULL)
 		malloc_error();
-	if (check_edges(str, pattern))
+	if (check_edges(str, pattern)
+		&& check_inside(str, patterns_split))
+		found = true;
+	else
+		found = false;
+	i = 0;
+	while (patterns_split[i] != NULL)
 	{
-		if (check_inside(str, patterns_split))
-			return (1);
+		free(patterns_split[i]);
+		i++;
 	}
-	return (0);
+	free(patterns_split);
+	return (found);
 }
