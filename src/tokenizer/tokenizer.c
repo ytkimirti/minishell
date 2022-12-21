@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:26:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/17 20:20:47 by emakas           ###   ########.fr       */
+/*   Updated: 2022/12/21 18:33:39 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,16 @@ t_token	**tokenize(const char *str)
 	while (*str != '\0')
 	{
 		token = tokenize_single(&str, &state);
-		if (token == NULL
-			|| (token->len == 0 && (token->type == WORD
-					|| token->type == VAR)))
+		if (token == NULL)
 			break ;
+		if (token->len == 0 && (token->type == WORD || token->type == VAR))
+		{
+			free(token);
+			break ;
+		}
 		pvec_append(tokens, token);
 	}
 	pvec_append(tokens, NULL);
 	tmp = (t_token **)tokens->arr;
-	free(tokens);
-	return (tmp);
+	return (free(tokens), tmp);
 }
