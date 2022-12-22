@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:08:45 by emakas            #+#    #+#             */
-/*   Updated: 2022/12/17 21:15:05 by emakas           ###   ########.fr       */
+/*   Updated: 2022/12/21 18:44:42 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	free_array(char **array)
 	free(array);
 }
 
-static DIR *try_opendir(char *dirname)
+static DIR	*try_opendir(char *dirname)
 {
 	DIR	*dir;
 
