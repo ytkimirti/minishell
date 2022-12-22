@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:48:33 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/17 20:20:14 by emakas           ###   ########.fr       */
+/*   Updated: 2022/12/21 18:44:18 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,18 @@ bool	is_valid_var_name(char c)
 	return (ft_isalpha(c) || c == '_');
 }
 
-
 inline static bool	is_special_var(char c)
 {
 	return (c == '?' || c == '#' || (c >= '0' && c <= '9'));
 }
 
-bool is_valid_var(const char *str)
+bool	is_valid_var(const char *str)
 {
-	char next_char = str[1];
-	return (str[0] == '$' && (is_valid_var_name(next_char) || is_special_var(next_char)));
+	char	next_char;
+
+	next_char = str[1];
+	return (str[0] == '$' && (is_valid_var_name(next_char)
+			|| is_special_var(next_char)));
 }
 
 t_token	*tokenize_var(char **str, t_state *state)
