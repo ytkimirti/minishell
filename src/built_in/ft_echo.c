@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 06:59:44 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/17 19:47:29 by emakas           ###   ########.fr       */
+/*   Updated: 2022/12/21 18:44:31 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	ft_echo(t_command *command, t_stdio std)
 		return (ft_putendl_fd("", std.out), 0);
 	str = command->argv + 1;
 	send_newline = true;
-	
 	while (*str != NULL)
 	{
 		if (ft_strncmp(*str, "-n", 3) == 0)
