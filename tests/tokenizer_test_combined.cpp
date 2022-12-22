@@ -59,7 +59,7 @@ TEST_P(TokenizeAllTest, Handle)
 	if (out_length != data.correct_tokens.size())
 	{
 		printf(RED "Lengths does not match! Expected: %d Got: %d\n" RST, (int)data.correct_tokens.size(), out_length);
-		printf("INPUT: " YEL "\"%s\"" RST "\n", str);
+		printf("INPUT: " MAG "\"" YEL "%s" MAG "\"" RST "\n", str);
 		printf(BYEL "----- OUTPUT -----\n" RST);
 		for (int i = 0; out[i] != NULL; i++)
 		{
@@ -295,6 +295,34 @@ INSTANTIATE_TEST_SUITE_P(Tokenizer, TokenizeAllTest, testing::Values(
 					DummyToken{"??", WORD},
 					DummyToken{"", SINGLE_QUOTE},
 					DummyToken{"bbb", WORD},
+				}
+			},
+			TokenizeAllData{
+				.input = "$[",
+				.correct_tokens = std::vector<DummyToken>{
+					DummyToken{"$[", WORD},
+				}
+			},
+			TokenizeAllData{
+				.input = "$",
+				.correct_tokens = std::vector<DummyToken>{
+					DummyToken{"$", WORD},
+				}
+			},
+			TokenizeAllData{
+				.input = "\"$[\"",
+				.correct_tokens = std::vector<DummyToken>{
+					DummyToken{"", DOUBLE_QUOTE},
+					DummyToken{"$[", WORD},
+					DummyToken{"", DOUBLE_QUOTE},
+				}
+			},
+			TokenizeAllData{
+				.input = "\'$[\'",
+				.correct_tokens = std::vector<DummyToken>{
+					DummyToken{"", SINGLE_QUOTE},
+					DummyToken{"$[", WORD},
+					DummyToken{"", SINGLE_QUOTE},
 				}
 			}
 			));
