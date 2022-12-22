@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:08:45 by emakas            #+#    #+#             */
-/*   Updated: 2022/12/21 18:44:42 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/22 15:24:28 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,6 @@
 t_pvec		*search_nodes(char *source, char **patterns);
 
 static char	*concat_dir(char *dir1, char *dir2);
-
-static void	free_array(char **array)
-{
-	char	**p;
-
-	p = array;
-	while (*p != NULL)
-	{
-		free(*p);
-		p++;
-	}
-	free(array);
-}
 
 static DIR	*try_opendir(char *dirname)
 {

@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 15:54:06 by emakas            #+#    #+#             */
-/*   Updated: 2022/12/10 16:42:07 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/22 15:24:13 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ int		check_end(char *str, char *pattern);
 void	vector_append_all(t_pvec *vector_dest, t_pvec *vector_src);
 
 int		compare_char(char special, char str);
+void	free_array(char **array);
 
 #endif

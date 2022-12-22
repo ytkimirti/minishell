@@ -64,7 +64,7 @@ src/tokenizer/tokenize_word.c src/tokenizer/tokenizer.c src/utils/close.c  \
 src/utils/node_type_tostr.c src/utils/print_token.c src/utils/utils.c  \
 src/utils/utils_print.c src/wildcard/check_end.c src/wildcard/check_match.c  \
 src/wildcard/check_start.c src/wildcard/compare_char.c  \
-src/wildcard/vector_append_all.c src/wildcard/wildcard.c  
+src/wildcard/vector_append_all.c src/wildcard/wildcard.c  src/wildcard/free_array.c
 
 OBJS       := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 
