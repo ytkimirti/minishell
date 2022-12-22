@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:46:42 by emakas            #+#    #+#             */
-/*   Updated: 2022/12/21 18:27:09 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/22 15:26:21 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ int	check_match(char *str, char *pattern)
 {
 	char	**patterns_split;
 	bool	found;
-	int		i;
 
 	patterns_split = ft_split(pattern, '*');
 	if (patterns_split == NULL)
@@ -102,12 +101,6 @@ int	check_match(char *str, char *pattern)
 		found = true;
 	else
 		found = false;
-	i = 0;
-	while (patterns_split[i] != NULL)
-	{
-		free(patterns_split[i]);
-		i++;
-	}
-	free(patterns_split);
+	free_array(patterns_split);
 	return (found);
 }
