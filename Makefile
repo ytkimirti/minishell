@@ -16,8 +16,8 @@ TEST_LDFLAGS = -pthread -ltermcap
 CFLAGS = -MD -Wall -Wextra -Werror -I$(FT_DIR) -Ilibs -g
 
 # readline requires that it's linked with termcap
-LDFLAGS = -Llibft -fsanitize=address -ltermcap
-#LDFLAGS = -ltermcap
+# LDFLAGS = -Llibft -fsanitize=address -ltermcap
+LDFLAGS = -ltermcap
 
 CC = gcc
 SHELL = /bin/sh
