@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:08:45 by emakas            #+#    #+#             */
-/*   Updated: 2022/12/22 15:24:28 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/28 14:39:33 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_pvec	*search_nodes(char *source, char **patterns)
 	t_pvec			*matches;
 	DIR				*dir;
 
-	matches = pvec_new(5);
+	matches = pvec_new(10);
 	dir = try_opendir(source);
 	if (dir == NULL)
 		return (matches);
@@ -74,15 +74,20 @@ t_pvec	*search_nodes(char *source, char **patterns)
 			&& ft_strncmp(entry->d_name, "..", sizeof("..")) != 0
 			&& check_match(entry->d_name, patterns[0]))
 		{
+			
 			if (patterns[1] != NULL && entry->d_type == DT_DIR)
 				dig_in_dir(source, entry->d_name, &patterns[1], matches);
+			
+		
 			else if (patterns[1] == NULL)
+			{
+				//printf("girdim\n");
 				pvec_append(matches, concat_dir(source, entry->d_name));
+			}
 		}
 		entry = readdir(dir);
 	}
 	closedir(dir);
-	pvec_append(matches, NULL);
 	return (matches);
 }
 
@@ -114,6 +119,9 @@ char	**expand_wildcard(char *pattern)
 	if (patterns == NULL)
 		malloc_error();
 	match_vector = search_nodes(source, patterns);
+	if (match_vector->len <= 0)
+		pvec_append(match_vector, ft_strdup(pattern));
+	pvec_append(match_vector, NULL);
 	matches = (char **) match_vector->arr;
 	free(match_vector);
 	free_array(patterns);
