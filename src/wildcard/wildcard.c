@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:08:45 by emakas            #+#    #+#             */
-/*   Updated: 2022/12/28 14:39:33 by emakas           ###   ########.fr       */
+/*   Updated: 2022/12/28 14:49:59 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,10 @@ t_pvec	*search_nodes(char *source, char **patterns)
 			&& ft_strncmp(entry->d_name, "..", sizeof("..")) != 0
 			&& check_match(entry->d_name, patterns[0]))
 		{
-			
 			if (patterns[1] != NULL && entry->d_type == DT_DIR)
 				dig_in_dir(source, entry->d_name, &patterns[1], matches);
-			
-		
 			else if (patterns[1] == NULL)
-			{
-				//printf("girdim\n");
 				pvec_append(matches, concat_dir(source, entry->d_name));
-			}
 		}
 		entry = readdir(dir);
 	}
