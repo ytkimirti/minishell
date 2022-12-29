@@ -20,7 +20,6 @@ t_token	**jump_paren(t_token **tokens)
 {
 	int	depth;
 
-	assert(*tokens != NULL && (*tokens)->type == PAREN_OPEN);
 	depth = 0;
 	while (*tokens != NULL)
 	{
