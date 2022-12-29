@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 09:02:37 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/17 19:42:29 by emakas           ###   ########.fr       */
+/*   Updated: 2022/12/29 14:57:14 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "libft.h"
-#include "colors.h"
+#include "rl_colors.h"
 #include "prompt_utils.h"
 
 char	*get_formatted_cwd(void)
@@ -42,9 +42,9 @@ char	*create_prompt(void)
 	cwd = get_formatted_cwd();
 	git = get_git_branch();
 	if (git == NULL)
-		prompt = ft_sprintf(YEL "%s " RST, cwd);
+		prompt = ft_sprintf(RL_YEL "%s " RL_RST, cwd);
 	else
-		prompt = ft_sprintf(YEL "%s " RST "on " MAG "%s " RST,
+		prompt = ft_sprintf(RL_YEL "%s " RL_RST "on " RL_MAG "%s " RL_RST,
 				cwd, git);
 	if (git != NULL)
 		free(git);
