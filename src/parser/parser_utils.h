@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 14:19:17 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/10 17:50:51 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/29 14:46:51 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,17 @@
 // when it's expanded
 int		length_token(t_token *token);
 
+// Length until wildcard, space or redir token
 int		length_tokens(t_token **tokens);
 
+// Includes spaces and every token you can use between
+// ( ) || && | tokens
 bool	is_command_token(t_token *token);
 
+// Checks for * and ?
 bool	is_wildcard_token(const t_token *token);
 
+// Checks for < > << and >>
 bool	is_redir_token(t_token *token);
 
 /*
