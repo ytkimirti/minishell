@@ -50,6 +50,7 @@ int	run_paren(t_token ***tokens, t_stdio std, bool is_sync)
 		status = WEXITSTATUS(status);
 	}
 	*tokens = jump_paren(*tokens) + 1;
+	skip_spaces(tokens);
 	return (status);
 }
 
