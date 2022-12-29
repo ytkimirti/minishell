@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 09:44:54 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/21 18:23:14 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/29 14:44:32 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ int	run_primary(t_token ***tokens, t_stdio std, bool is_sync)
 
 	skip_spaces(tokens);
 	if (**tokens == NULL)
-		status = (error_unexpected(**tokens, EMPTY), SHELL_ERROR);
+		return (error_unexpected(**tokens, EMPTY), SHELL_ERROR);
 	if ((**tokens)->type == PAREN_OPEN)
 		status = (run_paren(tokens, std, is_sync));
 	else if (is_command_token(**tokens))
-		status = (parse_and_run_command(tokens, std, is_sync));
+		return (parse_and_run_command(tokens, std, is_sync));
 	else
 		status = (error_unexpected(**tokens, EMPTY), SHELL_ERROR);
 	if (status != last_status)
