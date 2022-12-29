@@ -46,11 +46,14 @@ t_token	**jump_primary(t_token **tokens)
 
 t_token	**jump_pipeline(t_token **tokens)
 {
-	tokens = jump_primary(tokens);
-	while ((*tokens) != NULL && (*tokens)->type == PIPE_TOKEN)
+	while (true)
 	{
+		tokens = jump_primary(tokens);
+		if (*tokens == NULL)
+			return (tokens);
+		if ((*tokens)->type != PIPE_TOKEN)
+			return (tokens);
 		tokens++;
-		tokens = jump_pipeline(tokens);
 	}
 	return (tokens);
 }
