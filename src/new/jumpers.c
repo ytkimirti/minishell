@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 18:40:04 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/15 16:26:56 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/12/29 14:47:43 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ t_token	**jump_paren(t_token **tokens)
 {
 	int	depth;
 
+	if (*tokens == NULL)
+		return (tokens);
 	depth = 0;
 	while (*tokens != NULL)
 	{
@@ -36,6 +38,8 @@ t_token	**jump_paren(t_token **tokens)
 
 t_token	**jump_primary(t_token **tokens)
 {
+	if (*tokens == NULL)
+		return (tokens);
 	if ((*tokens)->type == PAREN_OPEN)
 		return (jump_paren(tokens));
 	while (is_command_token(*tokens))
