@@ -38,8 +38,7 @@ t_token	**jump_primary(t_token **tokens)
 {
 	if ((*tokens)->type == PAREN_OPEN)
 		return (jump_paren(tokens));
-	while (*tokens != NULL && (is_command_token(*tokens)
-			|| (*tokens)->type == SPACE_TOKEN))
+	while (is_command_token(*tokens))
 		tokens++;
 	return (tokens);
 }
