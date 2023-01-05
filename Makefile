@@ -114,7 +114,9 @@ build:
 	git init ;\
 	git submodule add git@github.com:ytkimirti/libft libft ;\
 	git submodule add https://github.com/sailfishos-mirror/readline libs/readline ;\
-	git add .
+	git add . ;\
+	git commit -m "Initial"
+
 
 $(NAME): $(OBJS) $(ENTRY_OBJS) $(LIB_FT) $(LIB_READLINE)
 	$(CC) $(OBJS) $(ENTRY_OBJS) $(LIB_FT) $(LIB_READLINE) $(LDFLAGS) -o $@
