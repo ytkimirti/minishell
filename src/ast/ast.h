@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 14:57:19 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/26 10:23:56 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/05 18:03:02 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		execute_tree(t_node	*root);
  * Since all other programs can only return from 0 - 255
  * this can't be used elsewhere.
  */
-# define SHELL_ERROR 425
+# define SHELL_ERROR 258
 
 void	free_tree(t_node *tree);
 
