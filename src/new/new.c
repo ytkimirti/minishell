@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 09:44:54 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/29 14:44:32 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/05 18:02:38 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	run_primary(t_token ***tokens, t_stdio std, bool is_sync)
 	if ((**tokens)->type == PAREN_OPEN)
 		status = (run_paren(tokens, std, is_sync));
 	else if (is_command_token(**tokens))
-		return (parse_and_run_command(tokens, std, is_sync));
+		status = parse_and_run_command(tokens, std, is_sync);
 	else
 		status = (error_unexpected(**tokens, EMPTY), SHELL_ERROR);
 	if (status != last_status)
