@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:58:12 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/04 19:04:06 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/05 18:11:49 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ static void	exec_child(t_command *command, t_stdio std)
 	if (!close_unwanted(std.unwanted_fds))
 		exit(SHELL_ERROR);
 	execve(path, command->argv, envp);
-	perror("execve error");
 	if (errno == ENOEXEC)
 		exit(128);
 	if (errno == ENOENT)
