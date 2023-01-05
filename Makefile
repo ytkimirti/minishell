@@ -102,6 +102,7 @@ $(foreach bdir,$(OBJ_DIRS),$(eval $(call make-goal,$(bdir))))
 submodules:
 	git submodule init
 	git submodule sync
+	git submodule update
 
 build:
 	rm -rf build ;\
