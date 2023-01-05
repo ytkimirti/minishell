@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 13:45:27 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/04 19:11:35 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/02 17:40:26 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	open_heredoc_file(const char *file)
 		line = readline("> ");
 		if (line == NULL)
 			break ;
-		if (ft_strncmp(line, file, ft_strlen(file)) == 0)
+		if (ft_strncmp(line, file, ft_strlen(file) + 1) == 0)
 		{
 			free(line);
 			break ;
