@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 09:44:54 by ykimirti          #+#    #+#             */
-/*   Updated: 2023/01/05 18:50:42 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/05 19:23:04 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int	run_paren(t_token ***tokens, t_stdio std, bool is_sync)
 		waitpid(pid, &status, 0);
 		status = WEXITSTATUS(status);
 	}
-	*tokens = jump_paren(*tokens);
+	*tokens = jump_paren(*tokens) + 1;
+	skip_spaces(tokens);
 	return (status);
 }
 
