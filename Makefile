@@ -99,6 +99,23 @@ endef
 
 $(foreach bdir,$(OBJ_DIRS),$(eval $(call make-goal,$(bdir))))
 
+submodules:
+	git submodule init
+	git submodule sync
+
+build:
+	rm -rf build ;\
+	mkdir -p build ;\
+	cp -r src build/src ;\
+	cp -r Makefile build/ ;\
+	cp -r .gitignore build/ ;\
+	cp -r .gitmodules build/ ;\
+	cd build ;\
+	git init ;\
+	git submodule add git@github.com:ytkimirti/libft libft ;\
+	git submodule add https://github.com/sailfishos-mirror/readline libs/readline ;\
+	git add .
+
 $(NAME): $(OBJS) $(ENTRY_OBJS) $(LIB_FT) $(LIB_READLINE)
 	$(CC) $(OBJS) $(ENTRY_OBJS) $(LIB_FT) $(LIB_READLINE) $(LDFLAGS) -o $@
 
@@ -164,4 +181,4 @@ norm:
 
 # -include $(foreach odir,$(OBJ_DIRS),$(wildcard $(odir)/*.d))
 
-.PHONY: all re clean fclean checkdirs run test testerr maketest norm
+.PHONY: all re clean fclean checkdirs run test testerr maketest norm submodules build
