@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
+/*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:12:09 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/23 09:10:04 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/08 14:27:04 by emakas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,24 @@
 #include <stdio.h>
 #include <string.h>
 
+static void	print_single_env(char *env, int fd)
+{
+	int	index;
+	int	eq_occured;
+
+	index = 0;
+	eq_occured = 0;
+	while (env[index] != '\0')
+	{
+		if (env[index] == '=' && eq_occured++ == 0)
+			ft_putstr_fd("=\"", fd);
+		else
+			ft_putchar_fd(env[index], fd);
+		index++;
+	}
+	ft_putendl_fd("\"", fd);
+}
+
 static void	print_all_exports(t_stdio std)
 {
 	char	**env;
@@ -27,8 +45,8 @@ static void	print_all_exports(t_stdio std)
 	i = 0;
 	while (env[i] != NULL)
 	{
-		ft_putstr_fd("export ", std.out);
-		ft_putendl_fd(env[i], std.out);
+		ft_putstr_fd("declare -x", std.out);
+		print_single_env(env[i], std.out);
 		i++;
 	}
 	free(env);
