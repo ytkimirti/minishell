@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:12:09 by ykimirti          #+#    #+#             */
-/*   Updated: 2023/01/09 16:00:42 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/09 16:29:02 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	print_all_exports(t_stdio std)
 	i = 0;
 	while (env[i] != NULL)
 	{
-		ft_putstr_fd("declare -x", std.out);
+		ft_putstr_fd("export ", std.out);
 		print_single_env(env[i], std.out);
 		i++;
 	}
