@@ -1,0 +1,301 @@
+ls -la >file
+ls -la >filea
+ls -la >fileaa
+ls -la >fileaaa
+ls -la >fileaaaa
+ls -la >fileaaaaa
+ls -la >fileaaaaaa
+ls -la >fileaaaaaaa
+ls -la >fileaaaaaaaa
+ls -la >fileaaaaaaaaa
+ls -la >fileaaaaaaaaaa
+ls -la >fileaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ls -la >fileaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+>file
+>filea
+>fileaa
+>fileaaa
+>fileaaaa
+>fileaaaaa
+>fileaaaaaa
+>fileaaaaaaa
+>fileaaaaaaaa
+>fileaaaaaaaaa
+>fileaaaaaaaaaa
+>fileaaaaaaaaaaa
+>fileaaaaaaaaaaaa
+>fileaaaaaaaaaaaaa
+>fileaaaaaaaaaaaaaa
+<file
+<filea
+<fileaa
+<fileaaa
+<fileaaaa
+<fileaaaaa
+<fileaaaaaa
+<fileaaaaaaa
+<fileaaaaaaaa
+<fileaaaaaaaaa
+<fileaaaaaaaaaa
+<fileaaaaaaaaaaa
+<fileaaaaaaaaaaaa
+<fileaaaaaaaaaaaaa
+<fileaaaaaaaaaaaaaa
+>>file
+>>filea
+>>fileaa
+>>fileaaa
+>>fileaaaa
+>>fileaaaaa
+>>fileaaaaaa
+>>fileaaaaaaa
+>>fileaaaaaaaa
+>>fileaaaaaaaaa
+>>fileaaaaaaaaaa
+>>fileaaaaaaaaaaa
+>>fileaaaaaaaaaaaa
+>>fileaaaaaaaaaaaaa
+>>fileaaaaaaaaaaaaaa
+
+
+
+
+<a <b <c <d <e <a
+<a <b <c <d <e <a <a
+<a <b <c <d <e <a <a <a
+<a <b <c <d <e <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a
+>a >b >c >d >e >a
+>a >b >c >d >e >a >a
+>a >b >c >d >e >a >a >a
+>a >b >c >d >e >a >a >a >a
+>a >b >c >d >e >a >a >a >a >a
+>a >b >c >d >e >a >a >a >a >a >a
+>a >b >c >d >e >a >a >a >a >a >a >a
+>a >b >c >d >e >a >a >a >a >a >a >a >a
+>a >b >c >d >e >a >a >a >a >a >a >a >a >a
+>a >b >c >d >e >a >a >a >a >a >a >a >a >a >a
+>a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a
+>a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a
+>a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a
+>a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a >a
+>a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a
+>a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a
+>a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a
+>a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a
+>a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a
+>a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a
+>a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a
+>>a >>b >>c >>d >>e >>a
+>>a >>b >>c >>d >>e >>a >>a
+>>a >>b >>c >>d >>e >>a >>a >>a
+>>a >>b >>c >>d >>e >>a >>a >>a >>a
+>>a >>b >>c >>d >>e >>a >>a >>a >>a >>a
+>>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a
+>>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a
+>>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a
+>>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a
+>>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+>>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+>>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+>>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+>>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+>>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+>>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+>>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+>>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+>>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+>>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+>>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+
+
+
+
+
+
+<a <b <c <d <e <a
+<a <b <c <d <e <a <a
+<a <b <c <d <e <a <a <a
+<a <b <c <d <e <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a
+<a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a
+<a >b >c >d >e >a
+<a >b >c >d >e >a >a
+<a >b >c >d >e >a >a >a
+<a >b >c >d >e >a >a >a >a
+<a >b >c >d >e >a >a >a >a >a
+<a >b >c >d >e >a >a >a >a >a >a
+<a >b >c >d >e >a >a >a >a >a >a >a
+<a >b >c >d >e >a >a >a >a >a >a >a >a
+<a >b >c >d >e >a >a >a >a >a >a >a >a >a
+<a >b >c >d >e >a >a >a >a >a >a >a >a >a >a
+<a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a
+<a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a
+<a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a
+<a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a >a
+<a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a
+<a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a
+<a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a
+<a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a
+<a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a
+<a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a
+<a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a
+>a >>b >>c >>d >>e >>a
+>a >>b >>c >>d >>e >>a >>a
+>a >>b >>c >>d >>e >>a >>a >>a
+>a >>b >>c >>d >>e >>a >>a >>a >>a
+>a >>b >>c >>d >>e >>a >>a >>a >>a >>a
+>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a
+>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a
+>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a
+>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a
+>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+>a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+
+
+
+
+
+
+
+
+
+
+
+
+
+echo <a <b <c <d <e <a
+echo <a <b <c <d <e <a <a
+echo <a <b <c <d <e <a <a <a
+echo <a <b <c <d <e <a <a <a <a
+echo <a <b <c <d <e <a <a <a <a <a
+echo <a <b <c <d <e <a <a <a <a <a <a
+echo <a <b <c <d <e <a <a <a <a <a <a <a
+echo <a <b <c <d <e <a <a <a <a <a <a <a <a
+echo <a <b <c <d <e <a <a <a <a <a <a <a <a <a
+echo <a <b <c <d <e <a <a <a <a <a <a <a <a <a <a
+echo <a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a
+echo <a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a
+echo <a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a
+echo <a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a <a
+echo <a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a
+echo <a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a
+echo <a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a
+echo <a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a
+echo <a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a
+echo <a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a
+echo <a <b <c <d <e <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a <a
+echo <a >b >c >d >e >a
+echo <a >b >c >d >e >a >a
+echo <a >b >c >d >e >a >a >a
+echo <a >b >c >d >e >a >a >a >a
+echo <a >b >c >d >e >a >a >a >a >a
+echo <a >b >c >d >e >a >a >a >a >a >a
+echo <a >b >c >d >e >a >a >a >a >a >a >a
+echo <a >b >c >d >e >a >a >a >a >a >a >a >a
+echo <a >b >c >d >e >a >a >a >a >a >a >a >a >a
+echo <a >b >c >d >e >a >a >a >a >a >a >a >a >a >a
+echo <a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a
+echo <a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a
+echo <a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a
+echo <a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a >a
+echo <a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a
+echo <a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a
+echo <a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a
+echo <a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a
+echo <a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a
+echo <a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a
+echo <a >b >c >d >e >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a >a
+echo >a >>b >>c >>d >>e >>a
+echo >a >>b >>c >>d >>e >>a >>a
+echo >a >>b >>c >>d >>e >>a >>a >>a
+echo >a >>b >>c >>d >>e >>a >>a >>a >>a
+echo >a >>b >>c >>d >>e >>a >>a >>a >>a >>a
+echo >a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a
+echo >a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a
+echo >a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a
+echo >a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a
+echo >a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+echo >a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+echo >a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+echo >a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+echo >a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+echo >a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+echo >a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+echo >a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+echo >a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+echo >a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+echo >a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
+echo >a >>b >>c >>d >>e >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a >>a
