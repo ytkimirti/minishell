@@ -60,7 +60,7 @@ src/tokenizer/tokenize_control.c src/tokenizer/tokenize_paren.c  \
 src/tokenizer/tokenize_pipe.c src/tokenizer/tokenize_quote.c  \
 src/tokenizer/tokenize_redir.c src/tokenizer/tokenize_space.c  \
 src/tokenizer/tokenize_var.c src/tokenizer/tokenize_wildcard.c  \
-src/tokenizer/tokenize_word.c src/tokenizer/tokenizer.c src/utils/close.c  \
+src/tokenizer/tokenize_word.c src/tokenizer/tokenizer.c src/utils/close.c src/utils/sort.c \
 src/utils/node_type_tostr.c src/utils/print_token.c src/utils/utils.c  \
 src/utils/utils_print.c src/wildcard/check_end.c src/wildcard/check_match.c  \
 src/wildcard/check_start.c src/wildcard/compare_char.c  \

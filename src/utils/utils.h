@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:26:50 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/04 18:59:28 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/09 15:46:30 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,10 @@ char	*token_type_repr(t_token_type type);
 * // close stdin if it's not 0
 */
 void	close_if_not_eq(int fd, int exception);
+
+// Function pointer to compare
+typedef int	(*t_compare_func)(void *, void *);
+
+void	sort(void **arr, int size, t_compare_func cmp);
 
 #endif
