@@ -1,5 +1,6 @@
-![norminette](https://github.com/ytkimirti/minishell/workflows/norminette/badge.svg)
-![build](https://github.com/ytkimirti/minishell/workflows/build-and-test/badge.svg)
+![norminette](https://github.com/ytkimirti/minishell/actions/workflows/norminette.yml/badge.svg)
+![build](https://github.com/ytkimirti/minishell/actions/workflows/compile.yml/badge.svg)
+
 
 ```sh
 $ git clone git@github.com:ytkimirti/minishell.git --recursive
