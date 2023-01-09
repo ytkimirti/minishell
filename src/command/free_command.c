@@ -6,12 +6,26 @@
 /*   By: emakas <emakas@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 13:19:09 by emakas            #+#    #+#             */
-/*   Updated: 2022/11/08 16:18:50 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/09 17:54:49 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "command.h" 
 #include <stdlib.h>
+
+static void	free_redirs(t_command *command)
+{
+	int	i;
+
+	i = 0;
+	while (command->redirs[i] != NULL)
+	{
+		free(command->redirs[i]->str);
+		free(command->redirs[i]);
+		i++;
+	}
+	free(command->redirs);
+}
 
 static void	free_args(t_command *command)
 {
@@ -26,17 +40,9 @@ static void	free_args(t_command *command)
 	free(command->argv);
 }
 
-static void	free_redirection(t_command *command)
-{
-	if (command->in_file != NULL)
-		free(command->in_file);
-	if (command->out_file != NULL)
-		free(command->out_file);
-}
-
 void	free_command(t_command *command)
 {
 	free_args(command);
-	free_redirection(command);
+	free_redirs(command);
 	free(command);
 }

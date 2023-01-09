@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 23:29:43 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/26 19:31:06 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/09 17:38:29 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 # define COMMAND_UTILS_H
 
 # include "command.h"
+# include "built_in.h"
 
 /*
- * Finds a builtin with the command->argv[0],
- * opens the fds using open_output_file and open_input_file,
- * executes that function
- * closes those fds, no dup2 or fork is used.
- *
- * Returns -1 if it does not find any builtins with that name
- * Returns SHELL_ERROR if something happens with opening a file
+ * Opens all the redirection files
+ * Executes the builtin with the given function
+ * Closes all the redirection files
+ * Returns status
  */
-int			execute_builtin(t_command *command, t_stdio std);
+int		execute_builtin(t_command *command, t_stdio std, t_builtin_func func);
 
-int			open_output_file(const char *file, bool is_append);
+bool	open_redir_files(t_redir **redirs, t_ivec *opened_fds, t_stdio *std);
 
-int			open_input_file(const char	*file, bool is_heredoc);
+int		open_output_file(const char *file, bool is_append);
+
+int		open_input_file(const char	*file, bool is_heredoc);
 
 #endif

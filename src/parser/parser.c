@@ -6,10 +6,11 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:00:53 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/09 20:00:18 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/09 18:01:53 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "command.h"
 #include "tokenizer.h"
 #include "token.h"
 #include "utils.h"
@@ -22,42 +23,37 @@
 #include <limits.h>
 #include "error.h"
 
-// TODO: Add tokenizer fail here
-static bool	parse_redir(t_command *cmd, t_token ***tokens)
+// Creates a new redir object,
+// fills it up by expanding the word,
+// appends it to the redirs_vec
+// moves the tokens pointer of course...
+static bool	parse_redir(t_token ***tokens, t_pvec *redirs_vec)
 {
-	char				*file;
-	enum e_token_type	type;
+	t_redir				*redir;
 
-	type = (**tokens)->type;
+	redir = malloc(sizeof(t_redir));
+	redir->type = (**tokens)->type;
 	(*tokens)++;
-	if (type == REDIR_IN && cmd->in_file != NULL)
-		return (error_false("Cannot have multiple inputs"));
 	skip_spaces(tokens);
 	if (!is_command_token(**tokens))
 	{
+		free(redir);
 		error_unexpected(**tokens, EMPTY);
 		return (false);
 	}
-	file = expand_tokens(tokens);
-	if (type == REDIR_IN || type == REDIR_HEREDOC)
-	{
-		cmd->in_file = file;
-		cmd->is_heredoc = type == REDIR_HEREDOC;
-	}
-	else
-	{
-		cmd->out_file = file;
-		cmd->is_append = type == REDIR_APPEND;
-	}
+	redir->str = expand_tokens(tokens);
+	ft_printf("%s >%s<\n", token_type_tostr(redir->type), redir->str);
+	pvec_append(redirs_vec, redir);
 	return (true);
 }
 
-bool	parse_step(t_command *cmd, t_token ***tokens, t_pvec *args_vec)
+bool	parse_step(t_token ***tokens, t_pvec *args_vec
+		, t_pvec *redirs_vec)
 {
 	char	*str;
 
 	if (is_redir_token(**tokens))
-		return (parse_redir(cmd, tokens));
+		return (parse_redir(tokens, redirs_vec));
 	if (is_wildcard_argument(*tokens))
 		return (expand_wildcard_argument(tokens, args_vec));
 	else
@@ -68,14 +64,11 @@ bool	parse_step(t_command *cmd, t_token ***tokens, t_pvec *args_vec)
 	return (true);
 }
 
-void	panic_free(t_command *cmd, t_pvec *args_vec)
+void	panic_free(t_command *cmd, t_pvec *args_vec, t_pvec *redirs_vec)
 {
-	if (cmd->in_file != NULL)
-		free(cmd->in_file);
-	if (cmd->out_file != NULL)
-		free(cmd->out_file);
 	free(cmd);
 	pvec_del(args_vec, free);
+	pvec_del(redirs_vec, free);
 }
 
 // ls "$USER" 
@@ -83,26 +76,25 @@ t_command	*create_command(t_token ***tokens)
 {
 	t_command	*cmd;
 	t_pvec		*args_vec;
+	t_pvec		*redirs_vec;
 
 	cmd = (t_command *)malloc(sizeof(t_command));
-	if (cmd == NULL)
-		return (NULL);
-	cmd->out_file = NULL;
-	cmd->in_file = NULL;
-	cmd->is_append = false;
-	cmd->is_heredoc = false;
+	redirs_vec = pvec_new(16);
 	args_vec = pvec_new(16);
 	while (is_command_token(**tokens))
 	{
 		skip_spaces(tokens);
 		if (!is_command_token(**tokens))
 			break ;
-		if (!parse_step(cmd, tokens, args_vec))
-			return (panic_free(cmd, args_vec), NULL);
+		if (!parse_step(tokens, args_vec, redirs_vec))
+			return (panic_free(cmd, args_vec, redirs_vec), NULL);
 	}
 	pvec_append(args_vec, NULL);
 	cmd->argv = (char **)args_vec->arr;
 	cmd->argc = args_vec->len - 1;
 	free(args_vec);
+	pvec_append(redirs_vec, NULL);
+	cmd->redirs = (t_redir **)redirs_vec->arr;
+	free(redirs_vec);
 	return (cmd);
 }

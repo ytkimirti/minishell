@@ -6,61 +6,43 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 12:47:00 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/11/26 19:31:27 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/09 17:40:09 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "built_in.h"
 #include "command_utils.h"
 #include "stdio.h"
+#include "vector.h"
 #include <unistd.h>
 
-static bool	out_file_thing(t_command *command, t_stdio *std, int *ofile)
+void	close_fds(t_ivec *opened_fds)
 {
-	if (command->out_file == NULL)
+	int	i;
+
+	i = 0;
+	while (i < opened_fds->len)
 	{
-		*ofile = -1;
-		return (true);
+		close(opened_fds->arr[i]);
+		i++;
 	}
-	*ofile = open_output_file(command->out_file, command->is_append);
-	if (*ofile == -1)
-		return (false);
-	std->out = *ofile;
-	return (true);
 }
 
-static int	in_file_thing(t_command *command, t_stdio *std, int *ifile)
+// Only execute the func if there are no errors while executing open_redir_files
+int	execute_builtin(t_command *command, t_stdio std, t_builtin_func func)
 {
-	if (command->in_file == NULL)
-	{
-		*ifile = -1;
-		return (true);
-	}
-	*ifile = open_input_file(command->in_file, command->is_heredoc);
-	if (*ifile == -1)
-		return (false);
-	std->in = *ifile;
-	return (true);
-}
-
-int	execute_builtin(t_command *command, t_stdio std)
-{
-	t_builtin_func	func;
-	int				outfile;
-	int				infile;
 	int				ret;
+	t_ivec			*opened_fds;
 
-	func = find_builtin_function(command->argv[0]);
-	if (func == NULL)
-		return (-1);
-	if (!in_file_thing(command, &std, &infile))
+	opened_fds = ivec_new(4);
+	if (!open_redir_files(command->redirs, opened_fds, &std))
+	{
+		close_fds(opened_fds);
+		ivec_del(opened_fds);
 		return (SHELL_ERROR);
-	if (!out_file_thing(command, &std, &outfile))
-		return (SHELL_ERROR);
+	}
 	ret = func(command, std);
-	if (outfile != -1)
-		close(outfile);
-	if (infile != -1)
-		close(infile);
+	close_fds(opened_fds);
+	ivec_del(opened_fds);
 	return (ret);
 }
