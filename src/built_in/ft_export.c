@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:12:09 by ykimirti          #+#    #+#             */
-/*   Updated: 2023/01/08 14:27:04 by emakas           ###   ########.fr       */
+/*   Updated: 2023/01/09 16:00:42 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,17 @@
 #include <errno.h>
 #include <stdio.h>
 #include <string.h>
+#include "utils.h"
+
+static int	calculate_env_len(char **env)
+{
+	int	i;
+
+	i = 0;
+	while (env[i] != NULL)
+		i++;
+	return (i);
+}
 
 static void	print_single_env(char *env, int fd)
 {
@@ -42,6 +53,7 @@ static void	print_all_exports(t_stdio std)
 	int		i;
 
 	env = extract_env();
+	sort((void **)env, calculate_env_len(env), (t_compare_func)ft_strcmp);
 	i = 0;
 	while (env[i] != NULL)
 	{
@@ -52,6 +64,11 @@ static void	print_all_exports(t_stdio std)
 	free(env);
 }
 
+// "asd=" ok
+// "asd"  ok
+// "=asd" err
+// "="    err
+// ""     err
 int	ft_export(t_command *command, t_stdio std)
 {
 	int		index;
@@ -67,12 +84,15 @@ int	ft_export(t_command *command, t_stdio std)
 		i = 0;
 		while (str[i] != '\0' && str[i] != '=')
 			i++;
-		if (str[i] == '\0')
-			return (ft_putendl_fd("No '=' found in string", std.err), 1);
 		if (i == 0)
-			return (ft_putendl_fd("No key found before '='", std.err), 1);
-		str[i] = '\0';
-		set_env(str, str + i + 1);
+			return (ft_putendl_fd("Syntax error", std.err), 1);
+		if (str[i] == '\0')
+			set_env(str, get_env(str, i));
+		else
+		{
+			str[i] = '\0';
+			set_env(str, str + i + 1);
+		}
 		index++;
 	}
 	return (0);
