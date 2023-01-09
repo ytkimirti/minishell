@@ -52,17 +52,17 @@ void	fill_dummy_command(t_command *cmd, DummyCommandData &data)
 	cmd->argv[data.argv.size()] = NULL;
 	cmd->argc = data.argv.size();
 
-	if (data.out_file.empty())
-		cmd->out_file = NULL;
-	else
-		cmd->out_file = (char *)data.out_file.c_str();
-
-	if (data.in_file.empty())
-		cmd->in_file = NULL;
-	else
-		cmd->in_file = (char *)data.in_file.c_str();
-	cmd->is_append = data.is_append;
-	cmd->is_heredoc = data.is_heredoc;
+	// if (data.out_file.empty())
+	// 	cmd->out_file = NULL;
+	// else
+	// 	cmd->out_file = (char *)data.out_file.c_str();
+	//
+	// if (data.in_file.empty())
+	// 	cmd->in_file = NULL;
+	// else
+	// 	cmd->in_file = (char *)data.in_file.c_str();
+	// cmd->is_append = data.is_append;
+	// cmd->is_heredoc = data.is_heredoc;
 }
 
 void	free_dummy_command(t_command *cmd)
