@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:00:53 by ykimirti          #+#    #+#             */
-/*   Updated: 2023/01/09 18:01:53 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/11 20:03:15 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static bool	parse_redir(t_token ***tokens, t_pvec *redirs_vec)
 		return (false);
 	}
 	redir->str = expand_tokens(tokens);
-	ft_printf("%s >%s<\n", token_type_tostr(redir->type), redir->str);
 	pvec_append(redirs_vec, redir);
 	return (true);
 }
