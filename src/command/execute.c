@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:58:12 by ykimirti          #+#    #+#             */
-/*   Updated: 2023/01/09 17:53:48 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/11 20:41:06 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@
 #include <error.h>
 #include <errno.h>
 #include <fcntl.h>
+
+static void	exit_based_on_execve_err(void)
+{
+	if (errno == ENOEXEC)
+		exit(128);
+	if (errno == ENOENT)
+		exit (127);
+	exit(126);
+}
 
 // This is ACTUALLY forked. Finally...
 static void	exec_child(t_command *command, t_stdio std)
@@ -46,12 +55,9 @@ static void	exec_child(t_command *command, t_stdio std)
 	dup2(std.out, 1);
 	if (!close_unwanted(std.unwanted_fds))
 		exit(SHELL_ERROR);
+	signal(SIGQUIT, SIG_DFL);
 	execve(path, command->argv, envp);
-	if (errno == ENOEXEC)
-		exit(128);
-	if (errno == ENOENT)
-		exit (127);
-	exit(126);
+	exit_based_on_execve_err();
 }
 
 // If a builtin

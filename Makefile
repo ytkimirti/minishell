@@ -40,7 +40,7 @@ src/ast/walk_utils.c src/ast/walkers.c src/built_in/built_in.c  \
 src/built_in/ft_cd.c src/built_in/ft_echo.c src/built_in/ft_env.c  \
 src/built_in/ft_exit.c src/built_in/ft_export.c src/built_in/ft_path.c  \
 src/built_in/ft_pwd.c src/built_in/ft_unset.c src/command/execute.c  \
-src/command/execute_builtin.c src/command/redirections.c src/command/file_open.c src/command/free_command.c  \
+src/command/execute_builtin.c src/command/redirections.c src/command/file_open.c src/command/heredoc.c src/command/free_command.c  \
 src/env/cached_path.c src/env/env_singleton.c src/env/extract_env.c  \
 src/env/get_env.c src/env/get_env_length.c src/env/init_env.c src/env/path.c  \
 src/env/pwd.c src/env/set_env.c src/env/unset_env.c src/error/error.c  \
