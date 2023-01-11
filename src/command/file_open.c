@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 13:45:27 by ykimirti          #+#    #+#             */
-/*   Updated: 2023/01/02 17:40:26 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/11 19:06:25 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,13 @@ static void	heredoc_handler(int sig)
 	close(0);
 }
 
+static char	*readline_or_getnextline(const char *prompt)
+{
+	if (isatty(0))
+		return (readline(prompt));
+	return (get_next_line(0));
+}
+
 static int	open_heredoc_file(const char *file)
 {
 	char	*line;
@@ -55,7 +62,7 @@ static int	open_heredoc_file(const char *file)
 	mem_handler = signal(SIGINT, heredoc_handler);
 	while (true)
 	{
-		line = readline("> ");
+		line = readline_or_getnextline("> ");
 		if (line == NULL)
 			break ;
 		if (ft_strncmp(line, file, ft_strlen(file) + 1) == 0)
