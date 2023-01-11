@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 09:02:37 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/29 14:57:14 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/11 19:10:51 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,27 @@ char	*create_prompt(void)
 	return (prompt);
 }
 
+char	*line_without_newline()
+{
+	char	*str;
+	int		len;
+
+	str = get_next_line(0);
+	if (str == NULL)
+		return (NULL);
+	len = ft_strlen(str);
+	if (len > 0 && str[len - 1] == '\n')
+		str[len - 1] = '\0';
+	return (str);
+}
+
 char	*readline_with_prompt(void)
 {
 	char	*str;
 	char	*res;
 
 	if (!isatty(0))
-		return (get_next_line(0));
+		return (line_without_newline());
 	str = create_prompt();
 	res = readline(str);
 	free(str);
