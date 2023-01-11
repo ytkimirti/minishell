@@ -6,7 +6,7 @@
 /*   By: emakas <emakas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 09:02:37 by ykimirti          #+#    #+#             */
-/*   Updated: 2023/01/11 19:10:51 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/11 20:36:19 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,20 @@
 #include <stdlib.h>
 #include "libft.h"
 #include "rl_colors.h"
+#include "env.h"
 #include "prompt_utils.h"
 
 char	*get_formatted_cwd(void)
 {
-	char		*cwd;
-	char		*new;
+	char			*cwd;
+	char			*new;
+	const char		*home;
 
 	cwd = getcwd(NULL, 0);
-	new = replace_prefix(cwd, "/Users/kimirti", "~");
+	home = get_env("HOME", 4);
+	if (home == NULL || home[0] == '\0')
+		return (cwd);
+	new = replace_prefix(cwd, home, "~");
 	if (new == NULL)
 		return (cwd);
 	free(cwd);
@@ -52,7 +57,7 @@ char	*create_prompt(void)
 	return (prompt);
 }
 
-char	*line_without_newline()
+char	*line_without_newline(void)
 {
 	char	*str;
 	int		len;
