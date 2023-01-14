@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 23:42:58 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/15 15:16:39 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/14 15:40:09 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ static void	fill_paths(const char *str, t_path_cache *data)
 	i = 0;
 	while (str[i] != '\0')
 	{
+		if (str[i] == ':')
+		{
+			i++;
+			continue ;
+		}
 		curr = cvec_new(128);
 		if (curr == NULL)
 			malloc_error();
