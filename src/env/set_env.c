@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 14:30:47 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/12/15 15:05:18 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/14 14:53:53 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,23 +52,20 @@ void	set_envdata_value(t_envdata *data, const char *new_value)
 {
 	int		len_new;
 	char	*new_str;
-	int		i;
 
 	len_new = ft_strlen(new_value);
-	if (len_new + 1 > data->capacity - 1 - data->len_key)
+	if (len_new > data->len_value)
 	{
 		new_str = malloc(sizeof(char) * (data->len_key + 1 + len_new + 1));
 		if (new_str == NULL)
 			malloc_error();
-		i = -1;
-		while (++i < data->len_key + 1)
-			new_str[i] = data->key[i];
-		i = -1;
-		while (++i < len_new + 1)
-			new_str[data->len_key + 1 + i] = new_value[i];
+		ft_strlcpy(new_str, data->key, data->len_key + 1 + 1);
+		ft_strlcpy(new_str + data->len_key + 1, new_value, len_new + 1);
 		if (data->is_allocated)
 			free(data->key);
 		data->key = new_str;
+		data->value = new_str + data->len_key + 1;
+		data->len_value = len_new;
 		data->is_allocated = true;
 	}
 	else
