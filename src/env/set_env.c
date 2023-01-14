@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 14:30:47 by ykimirti          #+#    #+#             */
-/*   Updated: 2023/01/14 14:53:53 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/14 16:09:46 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "env.h"
 #include <stdlib.h>
 #include "libft.h"
+#include <stdio.h>
 
 // NOTE: There are 20 chars of space at the end. Juuust to make sure.
 // You know...
@@ -54,7 +55,8 @@ void	set_envdata_value(t_envdata *data, const char *new_value)
 	char	*new_str;
 
 	len_new = ft_strlen(new_value);
-	if (len_new > data->len_value)
+	data->len_value = len_new;
+	if (len_new + 1 > data->capacity - data->len_key - 1)
 	{
 		new_str = malloc(sizeof(char) * (data->len_key + 1 + len_new + 1));
 		if (new_str == NULL)
@@ -65,7 +67,6 @@ void	set_envdata_value(t_envdata *data, const char *new_value)
 			free(data->key);
 		data->key = new_str;
 		data->value = new_str + data->len_key + 1;
-		data->len_value = len_new;
 		data->is_allocated = true;
 	}
 	else
