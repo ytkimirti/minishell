@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:18:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2023/01/14 17:07:50 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/14 17:15:35 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ int	main(int argc, char *argv[], char *envp[])
 	init_env(envp);
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, signal_handler);
+	set_env("?", "0");
 	shell_loop();
 }
