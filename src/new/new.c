@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 09:44:54 by ykimirti          #+#    #+#             */
-/*   Updated: 2023/01/05 19:23:04 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/14 12:07:30 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int	run_paren(t_token ***tokens, t_stdio std, bool is_sync)
 int	run_primary(t_token ***tokens, t_stdio std, bool is_sync)
 {
 	int			status;
-	static int	last_status = -1;
 	char		*str;
 
 	skip_spaces(tokens);
@@ -71,13 +70,9 @@ int	run_primary(t_token ***tokens, t_stdio std, bool is_sync)
 		status = parse_and_run_command(tokens, std, is_sync);
 	else
 		status = (error_unexpected(**tokens, EMPTY), SHELL_ERROR);
-	if (status != last_status)
-	{
-		str = ft_itoa(status);
-		set_env("?", str);
-		free(str);
-		last_status = status;
-	}
+	str = ft_itoa(status);
+	set_env("?", str);
+	free(str);
 	return (status);
 }
 
