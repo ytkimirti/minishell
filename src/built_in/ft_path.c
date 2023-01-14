@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:25:19 by ykimirti          #+#    #+#             */
-/*   Updated: 2023/01/02 17:44:02 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/14 15:44:14 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	ft_path(t_command *command, t_stdio std)
 	char		*bin;
 
 	bin = "";
-	if (command->argc == 3
-		&& ft_strncmp(command->argv[1], "-q", sizeof("-q")) == 0)
+	is_query = false;
+	if (command->argc == 3 && ft_strncmp(command->argv[1], "-q", 3) == 0)
 	{
 		bin = command->argv[2];
 		is_query = true;
