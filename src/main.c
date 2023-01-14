@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:18:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2023/01/11 20:40:41 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/14 11:22:00 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,13 @@ static void	shell_loop(void)
 	char	*line;
 	t_token	**tokens;
 
+	dprintf(2, "=== START ===\n");
 	while (true)
 	{
 		line = readline_with_prompt();
 		if (line == NULL)
 			break ;
+		dprintf(2, "%s\n", line);
 		tokens = tokenize(line);
 		if (tokens == NULL || tokens[0] == NULL
 			|| (tokens[0]->type == SPACE_TOKEN && tokens[1] == NULL))
