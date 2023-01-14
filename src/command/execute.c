@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:58:12 by ykimirti          #+#    #+#             */
-/*   Updated: 2023/01/11 20:41:06 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/14 15:09:38 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int	execute_command(t_command *command, t_stdio std, bool is_sync)
 		exec_child(command, std);
 	if (is_sync)
 	{
+		status = 0;
 		waitpid(pid, &status, 0);
 		return (WEXITSTATUS(status));
 	}
