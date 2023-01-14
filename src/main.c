@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:18:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2023/01/11 20:40:41 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/14 17:07:50 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,7 @@ void	signal_handler(int sig)
 		printf("\n");
 		rl_on_new_line();
 		rl_redisplay();
-	}
-	else if (sig == SIGQUIT)
-	{
-		printf("Quit: 3\n");
+		set_env("?", "1");
 	}
 }
 
@@ -79,7 +76,7 @@ int	main(int argc, char *argv[], char *envp[])
 	(void)argv;
 	(void)envp;
 	init_env(envp);
-	signal(SIGQUIT, signal_handler);
+	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, signal_handler);
 	shell_loop();
 }
