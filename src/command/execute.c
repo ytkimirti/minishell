@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:58:12 by ykimirti          #+#    #+#             */
-/*   Updated: 2023/01/14 15:09:38 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/14 17:04:43 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 static void	exit_based_on_execve_err(void)
 {
+	perror("execve error");
 	if (errno == ENOEXEC)
 		exit(128);
 	if (errno == ENOENT)
@@ -40,7 +41,7 @@ static void	exec_child(t_command *command, t_stdio std)
 	char		**envp;
 
 	if (!open_redir_files(command->redirs, NULL, &std))
-		exit(SHELL_ERROR);
+		exit(1);
 	if (command->argv[0] == NULL)
 		exit(0);
 	path = find_executable(command->argv[0]);
@@ -55,7 +56,6 @@ static void	exec_child(t_command *command, t_stdio std)
 	dup2(std.out, 1);
 	if (!close_unwanted(std.unwanted_fds))
 		exit(SHELL_ERROR);
-	signal(SIGQUIT, SIG_DFL);
 	execve(path, command->argv, envp);
 	exit_based_on_execve_err();
 }
