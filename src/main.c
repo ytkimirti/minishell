@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:18:05 by ykimirti          #+#    #+#             */
-/*   Updated: 2023/01/14 11:22:00 by ykimirti         ###   ########.tr       */
+/*   Updated: 2023/01/14 11:35:50 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,29 @@
 #include "ast_utils.h"
 #include "readline/readline.h"
 #include "new.h"
+#include <time.h>
+
+void	log_msg(const char *msg)
+{
+    time_t t = time(NULL);
+    struct tm *tm = localtime(&t);
+    char s[64];
+    strftime(s, sizeof(s), "%c", tm);
+    dprintf(3, "%s>%s\n", s, msg);
+}
 
 static void	shell_loop(void)
 {
 	char	*line;
 	t_token	**tokens;
 
-	dprintf(2, "=== START ===\n");
+	log_msg("=== START ===\n");
 	while (true)
 	{
 		line = readline_with_prompt();
 		if (line == NULL)
 			break ;
-		dprintf(2, "%s\n", line);
+		log_msg(line);
 		tokens = tokenize(line);
 		if (tokens == NULL || tokens[0] == NULL
 			|| (tokens[0]->type == SPACE_TOKEN && tokens[1] == NULL))
